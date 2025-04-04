@@ -100,7 +100,7 @@ public class SoulWizardOrbEntity extends StraightMovingProjectileEntity implemen
     }
 
     public void onHitEntity(Entity entity) {
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             super.onHitEntity(entity);
             Entity entity1 = this.getOwner();
             boolean flag;

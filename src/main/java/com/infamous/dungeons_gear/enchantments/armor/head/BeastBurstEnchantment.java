@@ -41,8 +41,8 @@ public class BeastBurstEnchantment extends BeastEnchantment {
     public static void onPlayerUsedHealthPotion(LivingEntityUseItemEvent.Finish event) {
         if (!(event.getEntity() instanceof Player)) return;
         Player player = (Player) event.getEntity();
-        if (player.isAlive() && player.level instanceof ServerLevel) {
-            ServerLevel serverWorld = (ServerLevel) player.level;
+        if (player.isAlive() && player.level() instanceof ServerLevel) {
+            ServerLevel serverWorld = (ServerLevel) player.level();
             List<MobEffectInstance> potionEffects = PotionUtils.getMobEffects(event.getItem());
             if (potionEffects.isEmpty()) return;
             if (potionEffects.get(0).getEffect() == MobEffects.HEAL) {

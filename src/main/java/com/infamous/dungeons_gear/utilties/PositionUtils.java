@@ -32,11 +32,11 @@ public class PositionUtils {
 
         do {
             BlockPos blockpos1 = blockpos.below();
-            BlockState blockstate = entity.level.getBlockState(blockpos1);
-            if (blockstate.isFaceSturdy(entity.level, blockpos1, Direction.UP)) {
-                if (!entity.level.isEmptyBlock(blockpos)) {
-                    BlockState blockstate1 = entity.level.getBlockState(blockpos);
-                    VoxelShape voxelshape = blockstate1.getCollisionShape(entity.level, blockpos);
+            BlockState blockstate = entity.level().getBlockState(blockpos1);
+            if (blockstate.isFaceSturdy(entity.level(), blockpos1, Direction.UP)) {
+                if (!entity.level().isEmptyBlock(blockpos)) {
+                    BlockState blockstate1 = entity.level().getBlockState(blockpos);
+                    VoxelShape voxelshape = blockstate1.getCollisionShape(entity.level(), blockpos);
                     if (!voxelshape.isEmpty()) {
                         d0 = voxelshape.max(Direction.Axis.Y);
                     }

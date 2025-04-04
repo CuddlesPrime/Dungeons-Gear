@@ -70,7 +70,7 @@ public class ArtifactBeamEntity extends Entity implements IEntityAdditionalSpawn
     @Override
     public void tick() {
         LivingEntity owner = getOwner();
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
             if (owner == null || !owner.isAlive()) {
                 this.remove(RemovalReason.DISCARDED);
                 return;
@@ -81,14 +81,14 @@ public class ArtifactBeamEntity extends Entity implements IEntityAdditionalSpawn
                 return;
             }
         }
-        if (this.owner instanceof Player && this.level.isClientSide()) {
+        if (this.owner instanceof Player && this.level().isClientSide()) {
             updatePositionAndRotation();
             NetworkHandler.INSTANCE.sendToServer(new PlayerBeamMessage(this));
-        } else if (!(this.owner instanceof Player) && !this.level.isClientSide()) {
+        } else if (!(this.owner instanceof Player) && !this.level().isClientSide()) {
             updatePositionAndRotation();
         }
 
-        if (!this.level.isClientSide()) {
+        if (!this.level().isClientSide()) {
             Set<LivingEntity> entities = new HashSet<>();
             AABB aabb = new AABB(this.position(), this.position()).inflate(beamWidth);
             double distanceToDestination = beamTraceDistance(MAX_RAYTRACE_DISTANCE, 1.0f, false);
@@ -96,7 +96,7 @@ public class ArtifactBeamEntity extends Entity implements IEntityAdditionalSpawn
             while (true) {
                 if (this.position().distanceTo(aabb.getCenter()) > distanceToDestination || this.position().distanceTo(aabb.getCenter()) > MAX_RAYTRACE_DISTANCE)
                     break;
-                entities.addAll(this.level.getEntitiesOfClass(LivingEntity.class, aabb, getCanApplyToEnemyPredicate(owner)));
+                entities.addAll(this.level().getEntitiesOfClass(LivingEntity.class, aabb, getCanApplyToEnemyPredicate(owner)));
                 distanceTraveled += 1.0d;
                 Vec3 viewVector = this.getViewVector(1.0F);
                 Vec3 targetVector = this.position().add(viewVector.x * distanceTraveled, viewVector.y * distanceTraveled, viewVector.z * distanceTraveled);
@@ -163,13 +163,13 @@ public class ArtifactBeamEntity extends Entity implements IEntityAdditionalSpawn
     @Nullable
     public LivingEntity getOwner() {
         if (this.owner == null && this.ownerUUID != null) {
-            if (this.level instanceof ServerLevel) {
-                Entity entity = ((ServerLevel) this.level).getEntity(this.ownerUUID);
+            if (this.level() instanceof ServerLevel) {
+                Entity entity = ((ServerLevel) this.level()).getEntity(this.ownerUUID);
                 if (entity instanceof LivingEntity) {
                     this.owner = (LivingEntity) entity;
                 }
-            } else if (this.level.isClientSide) {
-                this.owner = this.level.getPlayerByUUID(this.ownerUUID);
+            } else if (this.level().isClientSide) {
+                this.owner = this.level().getPlayerByUUID(this.ownerUUID);
             }
         }
         return this.owner;

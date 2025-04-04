@@ -32,7 +32,7 @@ public class WeakeningEnchantment extends DungeonsEnchantment {
         if (!(target instanceof LivingEntity)) return;
         LivingEntity livingTarget = (LivingEntity) target;
         livingTarget.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, WEAKENING_DURATION.get(), level - 1));
-        applyToNearbyEntities(target, target.level, WEAKENING_DISTANCE.get(),
+        applyToNearbyEntities(target, target.level(), WEAKENING_DISTANCE.get(),
                 getCanApplyToSecondEnemyPredicate(user, livingTarget), (LivingEntity nearbyEntity) -> {
                     nearbyEntity.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, WEAKENING_DURATION.get(), level - 1));
                 }

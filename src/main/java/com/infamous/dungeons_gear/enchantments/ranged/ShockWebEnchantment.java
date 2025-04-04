@@ -75,7 +75,7 @@ public class ShockWebEnchantment extends DungeonsEnchantment {
             DungeonsGear.LOGGER.info("Shock web level is {}!", shockWebLevel);
             Entity shooter = arrow.getOwner();
             DungeonsGear.LOGGER.info("Shooter is {}!", shooter);
-            Level world = arrow.level;
+            Level world = arrow.level();
             if (shockWebLevel > 0 && shooter instanceof LivingEntity) {
                 double searchRadius = 16.0D;
                 AABB boundingBox = arrow.getBoundingBox().inflate(searchRadius, searchRadius, searchRadius);

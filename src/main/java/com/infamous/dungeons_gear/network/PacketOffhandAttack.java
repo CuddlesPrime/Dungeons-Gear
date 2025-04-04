@@ -40,7 +40,7 @@ public class PacketOffhandAttack {
                         ServerPlayer player = ctx.get().getSender();
                         Entity target = null;
                         if (player != null) {
-                            target = player.level.getEntity(packet.entityID);
+                            target = player.level().getEntity(packet.entityID);
                         }
                         if (target != null) {
                             ItemStack offhand = player.getOffhandItem();

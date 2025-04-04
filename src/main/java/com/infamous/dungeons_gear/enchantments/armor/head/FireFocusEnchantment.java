@@ -31,7 +31,7 @@ public class FireFocusEnchantment extends FocusEnchantment {
         DamageSource source = event.getSource();
         if (!source.isFire()) return;
         if (source == DamageSource.ON_FIRE) return; // ON_FIRE is applied when you set something on fire
-        if (event.getEntity().level.isClientSide) return;
+        if (event.getEntity().level().isClientSide) return;
 
         if (event.getSource().getEntity() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) event.getSource().getEntity();

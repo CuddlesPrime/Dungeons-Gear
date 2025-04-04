@@ -39,7 +39,7 @@ public class ArtifactSynergyEnchantment extends DungeonsEnchantment {
         ItemStack mainhand = attacker.getMainHandItem();
         Combo comboCap = ComboHelper.getComboCapability(attacker);
 
-        if (comboCap.hasArtifactSynergy() && !attacker.level.isClientSide) {
+        if (comboCap.hasArtifactSynergy() && !attacker.level().isClientSide) {
             comboCap.setArtifactSynergy(false);
             int artifactSynergyLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.ARTIFACT_SYNERGY.get(), mainhand);
             if (artifactSynergyLevel > 0) {

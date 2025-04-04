@@ -57,15 +57,15 @@ public class ReplenishEnchantment extends DungeonsEnchantment {
                     if (replenishLevel == 2) replenishChance = 0.17F;
                     if (replenishLevel == 3) replenishChance = 0.24F;
                     if (replenishRand <= replenishChance) {
-                        ItemEntity arrowDrop = new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), new ItemStack(Items.ARROW));
-                        shooter.level.addFreshEntity(arrowDrop);
+                        ItemEntity arrowDrop = new ItemEntity(player.level(), player.getX(), player.getY(), player.getZ(), new ItemStack(Items.ARROW));
+                        shooter.level().addFreshEntity(arrowDrop);
                     }
                 }
                 if (arrow.getTags().contains(INTRINSIC_REPLENISH_TAG)) {
                     float replenishRand = shooter.getRandom().nextFloat();
                     if (replenishRand <= 0.1F) {
-                        ItemEntity arrowDrop = new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), new ItemStack(Items.ARROW));
-                        shooter.level.addFreshEntity(arrowDrop);
+                        ItemEntity arrowDrop = new ItemEntity(player.level(), player.getX(), player.getY(), player.getZ(), new ItemStack(Items.ARROW));
+                        shooter.level().addFreshEntity(arrowDrop);
                     }
                 }
             }

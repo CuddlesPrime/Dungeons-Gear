@@ -30,7 +30,7 @@ public class PoisonFocusEnchantment extends FocusEnchantment {
     @SubscribeEvent
     public static void onPoisonAttack(LivingDamageEvent event) {
         if (event.getSource() != DamageSource.MAGIC) return; // Poison effect applies this specific damage source
-        if (event.getEntity().level.isClientSide) return;
+        if (event.getEntity().level().isClientSide) return;
 
         LivingEntity victim = event.getEntity();
         if (victim.getEffect(MobEffects.POISON) != null) {

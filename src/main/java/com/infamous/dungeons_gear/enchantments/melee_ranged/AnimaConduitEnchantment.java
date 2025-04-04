@@ -55,7 +55,7 @@ public class AnimaConduitEnchantment extends HealingEnchantment {
     @SubscribeEvent
     public static void onPickupSoulOrb(PlayerSoulEvent.PickupSoul event) {
         Player playerEntity = event.getEntity();
-        if (!playerEntity.level.isClientSide() && ModEnchantmentHelper.hasEnchantment(playerEntity, ANIMA_CONDUIT.get())) {
+        if (!playerEntity.level().isClientSide() && ModEnchantmentHelper.hasEnchantment(playerEntity, ANIMA_CONDUIT.get())) {
             int level = EnchantmentHelper.getEnchantmentLevel(ANIMA_CONDUIT.get(), playerEntity);
             playerEntity.heal(level);
         }

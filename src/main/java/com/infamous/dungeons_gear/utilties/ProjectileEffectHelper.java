@@ -79,7 +79,7 @@ public class ProjectileEffectHelper {
             setProjectileTowards(arrowEntity, towardsX, towardsY, towardsZ, 0);
             arrowEntity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
             //arrowEntity.addTag("BonusProjectile"); // Commented this out because it should no longer be used, if a user reports a bug about this, uncomment this
-            attacker.level.addFreshEntity(arrowEntity);
+            attacker.level().addFreshEntity(arrowEntity);
         }
     }
 
@@ -106,7 +106,7 @@ public class ProjectileEffectHelper {
             setProjectileTowards(arrowEntity, towardsX, towardsY, towardsZ, 0);
             //
             arrowEntity.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
-            attacker.level.addFreshEntity(arrowEntity);
+            attacker.level().addFreshEntity(arrowEntity);
         }
     }
 
@@ -128,7 +128,7 @@ public class ProjectileEffectHelper {
             snowballEntity.shootFromRotation(attacker, attacker.getXRot(), attacker.getYRot(), 0.0F, 1.5F, 1.0F);
             setProjectileTowards(snowballEntity, towardsX, towardsY, towardsZ, 0);
             //
-            attacker.level.addFreshEntity(snowballEntity);
+            attacker.level().addFreshEntity(snowballEntity);
         }
     }
 
@@ -139,7 +139,7 @@ public class ProjectileEffectHelper {
         arrowEntity.setDeltaMovement(arrowEntity.getDeltaMovement().scale(-0.1D));
         arrowEntity.setYRot(arrowEntity.getYRot() + 180.0F);
         arrowEntity.yRotO += 180.0F;
-        if (!arrowEntity.level.isClientSide && arrowEntity.getDeltaMovement().lengthSqr() < 1.0E-7D) {
+        if (!arrowEntity.level().isClientSide && arrowEntity.getDeltaMovement().lengthSqr() < 1.0E-7D) {
             if (arrowEntity.pickup == AbstractArrow.Pickup.ALLOWED) {
                 // arrowEntity.getArrowStack() => new ItemStack(Items.ARROW)
                 arrowEntity.spawnAtLocation(new ItemStack(Items.ARROW), 0.1F);

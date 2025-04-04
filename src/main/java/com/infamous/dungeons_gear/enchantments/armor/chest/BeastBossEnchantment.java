@@ -36,7 +36,7 @@ public class BeastBossEnchantment extends BeastEnchantment {
         Entity trueSource = source.getEntity();
         if (trueSource == null) return;
 
-        if (trueSource.level instanceof ServerLevel
+        if (trueSource.level() instanceof ServerLevel
                 && MinionMasterHelper.isMinionEntity(trueSource)) {
             Minion attackerSummonableCap = MinionMasterHelper.getMinionCapability(trueSource);
 

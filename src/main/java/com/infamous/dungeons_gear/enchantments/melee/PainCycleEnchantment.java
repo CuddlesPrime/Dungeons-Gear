@@ -28,7 +28,7 @@ public class PainCycleEnchantment extends DungeonsEnchantment {
     public static void onPainfulAttack(LivingDamageEvent event) {
         if (PlayerAttackHelper.isProbablyNotMeleeDamage(event.getSource())) return;
         if (event.getSource() instanceof OffhandAttackDamageSource) return;
-        if (event.getEntity().level.isClientSide) return;
+        if (event.getEntity().level().isClientSide) return;
 
         if (event.getSource().getEntity() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) event.getSource().getEntity();

@@ -31,9 +31,9 @@ public class SatchelOfElixirsItem extends ArtifactItem {
 
         if (!c.getLevel().isClientSide) {
             for (int i = 0; i < 2; i++) {
-                ItemStack elixirToDrop = LootTableHelper.generateItemStack((ServerLevel) playerIn.level, playerIn.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "items/satchel_of_elixirs"), playerIn.getRandom());
-                ItemEntity elixirAsEntity = new ItemEntity(playerIn.level, playerIn.getX(), playerIn.getY(), playerIn.getZ(), elixirToDrop);
-                playerIn.level.addFreshEntity(elixirAsEntity);
+                ItemStack elixirToDrop = LootTableHelper.generateItemStack((ServerLevel) playerIn.level(), playerIn.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "items/satchel_of_elixirs"), playerIn.getRandom());
+                ItemEntity elixirAsEntity = new ItemEntity(playerIn.level(), playerIn.getX(), playerIn.getY(), playerIn.getZ(), elixirToDrop);
+                playerIn.level().addFreshEntity(elixirAsEntity);
             }
         }
 

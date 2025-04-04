@@ -34,7 +34,7 @@ public class PartyStarterEffect extends MobEffect {
             if (partyStarter != null) {
                 int partyStarterLevel = partyStarter.getAmplifier();
 
-                if (!attacker.level.isClientSide) {
+                if (!attacker.level().isClientSide) {
                     AOECloudHelper.spawnExplosionCloud(attacker, victim, 3.0F);
                     AreaOfEffectHelper.causeExplosionAttack(attacker, victim, DungeonsGearConfig.PARTY_STARTER_DAMAGE.get(), 3.0F);
                     SoundHelper.playGenericExplodeSound(victim);

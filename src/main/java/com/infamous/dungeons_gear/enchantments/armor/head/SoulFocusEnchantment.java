@@ -30,7 +30,7 @@ public class SoulFocusEnchantment extends FocusEnchantment {
     @SubscribeEvent
     public static void onMagicAttack(LivingDamageEvent event) {
         if (!isIndirectMagic(event.getSource())) return; // we don't want this to trigger via generic magic damage
-        if (event.getEntity().level.isClientSide) return;
+        if (event.getEntity().level().isClientSide) return;
 
         if (event.getSource().getEntity() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) event.getSource().getEntity();

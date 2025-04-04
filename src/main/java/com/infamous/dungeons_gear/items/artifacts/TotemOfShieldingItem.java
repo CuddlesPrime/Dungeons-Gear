@@ -40,11 +40,11 @@ public class TotemOfShieldingItem extends ArtifactItem {
             }
             if (itemUseContextPlayer != null) {
 
-                TotemOfShieldingEntity totemOfShieldingEntity = EntityTypeInit.TOTEM_OF_SHIELDING.get().create(itemUseContextPlayer.level);
+                TotemOfShieldingEntity totemOfShieldingEntity = EntityTypeInit.TOTEM_OF_SHIELDING.get().create(itemUseContextPlayer.level());
                 if (totemOfShieldingEntity != null) {
                     totemOfShieldingEntity.moveTo(blockPos, 0, 0);
                     totemOfShieldingEntity.setOwner(itemUseContextPlayer);
-                    itemUseContextPlayer.level.addFreshEntity(totemOfShieldingEntity);
+                    itemUseContextPlayer.level().addFreshEntity(totemOfShieldingEntity);
                     itemUseContextItem.hurtAndBreak(1, itemUseContextPlayer, (entity) -> NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new BreakItemMessage(entity.getId(), itemUseContextItem)));
                     ArtifactItem.putArtifactOnCooldown(itemUseContextPlayer, itemUseContextItem.getItem());
                 }

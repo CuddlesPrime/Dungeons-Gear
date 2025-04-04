@@ -41,7 +41,7 @@ public class BeamEntityRenderer<T extends ArtifactBeamEntity> extends EntityRend
 
     private static void drawBeams(double distance, ArtifactBeamEntity entity, float ticks, float speedModifier, PoseStack pMatrixStack) {
         VertexConsumer builder;
-        long gameTime = entity.level.getGameTime();
+        long gameTime = entity.level().getGameTime();
         double v = gameTime * speedModifier;
         float additiveThickness = (entity.getBeamWidth() * 1.75f) * calculateLaserFlickerModifier(gameTime);
 

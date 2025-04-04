@@ -52,8 +52,8 @@ public class RecyclerEnchantment extends DropsEnchantment {
 
                     int recyclerLevel = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.RECYCLER.get(), player);
                     if (comboCap.getArrowsInCounter() >= 40 - 7 * recyclerLevel) {
-                        ItemEntity arrowDrop = new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), new ItemStack(Items.ARROW, 10));
-                        player.level.addFreshEntity(arrowDrop);
+                        ItemEntity arrowDrop = new ItemEntity(player.level(), player.getX(), player.getY(), player.getZ(), new ItemStack(Items.ARROW, 10));
+                        player.level().addFreshEntity(arrowDrop);
                         comboCap.setArrowsInCounter(0);
                     }
                 }

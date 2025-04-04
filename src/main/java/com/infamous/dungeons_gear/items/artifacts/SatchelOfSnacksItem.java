@@ -30,9 +30,9 @@ public class SatchelOfSnacksItem extends ArtifactItem {
         if (playerIn == null) return new InteractionResultHolder<>(InteractionResult.FAIL, itemstack);
 
         if (!c.getLevel().isClientSide) {
-            ItemStack foodItemStack = LootTableHelper.generateItemStack((ServerLevel) playerIn.level, playerIn.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "items/satchel_of_snacks"), playerIn.getRandom());
-            ItemEntity foodDrop = new ItemEntity(playerIn.level, playerIn.getX(), playerIn.getY(), playerIn.getZ(), foodItemStack);
-            playerIn.level.addFreshEntity(foodDrop);
+            ItemStack foodItemStack = LootTableHelper.generateItemStack((ServerLevel) playerIn.level(), playerIn.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "items/satchel_of_snacks"), playerIn.getRandom());
+            ItemEntity foodDrop = new ItemEntity(playerIn.level(), playerIn.getX(), playerIn.getY(), playerIn.getZ(), foodItemStack);
+            playerIn.level().addFreshEntity(foodDrop);
         }
 
         itemstack.hurtAndBreak(1, playerIn, (entity) -> NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new BreakItemMessage(entity.getId(), itemstack)));

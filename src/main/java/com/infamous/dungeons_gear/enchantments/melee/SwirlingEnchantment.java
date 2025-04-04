@@ -40,7 +40,7 @@ public class SwirlingEnchantment extends AOEDamageEnchantment {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onVanillaCriticalHit(CriticalHitEvent event) {
-        if (event.getEntity() != null && !event.getEntity().level.isClientSide() && event.getTarget() instanceof LivingEntity
+        if (event.getEntity() != null && !event.getEntity().level().isClientSide() && event.getTarget() instanceof LivingEntity
                 && (event.getResult() == Event.Result.ALLOW || (event.getResult() == Event.Result.DEFAULT && event.isVanillaCritical()))
         ) {
             Player attacker = event.getEntity();

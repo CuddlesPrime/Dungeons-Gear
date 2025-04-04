@@ -41,11 +41,11 @@ public class BuzzyNestItem extends ArtifactItem {
             }
 
             if (itemUseContextPlayer != null) {
-                BuzzyNestEntity buzzyNestEntity = EntityTypeInit.BUZZY_NEST.get().create(itemUseContextPlayer.level);
+                BuzzyNestEntity buzzyNestEntity = EntityTypeInit.BUZZY_NEST.get().create(itemUseContextPlayer.level());
                 if (buzzyNestEntity != null) {
                     buzzyNestEntity.moveTo(blockPos, 0, 0);
                     buzzyNestEntity.setOwner(itemUseContextPlayer);
-                    itemUseContextPlayer.level.addFreshEntity(buzzyNestEntity);
+                    itemUseContextPlayer.level().addFreshEntity(buzzyNestEntity);
                     itemUseContextItem.hurtAndBreak(1, itemUseContextPlayer, (entity) -> NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new BreakItemMessage(entity.getId(), itemUseContextItem)));
                     ArtifactItem.putArtifactOnCooldown(itemUseContextPlayer, itemUseContextItem.getItem());
                 }

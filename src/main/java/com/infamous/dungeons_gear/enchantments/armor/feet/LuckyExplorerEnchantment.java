@@ -35,7 +35,7 @@ public class LuckyExplorerEnchantment extends DropsEnchantment implements IEmera
     @SubscribeEvent
     public static void onPlayerSpawn(PlayerEvent.PlayerRespawnEvent event) {
         Player player = event.getEntity();
-        if (!player.level.isClientSide) {
+        if (!player.level().isClientSide) {
             Combo comboCap = ComboHelper.getComboCapability(player);
             comboCap.setLastLuckyExplorerCheckpoint(player.blockPosition());
         }
@@ -54,9 +54,9 @@ public class LuckyExplorerEnchantment extends DropsEnchantment implements IEmera
                     comboCap.setLastLuckyExplorerCheckpoint(currentPos);
                     int rollCount = 1 + (luckyExplorerLevel - 1) * 2;
                     for (int i = 0; i < rollCount; i++) {
-                        ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) player.level, player.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/lucky_explorer"), player.getRandom());
-                        ItemEntity luckyExplorerDrop = new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), itemStack);
-                        player.level.addFreshEntity(luckyExplorerDrop);
+                        ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) player.level(), player.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/lucky_explorer"), player.getRandom());
+                        ItemEntity luckyExplorerDrop = new ItemEntity(player.level(), player.getX(), player.getY(), player.getZ(), itemStack);
+                        player.level().addFreshEntity(luckyExplorerDrop);
                     }
                 }
             }

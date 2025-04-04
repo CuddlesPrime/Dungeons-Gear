@@ -52,9 +52,9 @@ public class FoodReservesEnchantment extends DropsEnchantment {
                 if (ModEnchantmentHelper.hasEnchantment(player, EnchantmentInit.FOOD_RESERVES.get())) {
                     int foodReservesLevel = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.FOOD_RESERVES.get(), player);
                     while (foodReservesLevel > 0) {
-                        ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) player.level, player.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/food_reserves"), player.getRandom());
-                        ItemEntity foodDrop = new ItemEntity(player.level, player.getX(), player.getY(), player.getZ(), itemStack);
-                        player.level.addFreshEntity(foodDrop);
+                        ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) player.level(), player.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/food_reserves"), player.getRandom());
+                        ItemEntity foodDrop = new ItemEntity(player.level(), player.getX(), player.getY(), player.getZ(), itemStack);
+                        player.level().addFreshEntity(foodDrop);
                         foodReservesLevel--;
                     }
                 }

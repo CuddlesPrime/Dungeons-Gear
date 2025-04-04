@@ -96,19 +96,19 @@ public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
         } else moving = this.getDeltaMovement().z >= 0.05;
 
         if (moving) {
-            this.level.addParticle(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 0, 0, 0);
+            this.level().addParticle(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 0, 0, 0);
             if (this.soundLoopTick % 20 == 0) {
                 this.playSound(SoundEventInit.SOUL_WIZARD_FLY_LOOP.get(), 0.5F, 1.0F);
             }
         }
 
-        if (!this.level.isClientSide) {
+        if (!this.level().isClientSide) {
 
             if (this.hasDelayedForm()) {
                 this.playSound(SoundEventInit.SOUL_WIZARD_APPEAR.get(), 1.0F, 1.0F);
-                ((ServerLevel) level).sendParticles(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 20, 0.5D, 1.0D, 0.5D, 0.0D);
+                ((ServerLevel) level()).sendParticles(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 20, 0.5D, 1.0D, 0.5D, 0.0D);
                 this.appearAnimationTick = this.appearAnimationLength;
-                this.level.broadcastEntityEvent(this, (byte) 4);
+                this.level().broadcastEntityEvent(this, (byte) 4);
                 this.setDelayedForm(false);
             }
 
@@ -117,7 +117,7 @@ public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
             if (this.getAliveFor() >= 800) {
                 this.remove(RemovalReason.DISCARDED);
                 this.playSound(SoundEventInit.SOUL_WIZARD_PROJECTILE_IMPACT.get(), 1.0F, 0.5F);
-                ((ServerLevel) this.level).sendParticles(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 20, 0.5D, 1.0D, 0.5D, 0.0D);
+                ((ServerLevel) this.level()).sendParticles(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 20, 0.5D, 1.0D, 0.5D, 0.0D);
             }
         }
     }
@@ -264,7 +264,7 @@ public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
         @Override
         public void start() {
             mob.shootAnimationTick = mob.shootAnimationLength;
-            mob.level.broadcastEntityEvent(mob, (byte) 11);
+            mob.level().broadcastEntityEvent(mob, (byte) 11);
         }
 
         @Override
@@ -279,10 +279,10 @@ public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
                 double d1 = target.getX() - pos.x;
                 double d2 = target.getY(0.6D) - pos.y;
                 double d3 = target.getZ() - pos.z;
-                SoulWizardOrbEntity soulWizardOrb = new SoulWizardOrbEntity(mob.level, mob, d1, d2, d3);
+                SoulWizardOrbEntity soulWizardOrb = new SoulWizardOrbEntity(mob.level(), mob, d1, d2, d3);
                 soulWizardOrb.rotateToMatchMovement();
                 soulWizardOrb.moveTo(pos.x, pos.y, pos.z);
-                mob.level.addFreshEntity(soulWizardOrb);
+                mob.level().addFreshEntity(soulWizardOrb);
                 mob.playSound(SoundEventInit.SOUL_WIZARD_SHOOT.get(), 1.0F, 1.0F);
             }
         }

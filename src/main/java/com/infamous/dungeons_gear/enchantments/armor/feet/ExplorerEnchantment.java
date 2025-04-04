@@ -29,7 +29,7 @@ public class ExplorerEnchantment extends HealthAbilityEnchantment {
     @SubscribeEvent
     public static void onPlayerSpawn(PlayerEvent.PlayerRespawnEvent event) {
         Player player = event.getEntity();
-        if (!player.level.isClientSide) {
+        if (!player.level().isClientSide) {
             Combo comboCap = ComboHelper.getComboCapability(player);
             comboCap.setLastExplorerCheckpoint(player.blockPosition());
         }

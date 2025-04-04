@@ -37,7 +37,7 @@ public abstract class HurtByTargetGoalMixin extends TargetGoal {
         List<Class<?>> reinforcement = null;
         if (toIgnoreAlert != null)
             reinforcement = Lists.newArrayList(toIgnoreAlert);
-        List<? extends Mob> list = this.mob.level.getEntitiesOfClass(this.mob.getClass(), axisalignedbb);
+        List<? extends Mob> list = this.mob.level().getEntitiesOfClass(this.mob.getClass(), axisalignedbb);
         Iterator<? extends Mob> iterator = list.iterator();
 
         while (reinforcement != null && iterator.hasNext()) {

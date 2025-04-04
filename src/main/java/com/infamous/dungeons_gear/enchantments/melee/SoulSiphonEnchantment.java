@@ -68,7 +68,7 @@ public class SoulSiphonEnchantment extends DungeonsEnchantment {
             for (int i = 0; i < souls; i++) {
                 double x = target.getX() + user.getRandom().nextFloat() - 0.5D;
                 double z = target.getZ() + user.getRandom().nextFloat() - 0.5D;
-                target.level.addFreshEntity(new SoulOrbEntity((Player) user, target.level, x, target.getY() + 0.5D, z, (float) user.getAttributeValue(SOUL_GATHERING.get())));
+                target.level().addFreshEntity(new SoulOrbEntity((Player) user, target.level(), x, target.getY() + 0.5D, z, (float) user.getAttributeValue(SOUL_GATHERING.get())));
             }
             // soul particles
             PROXY.spawnParticles(target, ParticleTypes.SOUL);

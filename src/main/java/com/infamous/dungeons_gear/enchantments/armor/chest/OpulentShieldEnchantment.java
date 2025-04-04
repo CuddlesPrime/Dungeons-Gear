@@ -27,7 +27,7 @@ public class OpulentShieldEnchantment extends FocusEnchantment {
     @SubscribeEvent
     public static void onPickupXp(PlayerXpEvent.PickupXp event) {
         Player player = event.getEntity();
-        if (player.level.isClientSide) return;
+        if (player.level().isClientSide) return;
         int opulentShieldLevel = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.OPULENT_SHIELD.get(), player);
         int invulnerableTime = 20 * opulentShieldLevel;
         if (player.invulnerableTime >= invulnerableTime) return;

@@ -19,8 +19,8 @@ public class IceCloudRenderer extends GeoProjectilesRenderer<IceCloudEntity> {
 
     @Override
     protected int getBlockLightLevel(IceCloudEntity p_114496_, BlockPos p_114497_) {
-        return p_114496_.level.getBrightness(LightLayer.BLOCK, p_114497_) > 10
-                ? p_114496_.level.getBrightness(LightLayer.BLOCK, p_114497_)
+        return p_114496_.level().getBrightness(LightLayer.BLOCK, p_114497_) > 10
+                ? p_114496_.level().getBrightness(LightLayer.BLOCK, p_114497_)
                 : 5;
     }
 

@@ -96,10 +96,10 @@ public abstract class AbstractBeaconItem extends ArtifactItem {
     @Override
     public void stopUsingArtifact(LivingEntity livingEntity) {
         super.stopUsingArtifact(livingEntity);
-        if (!livingEntity.level.isClientSide()) {
+        if (!livingEntity.level().isClientSide()) {
             ArtifactUsage cap = ArtifactUsageHelper.getArtifactUsageCapability(livingEntity);
             cap.stopUsingArtifact();
-            List<ArtifactBeamEntity> beams = livingEntity.level.getEntitiesOfClass(ArtifactBeamEntity.class, livingEntity.getBoundingBox().inflate(1), artifactBeamEntity -> artifactBeamEntity.getOwner() == livingEntity);
+            List<ArtifactBeamEntity> beams = livingEntity.level().getEntitiesOfClass(ArtifactBeamEntity.class, livingEntity.getBoundingBox().inflate(1), artifactBeamEntity -> artifactBeamEntity.getOwner() == livingEntity);
             beams.forEach(artifactBeamEntity -> artifactBeamEntity.remove(Entity.RemovalReason.DISCARDED));
             SoundHelper.playBeaconSound(livingEntity, false);
             if (livingEntity.hasEffect(MobEffects.MOVEMENT_SLOWDOWN)) {

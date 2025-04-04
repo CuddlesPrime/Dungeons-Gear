@@ -80,8 +80,8 @@ public class GlobalEvents {
     private static void dropGildedItem(ServerPlayer entity, Item item) {
         ItemStack sword = new ItemStack(item);
         ItemStack gildedItem = GildedItemHelper.getGildedItem(entity.getRandom(), sword);
-        ItemEntity gildedItemDrop = new ItemEntity(entity.level, entity.getX(), entity.getY(), entity.getZ(), gildedItem);
-        entity.level.addFreshEntity(gildedItemDrop);
+        ItemEntity gildedItemDrop = new ItemEntity(entity.level(), entity.getX(), entity.getY(), entity.getZ(), gildedItem);
+        entity.level().addFreshEntity(gildedItemDrop);
     }
 
     private static void handleRangedEnchantments(AbstractArrow arrowEntity, LivingEntity shooter, ItemStack stack) {

@@ -58,7 +58,7 @@ public class ArtifactEvents {
             Minion summonableCap = getMinionCapability(sheepEntity);
             LivingEntity summoner = summonableCap.getMaster();
             if (summoner != null) {
-                if (sheepEntity.level instanceof ServerLevel) {
+                if (sheepEntity.level() instanceof ServerLevel) {
                     if (!summoner.hasEffect(MobEffects.MOVEMENT_SPEED) && sheepEntity.getTags().contains(SPEED_SHEEP_TAG)) {
                         MobEffectInstance speed = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 100);
                         summoner.addEffect(speed);

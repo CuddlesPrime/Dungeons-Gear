@@ -59,8 +59,8 @@ public class ProspectorEnchantment extends DropsEnchantment {
 
     private static ItemEntity getProspectorDrop(LivingEntity attacker, LivingEntity victim) {
         ResourceLocation prospectorLootTable = getProspectorLootTable(victim.getCommandSenderWorld());
-        ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) victim.level, victim.blockPosition(), prospectorLootTable, attacker.getRandom());
-        return new ItemEntity(victim.level, victim.getX(), victim.getY(), victim.getZ(), itemStack);
+        ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) victim.level(), victim.blockPosition(), prospectorLootTable, attacker.getRandom());
+        return new ItemEntity(victim.level(), victim.getX(), victim.getY(), victim.getZ(), itemStack);
     }
 
     private static ResourceLocation getProspectorLootTable(Level world) {

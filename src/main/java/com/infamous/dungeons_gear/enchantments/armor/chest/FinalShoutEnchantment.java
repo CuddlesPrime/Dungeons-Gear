@@ -50,7 +50,7 @@ public class FinalShoutEnchantment extends HealthAbilityEnchantment {
                     for (ItemStack is : CuriosIntegration.getArtifacts(player))
                         if (is.getItem() instanceof ArtifactItem && !(is.getItem() instanceof AbstractBeaconItem)) {
                             InteractionResultHolder<ItemStack> procResult = ((ArtifactItem) is.getItem()).procArtifact(new ArtifactUseContext(player, InteractionHand.MAIN_HAND, new BlockHitResult(player.position(), Direction.UP, player.blockPosition(), false)));
-                            if (procResult.getResult().consumesAction() && !player.level.isClientSide)
+                            if (procResult.getResult().consumesAction() && !player.level().isClientSide)
                                 ArtifactItem.triggerSynergy(player, is);
                             proc++;
                         }

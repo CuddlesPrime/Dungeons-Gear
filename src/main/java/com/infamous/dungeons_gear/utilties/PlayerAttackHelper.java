@@ -27,9 +27,9 @@ public class PlayerAttackHelper {
                 playerEntity.swingTime = -1;
                 playerEntity.swinging = true;
                 playerEntity.swingingArm = hand;
-                if (playerEntity.level instanceof ServerLevel) {
+                if (playerEntity.level() instanceof ServerLevel) {
                     ClientboundAnimatePacket sanimatehandpacket = new ClientboundAnimatePacket(playerEntity, hand == InteractionHand.MAIN_HAND ? 0 : 3);
-                    ServerChunkCache serverchunkprovider = ((ServerLevel) playerEntity.level).getChunkSource();
+                    ServerChunkCache serverchunkprovider = ((ServerLevel) playerEntity.level()).getChunkSource();
 
                     serverchunkprovider.broadcast(playerEntity, sanimatehandpacket);
                 }

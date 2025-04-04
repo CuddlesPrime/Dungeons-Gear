@@ -46,7 +46,7 @@ public class ArmorEvents {
         if (event.player.tickCount % 140 == 0)
             for (ItemStack i : event.player.getArmorSlots()) {
                 if (i.getItem() instanceof PetBatArmorGear && ((PetBatArmorGear) i.getItem()).doGivesYouAPetBat()) {
-                    ArmorEffectHelper.summonOrTeleportBat(event.player, event.player.level);
+                    ArmorEffectHelper.summonOrTeleportBat(event.player, event.player.level());
                     return;
                 }
             }

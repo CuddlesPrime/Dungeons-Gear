@@ -39,11 +39,11 @@ public class TotemOfRegenerationItem extends ArtifactItem {
                 blockPos = itemUseContextPos.relative(itemUseContextFace);
             }
             if (itemUseContextPlayer != null) {
-                TotemOfRegenerationEntity totemOfRegenerationEntity = EntityTypeInit.TOTEM_OF_REGENERATION.get().create(itemUseContextPlayer.level);
+                TotemOfRegenerationEntity totemOfRegenerationEntity = EntityTypeInit.TOTEM_OF_REGENERATION.get().create(itemUseContextPlayer.level());
                 if (totemOfRegenerationEntity != null) {
                     totemOfRegenerationEntity.moveTo(blockPos, 0, 0);
                     totemOfRegenerationEntity.setOwner(itemUseContextPlayer);
-                    itemUseContextPlayer.level.addFreshEntity(totemOfRegenerationEntity);
+                    itemUseContextPlayer.level().addFreshEntity(totemOfRegenerationEntity);
                     itemUseContextItem.hurtAndBreak(1, itemUseContextPlayer, (entity) -> NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new BreakItemMessage(entity.getId(), itemUseContextItem)));
                     ArtifactItem.putArtifactOnCooldown(itemUseContextPlayer, itemUseContextItem.getItem());
                 }

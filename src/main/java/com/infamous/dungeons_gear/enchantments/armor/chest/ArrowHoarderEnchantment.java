@@ -40,7 +40,7 @@ public class ArrowHoarderEnchantment extends JumpingEnchantment {
             drops += attacker.getRandom().nextFloat() <= (maxLevel % 4) / 4.0F ? 1 : 0;
             Collection<ItemEntity> itemEntities = event.getDrops();
             if (drops > 0 && victim instanceof Enemy && itemEntities.stream().anyMatch(itemEntity -> itemEntity.getItem().getItem().equals(Items.ARROW))) {
-                ItemEntity arrowDrop = new ItemEntity(victim.level, victim.getX(), victim.getY(), victim.getZ(), new ItemStack(ARROW_BUNDLE.get(), drops));
+                ItemEntity arrowDrop = new ItemEntity(victim.level(), victim.getX(), victim.getY(), victim.getZ(), new ItemStack(ARROW_BUNDLE.get(), drops));
                 itemEntities.add(arrowDrop);
             }
         }

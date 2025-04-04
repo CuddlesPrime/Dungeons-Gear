@@ -53,12 +53,12 @@ public class ShearsGear extends MeleeGear {
 
     @Override
     public net.minecraft.world.InteractionResult interactLivingEntity(ItemStack stack, net.minecraft.world.entity.player.Player playerIn, LivingEntity entity, net.minecraft.world.InteractionHand hand) {
-        if (entity.level.isClientSide) return net.minecraft.world.InteractionResult.PASS;
+        if (entity.level().isClientSide) return net.minecraft.world.InteractionResult.PASS;
         if (entity instanceof net.minecraftforge.common.IForgeShearable) {
             net.minecraftforge.common.IForgeShearable target = (net.minecraftforge.common.IForgeShearable) entity;
             BlockPos pos = new BlockPos(entity.getX(), entity.getY(), entity.getZ());
-            if (target.isShearable(stack, entity.level, pos)) {
-                java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.level, pos,
+            if (target.isShearable(stack, entity.level(), pos)) {
+                java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.level(), pos,
                         net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.BLOCK_FORTUNE, stack));
                 java.util.Random rand = new java.util.Random();
                 drops.forEach(d -> {

@@ -37,11 +37,11 @@ public class FireworksDisplayItem extends ArtifactItem {
                 blockPos = itemUseContextPos.relative(itemUseContextFace);
             }
             if (itemUseContextPlayer != null) {
-                FireworksDisplayEntity totemEntity = EntityTypeInit.FIREWORKS_DISPLAY.get().create(itemUseContextPlayer.level);
+                FireworksDisplayEntity totemEntity = EntityTypeInit.FIREWORKS_DISPLAY.get().create(itemUseContextPlayer.level());
                 if (totemEntity != null) {
                     totemEntity.moveTo(blockPos, 0, 0);
                     totemEntity.setOwner(itemUseContextPlayer);
-                    itemUseContextPlayer.level.addFreshEntity(totemEntity);
+                    itemUseContextPlayer.level().addFreshEntity(totemEntity);
 //                    itemUseContextItem.hurtAndBreak(1, itemUseContextPlayer, (entity) -> NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new BreakItemMessage(entity.getId(), itemUseContextItem)));
                     ArtifactItem.putArtifactOnCooldown(itemUseContextPlayer, itemUseContextItem.getItem());
                 }

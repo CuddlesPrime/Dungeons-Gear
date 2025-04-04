@@ -37,7 +37,7 @@ public class EchoEnchantment extends AOEDamageEnchantment {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onVanillaCriticalHit(CriticalHitEvent event) {
-        if (event.getTarget() instanceof LivingEntity && !event.getEntity().level.isClientSide()
+        if (event.getTarget() instanceof LivingEntity && !event.getEntity().level().isClientSide()
                 && (event.getResult() == Event.Result.ALLOW || (event.getResult() == Event.Result.DEFAULT && event.isVanillaCritical()))) {
             Player attacker = event.getEntity();
             LivingEntity victim = (LivingEntity) event.getTarget();
@@ -61,7 +61,7 @@ public class EchoEnchantment extends AOEDamageEnchantment {
 
     private static void echo(Player user, LivingEntity target, int cooldown) {
         final Combo comboCap = ComboHelper.getComboCapability(user);
-        if (user.level.isClientSide) return;
+        if (user.level().isClientSide) return;
         if (echoing) return;
         if (comboCap.getEchoCooldown() == 0 || comboCap.getEchoCooldown() == cooldown) {
             user.attackStrengthTicker = (int) (user.getAttributeValue(Attributes.ATTACK_SPEED) * comboCap.getCachedCooldown() * 20);

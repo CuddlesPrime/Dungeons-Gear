@@ -39,7 +39,7 @@ public class ArrowBundleItem extends Item {
             Player player = playerIn;
             int numberOfArrows = getNumberOfArrows(player, bundleItemStack);
             for (int i = 0; i < numberOfArrows; i++) {
-                ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) player.level, player.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "items/arrow_bundle"), player.getRandom());
+                ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) player.level(), player.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "items/arrow_bundle"), player.getRandom());
                 ItemEntity arrow = new ItemEntity(world, player.getX(), player.getY(), player.getZ(), itemStack);
                 world.addFreshEntity(arrow);
             }

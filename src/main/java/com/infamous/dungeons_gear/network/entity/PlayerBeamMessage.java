@@ -72,7 +72,7 @@ public class PlayerBeamMessage {
                 ctx.get().enqueueWork(() -> {
                     ServerPlayer player = ctx.get().getSender();
                     if (player != null) {
-                        Entity entity = player.level.getEntity(packet.beamEntityID);
+                        Entity entity = player.level().getEntity(packet.beamEntityID);
                         if (entity instanceof ArtifactBeamEntity) {
                             ArtifactBeamEntity artifactBeamEntity = (ArtifactBeamEntity) entity;
                             if (artifactBeamEntity.getOwner() != player) return;
