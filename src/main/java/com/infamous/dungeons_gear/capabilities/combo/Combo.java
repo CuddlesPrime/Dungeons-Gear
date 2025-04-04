@@ -250,11 +250,11 @@ public class Combo implements INBTSerializable<CompoundTag> {
         this.setJumpCooldownTimer(tag.getInt("jumpCooldownTimer"));
 
         ListTag listnbt = tag.getList("lastExplorerCheckpoint", 6);
-        BlockPos lastExplorerCheckpoint = new BlockPos(listnbt.getDouble(0), listnbt.getDouble(1), listnbt.getDouble(2));
+        BlockPos lastExplorerCheckpoint = BlockPos.containing(listnbt.getDouble(0), listnbt.getDouble(1), listnbt.getDouble(2));
         this.setLastExplorerCheckpoint(lastExplorerCheckpoint);
 
         ListTag listnbt1 = tag.getList("lastLuckyExplorerCheckpoint", 6);
-        BlockPos lastLuckyExplorerCheckpoint = new BlockPos(listnbt1.getDouble(0), listnbt1.getDouble(1), listnbt1.getDouble(2));
+        BlockPos lastLuckyExplorerCheckpoint = BlockPos.containing(listnbt1.getDouble(0), listnbt1.getDouble(1), listnbt1.getDouble(2));
         this.setLastLuckyExplorerCheckpoint(lastLuckyExplorerCheckpoint);
 
         this.setArtifactSynergy(tag.getBoolean("artifactSynergy"));
