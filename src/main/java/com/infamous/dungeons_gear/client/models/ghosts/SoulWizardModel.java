@@ -3,12 +3,9 @@ package com.infamous.dungeons_gear.client.models.ghosts;
 import com.infamous.dungeons_gear.DungeonsGear;
 import com.infamous.dungeons_gear.entities.SoulWizardEntity;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.processor.IBone;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
-import software.bernie.geckolib3.model.provider.data.EntityModelData;
+import software.bernie.geckolib.model.GeoModel;
 
-public class SoulWizardModel extends AnimatedGeoModel<SoulWizardEntity> {
+public class SoulWizardModel extends GeoModel<SoulWizardEntity> {
 
     @Override
     public ResourceLocation getAnimationResource(SoulWizardEntity entity) {

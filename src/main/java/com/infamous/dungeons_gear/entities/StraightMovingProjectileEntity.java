@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -21,11 +22,12 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.entity.PartEntity;
 import net.minecraftforge.network.NetworkHooks;
+import software.bernie.geckolib.animatable.GeoEntity;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class StraightMovingProjectileEntity extends Projectile {
+public abstract class StraightMovingProjectileEntity extends Projectile implements GeoEntity {
     public double xPower;
     public double yPower;
     public double zPower;
@@ -141,13 +143,13 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
             this.noPhysics = false;
         }
 
-        if (this.level().isClientSide || (entity == null || !entity.isRemoved()) && this.level().hasChunkAt(this.blockPosition())) {
+        if (this.level().isClientSide || (entity == null || !entity.isRemoved()) && this.level().isLoaded(this.blockPosition())) {
             super.tick();
             if (this.shouldBurn()) {
                 this.setSecondsOnFire(1);
             }
 
-            HitResult hitResult = ProjectileUtil.getHitResult(this, this::canHitEntity);
+            HitResult hitResult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
             if (hitResult.getType() != HitResult.Type.MISS && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, hitResult)) {
                 this.onHit(hitResult);
             }
@@ -219,7 +221,7 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
             this.playImpactSound();
         }
         if (!this.getsStuckInBlocks()) {
-            if (!this().isClientSide) {
+            if (!this.level().isClientSide) {
                 this.remove(RemovalReason.DISCARDED);
             }
         } else {
@@ -329,7 +331,7 @@ public abstract class StraightMovingProjectileEntity extends Projectile {
         return 1.0F;
     }
 
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 }
