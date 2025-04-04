@@ -5,6 +5,7 @@ import com.infamous.dungeons_gear.registry.ParticleInit;
 import com.infamous.dungeons_gear.registry.SoundEventInit;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -15,18 +16,17 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class SoulWizardOrbEntity extends StraightMovingProjectileEntity implements IAnimatable {
-
+public class SoulWizardOrbEntity extends StraightMovingProjectileEntity {
     public int textureChange = 0;
-
-    AnimationFactory factory = new AnimationFactory(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public SoulWizardOrbEntity(Level worldIn) {
         super(EntityTypeInit.SOUL_WIZARD_ORB.get(), worldIn);
@@ -78,17 +78,17 @@ public class SoulWizardOrbEntity extends StraightMovingProjectileEntity implemen
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 2, this::predicate));
-    }
-
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        return PlayState.CONTINUE;
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 2, this::predicate));
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+
+    private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+        return PlayState.CONTINUE;
     }
 
     public boolean isOnFire() {
@@ -105,14 +105,14 @@ public class SoulWizardOrbEntity extends StraightMovingProjectileEntity implemen
             Entity entity1 = this.getOwner();
             boolean flag;
             if (entity1 instanceof LivingEntity livingentity) {
-                flag = entity.hurt(DamageSource.indirectMagic(this, livingentity), 6.0F);
+                flag = entity.hurt(entity.level().damageSources().indirectMagic(this, livingentity), 6.0F);
                 if (flag) {
                     if (entity.isAlive()) {
                         this.doEnchantDamageEffects(livingentity, entity);
                     }
                 }
             } else {
-                flag = entity.hurt(DamageSource.MAGIC, 6.0F);
+                flag = entity.hurt(entity.level().damageSources().magic(), 6.0F);
             }
 
             entity.getRootVehicle().ejectPassengers();
@@ -136,7 +136,7 @@ public class SoulWizardOrbEntity extends StraightMovingProjectileEntity implemen
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
