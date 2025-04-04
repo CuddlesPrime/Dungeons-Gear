@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -27,17 +28,20 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.NetworkHooks;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.Animation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.function.Predicate;
 
-public class IceCloudEntity extends Entity implements IAnimatable {
+public class IceCloudEntity extends Entity implements GeoEntity {
 
     private static final Predicate<Entity> ALIVE = (p_213685_0_) -> {
         return p_213685_0_.isAlive();
@@ -46,7 +50,7 @@ public class IceCloudEntity extends Entity implements IAnimatable {
     public LivingEntity target;
     public Entity owner;
 
-    private final AnimationFactory factory = new AnimationFactory(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public int formAnimationTick;
     public int formAnimationLength = 40;
@@ -168,7 +172,7 @@ public class IceCloudEntity extends Entity implements IAnimatable {
             }
         }
 
-        HitResult raytraceresult = ProjectileUtil.getHitResult(this, this::canHitEntity);
+        HitResult raytraceresult = ProjectileUtil.getHitResultOnMoveVector(this, this::canHitEntity);
         boolean flag = false;
         if (raytraceresult.getType() == HitResult.Type.BLOCK) {
             BlockPos blockpos = ((BlockHitResult) raytraceresult).getBlockPos();
@@ -313,31 +317,32 @@ public class IceCloudEntity extends Entity implements IAnimatable {
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 0, this::predicate));
-    }
-
-
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        if (this.formAnimationTick > 0) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("ice_chunk_form", true));
-        } else if (this.landAnimationTick > 0) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("ice_chunk_land", true));
-        } else if (this.fallAnimationTick > 0) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("ice_chunk_fall", true));
-        } else {
-            if (this.hasFormed) {
-                event.getController().setAnimation(new AnimationBuilder().addAnimation("ice_chunk_idle", true));
-            } else {
-                event.getController().setAnimation(new AnimationBuilder().addAnimation("ice_chunk_idle_unformed", true));
-            }
-        }
-        return PlayState.CONTINUE;
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 0, this::predicate));
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+
+    private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+        AnimationController<?> controller = event.getController(); // Get the controller
+
+        if (this.formAnimationTick > 0) {
+            controller.setAnimation(RawAnimation.begin().then("ice_chunk_form", Animation.LoopType.LOOP));
+        } else if (this.landAnimationTick > 0) {
+            controller.setAnimation(RawAnimation.begin().then("ice_chunk_land", Animation.LoopType.LOOP));
+        } else if (this.fallAnimationTick > 0) {
+            controller.setAnimation(RawAnimation.begin().then("ice_chunk_fall", Animation.LoopType.LOOP));
+        } else {
+            if (this.hasFormed) {
+                controller.setAnimation(RawAnimation.begin().then("ice_chunk_idle", Animation.LoopType.LOOP));
+            } else {
+                controller.setAnimation(RawAnimation.begin().then("ice_chunk_idle_unformed", Animation.LoopType.LOOP));
+            }
+        }
+        return PlayState.CONTINUE;
     }
 
     @Override
@@ -356,7 +361,7 @@ public class IceCloudEntity extends Entity implements IAnimatable {
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
