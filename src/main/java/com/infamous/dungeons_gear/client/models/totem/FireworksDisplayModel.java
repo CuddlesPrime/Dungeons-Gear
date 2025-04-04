@@ -1,25 +1,15 @@
 package com.infamous.dungeons_gear.client.models.totem;
 
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
-import static com.infamous.dungeons_gear.DungeonsGear.MODID;
+import com.infamous.dungeons_gear.DungeonsGear;
+import com.infamous.dungeons_gear.entities.FireworksDisplayEntity;
 
-public class FireworksDisplayModel extends AnimatedGeoModel {
-
-    @Override
-    public ResourceLocation getAnimationResource(Object entity) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, "animations/fireworks_box.animation.json");
-    }
-
-    @Override
-    public ResourceLocation getModelResource(Object entity) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, "geo/fireworks_box.geo.json");
-    }
-
-    @Override
-    public ResourceLocation getTextureResource(Object entity) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, "textures/entity/fireworks_display.png");
+public class FireworksDisplayModel extends DefaultedEntityGeoModel<FireworksDisplayEntity> {
+    public FireworksDisplayModel()
+    {
+        super(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "fireworks_box"));
     }
 }
 

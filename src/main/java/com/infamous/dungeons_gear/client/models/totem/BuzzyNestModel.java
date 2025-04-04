@@ -1,25 +1,15 @@
 package com.infamous.dungeons_gear.client.models.totem;
 
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.DefaultedEntityGeoModel;
 
-import static com.infamous.dungeons_gear.DungeonsGear.MODID;
+import com.infamous.dungeons_gear.DungeonsGear;
+import com.infamous.dungeons_gear.entities.BuzzyNestEntity;
 
-public class BuzzyNestModel extends AnimatedGeoModel {
-
-    @Override
-    public ResourceLocation getAnimationResource(Object entity) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, "animations/buzzy_nest.animation.json");
-    }
-
-    @Override
-    public ResourceLocation getModelResource(Object entity) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, "geo/buzzy_nest.geo.json");
-    }
-
-    @Override
-    public ResourceLocation getTextureResource(Object entity) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, "textures/entity/buzzy_nest.png");
+public class BuzzyNestModel extends DefaultedEntityGeoModel<BuzzyNestEntity> {
+    public BuzzyNestModel()
+    {
+        super(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "buzzy_nest"));
     }
 }
 
