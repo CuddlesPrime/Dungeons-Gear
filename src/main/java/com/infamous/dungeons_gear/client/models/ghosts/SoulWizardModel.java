@@ -9,6 +9,6 @@ public class SoulWizardModel extends DefaultedEntityGeoModel<SoulWizardEntity> {
 
     public SoulWizardModel()
     {
-        super(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "soul_wizard"));
+        super(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "soul_wizard"), true);
     }
 }
