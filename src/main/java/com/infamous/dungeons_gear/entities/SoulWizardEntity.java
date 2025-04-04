@@ -29,18 +29,21 @@ import net.minecraft.world.entity.monster.Enemy;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.Animation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
+public class SoulWizardEntity extends AbstractGolem implements GeoEntity {
 
     private static final EntityDataAccessor<Boolean> DELAYED_FORM = SynchedEntityData.defineId(SoulWizardEntity.class,
             EntityDataSerializers.BOOLEAN);
@@ -52,7 +55,7 @@ public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
     public int shootAnimationActionPoint = 5;
     public int appearAnimationTick;
     public int appearAnimationLength = 12;
-    AnimationFactory factory = new AnimationFactory(this);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public int soundLoopTick;
 
@@ -60,7 +63,7 @@ public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
         super(p_i48555_1_, p_i48555_2_);
         this.moveControl = new FlyingMoveControl(this, 20, true);
         this.xpReward = 0;
-        this.maxUpStep = 1.0F;
+        this.setMaxUpStep(1.0F);
     }
 
     @Override
@@ -168,26 +171,29 @@ public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 2, this::predicate));
-    }
-
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        if (this.appearAnimationTick > 0) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("soul_wizard_appear", true));
-        } else if (this.shootAnimationTick > 0) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("soul_wizard_attack", true));
-        } else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("soul_wizard_fly", true));
-        } else {
-            event.getController().setAnimation(new AnimationBuilder().addAnimation("soul_wizard_idle", true));
-        }
-        return PlayState.CONTINUE;
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "controller", 2, this::predicate));
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+
+    private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+        AnimationController<?> controller = event.getController(); // Get the animation controller
+
+        if (this.appearAnimationTick > 0) {
+            controller.setAnimation(RawAnimation.begin().then("soul_wizard_appear", Animation.LoopType.LOOP));
+        } else if (this.shootAnimationTick > 0) {
+            controller.setAnimation(RawAnimation.begin().then("soul_wizard_attack", Animation.LoopType.LOOP));
+        } else if (!(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
+            controller.setAnimation(RawAnimation.begin().then("soul_wizard_fly", Animation.LoopType.LOOP));
+        } else {
+            controller.setAnimation(RawAnimation.begin().then("soul_wizard_idle", Animation.LoopType.LOOP));
+        }
+
+        return PlayState.CONTINUE;
     }
 
     public static AttributeSupplier.Builder setCustomAttributes() {
@@ -219,7 +225,7 @@ public class SoulWizardEntity extends AbstractGolem implements IAnimatable {
             }
         }
 
-        this.calculateEntityAnimation(this, false);
+        this.calculateEntityAnimation(false);
     }
 
     protected SoundEvent getHurtSound(DamageSource p_184601_1_) {
