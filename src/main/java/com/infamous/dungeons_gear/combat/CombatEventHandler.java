@@ -68,12 +68,12 @@ public class CombatEventHandler {
                 Vec3 hitVec = entityRayTrace.getLocation();
                 double squareDistanceTo = eyePos.distanceToSqr(hitVec);
                 if (hasExtendedReach && squareDistanceTo > (double) (reach * reach)) {
-                    result = BlockHitResult.miss(hitVec, Direction.getNearest(lookVec.x, lookVec.y, lookVec.z), new BlockPos(hitVec));
+                    result = BlockHitResult.miss(hitVec, Direction.getNearest(lookVec.x, lookVec.y, lookVec.z), BlockPos.containing(hitVec));
                 } else if (squareDistanceTo < attackReach) {
                     result = entityRayTrace;
                 }
             } else {
-                result = BlockHitResult.miss(attackVec, Direction.getNearest(lookVec.x, lookVec.y, lookVec.z), new BlockPos(attackVec));
+                result = BlockHitResult.miss(attackVec, Direction.getNearest(lookVec.x, lookVec.y, lookVec.z), BlockPos.containing(attackVec));
             }
         }
 
