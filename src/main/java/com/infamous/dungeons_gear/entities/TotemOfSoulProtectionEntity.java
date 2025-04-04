@@ -49,7 +49,7 @@ public class TotemOfSoulProtectionEntity extends TotemBaseEntity implements GeoE
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-   @Override
+    @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
         controllers.add(new AnimationController<>(this, "idle", 5, this::predicate));
     }
