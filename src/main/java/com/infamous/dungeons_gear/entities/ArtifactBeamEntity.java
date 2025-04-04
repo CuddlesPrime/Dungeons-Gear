@@ -10,9 +10,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -105,7 +105,7 @@ public class ArtifactBeamEntity extends Entity implements IEntityAdditionalSpawn
             for (LivingEntity entity : entities) {
                 entity.invulnerableTime = 0;
                 Vec3 deltaMovement = entity.getDeltaMovement();
-                entity.hurt(DamageSource.indirectMagic(owner, owner), BEAM_DAMAGE_PER_TICK);
+                entity.hurt(entity.level().damageSources().indirectMagic(owner, owner), BEAM_DAMAGE_PER_TICK);
                 entity.setDeltaMovement(deltaMovement);
             }
         }
@@ -146,7 +146,7 @@ public class ArtifactBeamEntity extends Entity implements IEntityAdditionalSpawn
         Vec3 vector3d = this.getWorldPosition(ticks);
         Vec3 vector3d1 = this.getViewVector(ticks);
         Vec3 vector3d2 = vector3d.add(vector3d1.x * distance, vector3d1.y * distance, vector3d1.z * distance);
-        return level.clip(new ClipContext(vector3d, vector3d2, ClipContext.Block.COLLIDER, passesWater ? ClipContext.Fluid.ANY : ClipContext.Fluid.NONE, this));
+        return level().clip(new ClipContext(vector3d, vector3d2, ClipContext.Block.COLLIDER, passesWater ? ClipContext.Fluid.ANY : ClipContext.Fluid.NONE, this));
     }
 
     public double beamTraceDistance(double distance, float ticks, boolean passesWater) {
@@ -197,7 +197,7 @@ public class ArtifactBeamEntity extends Entity implements IEntityAdditionalSpawn
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
