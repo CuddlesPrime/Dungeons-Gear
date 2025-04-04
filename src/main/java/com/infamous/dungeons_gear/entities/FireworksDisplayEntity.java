@@ -5,6 +5,7 @@ import com.infamous.dungeons_libraries.entities.TotemBaseEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
@@ -13,20 +14,22 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.Animation;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class FireworksDisplayEntity extends TotemBaseEntity implements IAnimatable {
-
-    AnimationFactory factory = new AnimationFactory(this);
+public class FireworksDisplayEntity extends TotemBaseEntity implements GeoEntity {
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
     public FireworksDisplayEntity(EntityType<?> p_i48580_1_, Level p_i48580_2_) {
         super(p_i48580_1_, p_i48580_2_, 240, 2);
@@ -40,8 +43,8 @@ public class FireworksDisplayEntity extends TotemBaseEntity implements IAnimatab
             for (int i = 0; i < 3; i++) {
                 double x = this.getX() + (random.nextFloat() - 0.5) * 8;
                 double z = this.getZ() + (random.nextFloat() - 0.5) * 8;
-                FireworkRocketEntity firework = new FireworkRocketEntity(level, x, this.getY(), z, generateRandomFireworksRocket());
-                level.addFreshEntity(firework);
+                FireworkRocketEntity firework = new FireworkRocketEntity(level(), x, this.getY(), z, generateRandomFireworksRocket());
+                level().addFreshEntity(firework);
             }
         }
     }
@@ -86,22 +89,23 @@ public class FireworksDisplayEntity extends TotemBaseEntity implements IAnimatab
     }
 
     @Override
-    public Packet<?> getAddEntityPacket() {
+    public Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController(this, "controller", 5, this::predicate));
-    }
-
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("animation.firework_box.idle", true));
-        return PlayState.CONTINUE;
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        controllers.add(new AnimationController<>(this, "idle", 5, this::predicate));
     }
 
     @Override
-    public AnimationFactory getFactory() {
-        return factory;
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
+
+    private <P extends GeoAnimatable> PlayState predicate(AnimationState<P> event) {
+        event.getController().setAnimation(RawAnimation.begin().then("animation.firework_box.idle", Animation.LoopType.LOOP));
+
+        return PlayState.CONTINUE;
     }
 }
