@@ -1,5 +1,7 @@
 package com.infamous.dungeons_gear.client.particles;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -49,7 +51,7 @@ public class SoulDustParticle extends TextureSheetParticle {
         }
 
 
-        public Particle createParticle(SimpleParticleType particleType, ClientLevel level,
+        public Particle createParticle(@Nonnull SimpleParticleType particleType, @Nonnull ClientLevel level,
                                        double x, double y, double z,
                                        double dx, double dy, double dz) {
             SoulDustParticle soulDustParticle = new SoulDustParticle(level, x, y, z, dx, dy, dz);

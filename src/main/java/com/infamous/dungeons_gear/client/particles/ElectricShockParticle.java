@@ -7,6 +7,7 @@ import net.minecraft.util.Mth;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 
@@ -67,7 +68,7 @@ public class ElectricShockParticle extends TextureSheetParticle {
 
         @Nullable
         @Override
-        public Particle createParticle(SimpleParticleType typeIn, ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
+        public Particle createParticle(@Nonnull SimpleParticleType typeIn, @Nonnull ClientLevel worldIn, double x, double y, double z, double xSpeed, double ySpeed, double zSpeed) {
             ElectricShockParticle shockParticle = new ElectricShockParticle(worldIn, x, y, z, xSpeed, ySpeed, zSpeed);
             shockParticle.setColor(1.0f, 1.0f, 1.0f);
             shockParticle.pickSprite(this.spriteSet);

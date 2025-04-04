@@ -1,5 +1,6 @@
 package com.infamous.dungeons_gear.client.renderer.summonables;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.infamous.dungeons_gear.client.models.summonables.IceCloudModel;
@@ -18,7 +19,7 @@ public class IceCloudRenderer extends GeoEntityRenderer<IceCloudEntity> {
     }
 
     @Override
-    protected int getBlockLightLevel(IceCloudEntity p_114496_, BlockPos p_114497_) {
+    protected int getBlockLightLevel(@Nonnull IceCloudEntity p_114496_, @Nonnull BlockPos p_114497_) {
         return p_114496_.level().getBrightness(LightLayer.BLOCK, p_114497_) > 10
                 ? p_114496_.level().getBrightness(LightLayer.BLOCK, p_114497_)
                 : 5;

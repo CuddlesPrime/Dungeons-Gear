@@ -1,5 +1,7 @@
 package com.infamous.dungeons_gear.client.particles;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.*;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -55,7 +57,7 @@ public class SnowflakeParticle extends TextureSheetParticle {
             this.spriteSet = sprite;
         }
 
-        public Particle createParticle(SimpleParticleType particleType, ClientLevel level,
+        public Particle createParticle(@Nonnull SimpleParticleType particleType, @Nonnull ClientLevel level,
                                        double x, double y, double z,
                                        double dx, double dy, double dz) {
             SnowflakeParticle snowflakeParticle = new SnowflakeParticle(level, x, y, z, dx, dy, dz);
