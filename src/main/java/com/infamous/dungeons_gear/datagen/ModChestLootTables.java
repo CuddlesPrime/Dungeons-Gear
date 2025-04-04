@@ -148,12 +148,12 @@ public class ModChestLootTables extends ChestLoot {
     }
 
     private void arrowBundleTable(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-        ResourceLocation tagTable = new ResourceLocation(MODID, "items/arrow_bundle/expand_tag");
+        ResourceLocation tagTable = ResourceLocation.fromNamespaceAndPath(MODID, "items/arrow_bundle/expand_tag");
         consumer.accept(tagTable,
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(TagEntry.expandTag(ARROWS))));
-        consumer.accept(new ResourceLocation(MODID, "items/arrow_bundle"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "items/arrow_bundle"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(() -> ARROW).setWeight(3))
@@ -161,28 +161,28 @@ public class ModChestLootTables extends ChestLoot {
     }
 
     private void satchelOfSnacksLootTable(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-        consumer.accept(new ResourceLocation(MODID, "items/satchel_of_snacks"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "items/satchel_of_snacks"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(TagEntry.expandTag(FOOD_PROCESSED))));
     }
 
     private void satchelOfElixirsLootTable(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-        consumer.accept(new ResourceLocation(MODID, "items/satchel_of_elixirs"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "items/satchel_of_elixirs"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(() -> POTION).apply(AddPotionLootFunction.builder()))));
     }
 
     private void foodReservesLootTable(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-        consumer.accept(new ResourceLocation(MODID, "enchantments/food_reserves"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/food_reserves"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(TagEntry.expandTag(FOOD_PROCESSED))));
     }
 
     private void surpriseGiftLootTable(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-        consumer.accept(new ResourceLocation(MODID, "enchantments/surprise_gift"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/surprise_gift"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(() -> POTION).setWeight(75).apply(AddPotionLootFunction.builder()))
@@ -190,22 +190,22 @@ public class ModChestLootTables extends ChestLoot {
     }
 
     private void luckyExplorerLootTable(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-        consumer.accept(new ResourceLocation(MODID, "enchantments/lucky_explorer"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/lucky_explorer"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(() -> EMERALD))));
     }
 
     private void prospectorLootTables(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
-        consumer.accept(new ResourceLocation(MODID, "enchantments/prospector/overworld"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/prospector/overworld"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(() -> EMERALD))));
-        consumer.accept(new ResourceLocation(MODID, "enchantments/prospector/the_nether"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/prospector/the_nether"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(() -> GOLD_INGOT))));
-        consumer.accept(new ResourceLocation(MODID, "enchantments/prospector/the_end"),
+        consumer.accept(ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/prospector/the_end"),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(() -> EMERALD))));

@@ -10,17 +10,17 @@ public class TotemOfRegenerationModel extends AnimatedGeoModel<TotemOfRegenerati
 
     @Override
     public ResourceLocation getAnimationResource(TotemOfRegenerationEntity entity) {
-        return new ResourceLocation(MODID, "animations/totem_of_regeneration.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(MODID, "animations/totem_of_regeneration.animation.json");
     }
 
     @Override
     public ResourceLocation getModelResource(TotemOfRegenerationEntity entity) {
-        return new ResourceLocation(MODID, "geo/totem_of_regeneration.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(MODID, "geo/totem_of_regeneration.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(TotemOfRegenerationEntity entity) {
-        return new ResourceLocation(MODID, "textures/entity/totem_of_regeneration.png");
+        return ResourceLocation.fromNamespaceAndPath(MODID, "textures/entity/totem_of_regeneration.png");
     }
 }
 

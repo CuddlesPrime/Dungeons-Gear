@@ -24,7 +24,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BeamEntityRenderer<T extends ArtifactBeamEntity> extends EntityRenderer<T> {
     @Override
     public ResourceLocation getTextureLocation(T p_110775_1_) {
-        return new ResourceLocation(DungeonsGear.MODID + ":textures/misc/beacon_beam_core.png");
+        return ResourceLocation.parse(DungeonsGear.MODID + ":textures/misc/beacon_beam_core.png");
     }
 
     public BeamEntityRenderer(EntityRendererProvider.Context p_174008_) {

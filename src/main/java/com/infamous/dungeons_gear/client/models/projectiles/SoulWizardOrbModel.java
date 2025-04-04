@@ -12,17 +12,17 @@ public class SoulWizardOrbModel extends AnimatedGeoModel<SoulWizardOrbEntity> {
 
     @Override
     public ResourceLocation getAnimationResource(SoulWizardOrbEntity entity) {
-        return new ResourceLocation(DungeonsGear.MODID, "animations/soul_wizard_orb.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "animations/soul_wizard_orb.animation.json");
     }
 
     @Override
     public ResourceLocation getModelResource(SoulWizardOrbEntity entity) {
-        return new ResourceLocation(DungeonsGear.MODID, "geo/soul_wizard_orb.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "geo/soul_wizard_orb.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(SoulWizardOrbEntity entity) {
-        return new ResourceLocation(DungeonsGear.MODID, "textures/entity/projectile/soul_wizard_orb_" + entity.textureChange % 2 + ".png");
+        return ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "textures/entity/projectile/soul_wizard_orb_" + entity.textureChange % 2 + ".png");
     }
 
     @Override

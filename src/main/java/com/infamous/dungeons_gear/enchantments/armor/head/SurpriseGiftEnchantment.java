@@ -58,7 +58,7 @@ public class SurpriseGiftEnchantment extends DropsEnchantment {
                     while (surpriseGiftChance > 0) {
                         float surpriseGiftRand = player.getRandom().nextFloat();
                         if (surpriseGiftRand <= surpriseGiftChance) {
-                            ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) player.level, player.blockPosition(), new ResourceLocation(MODID, "enchantments/surprise_gift"), player.getRandom());
+                            ItemStack itemStack = LootTableHelper.generateItemStack((ServerLevel) player.level, player.blockPosition(), ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/surprise_gift"), player.getRandom());
                             if (itemStack.getItem().equals(ARROW_BUNDLE.get())) {
                                 ArrowBundleItem.changeNumberOfArrows(itemStack, 3);
                             }

@@ -19,7 +19,7 @@ public class AttacherRangedAbilities {
 
     private static class RangedAbilitiesProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "ranged_abilities");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "ranged_abilities");
         private final RangedAbilities backend = new RangedAbilities();
         private final LazyOptional<RangedAbilities> optionalData = LazyOptional.of(() -> backend);
 

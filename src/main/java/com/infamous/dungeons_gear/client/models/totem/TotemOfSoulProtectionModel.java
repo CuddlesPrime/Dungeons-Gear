@@ -10,17 +10,17 @@ public class TotemOfSoulProtectionModel extends AnimatedGeoModel<TotemOfSoulProt
 
     @Override
     public ResourceLocation getAnimationResource(TotemOfSoulProtectionEntity entity) {
-        return new ResourceLocation(MODID, "animations/totem_of_soul_protection.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(MODID, "animations/totem_of_soul_protection.animation.json");
     }
 
     @Override
     public ResourceLocation getModelResource(TotemOfSoulProtectionEntity entity) {
-        return new ResourceLocation(MODID, "geo/totem_of_soul_protection.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(MODID, "geo/totem_of_soul_protection.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(TotemOfSoulProtectionEntity entity) {
-        return new ResourceLocation(MODID, "textures/entity/totem_of_soul_protection.png");
+        return ResourceLocation.fromNamespaceAndPath(MODID, "textures/entity/totem_of_soul_protection.png");
     }
 }
 

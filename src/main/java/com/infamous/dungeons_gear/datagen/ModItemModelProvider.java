@@ -38,6 +38,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     }
 
     private static ResourceLocation itemLoc(ResourceLocation resourceLocation) {
-        return new ResourceLocation(resourceLocation.getNamespace(), ITEM_FOLDER + "/armor/" + resourceLocation.getPath());
+        return ResourceLocation.fromNamespaceAndPath(resourceLocation.getNamespace(), ITEM_FOLDER + "/armor/" + resourceLocation.getPath());
     }
 }

@@ -134,7 +134,7 @@ public class AddPotionLootFunction extends LootItemConditionalFunction {
         }
 
         private Potion getPotion(String name) {
-            ResourceLocation key = new ResourceLocation(name);
+            ResourceLocation key = ResourceLocation.parse(name);
             Potion p = ForgeRegistries.POTIONS.getValue(key);
             if (p == null)
                 throw new IllegalStateException("No potion found with name " + key);

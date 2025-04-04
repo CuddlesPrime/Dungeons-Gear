@@ -19,7 +19,7 @@ public class AttacherDualWield {
 
     private static class DualWieldProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "dual_wield");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "dual_wield");
         private final DualWield backend = new DualWield();
         private final LazyOptional<DualWield> optionalData = LazyOptional.of(() -> backend);
 

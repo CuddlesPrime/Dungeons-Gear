@@ -16,6 +16,6 @@ public class ModLootFunctionTypes {
     }
 
     private static LootItemFunctionType register(final String name, final Serializer<? extends LootItemFunction> serializer) {
-        return Registry.register(Registry.LOOT_FUNCTION_TYPE, new ResourceLocation(MODID, name), new LootItemFunctionType(serializer));
+        return Registry.register(Registry.LOOT_FUNCTION_TYPE, ResourceLocation.fromNamespaceAndPath(MODID, name), new LootItemFunctionType(serializer));
     }
 }

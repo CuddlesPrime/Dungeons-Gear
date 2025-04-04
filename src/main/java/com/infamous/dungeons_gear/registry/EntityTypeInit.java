@@ -20,7 +20,7 @@ public final class EntityTypeInit {
                     .sized(2.0F, 1.0F)
                     .clientTrackingRange(6)
                     .updateInterval(1)
-                    .build(new ResourceLocation(MODID, "ice_cloud").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "ice_cloud").toString())
     );
 
     public static final RegistryObject<EntityType<BuzzyNestEntity>> BUZZY_NEST = ENTITY_TYPES.register("buzzy_nest", () ->
@@ -29,7 +29,7 @@ public final class EntityTypeInit {
                     .sized(2.0F, 1.0F)
                     .clientTrackingRange(6)
                     .updateInterval(2)
-                    .build(new ResourceLocation(MODID, "buzzy_nest").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "buzzy_nest").toString())
     );
 
     public static final RegistryObject<EntityType<TotemOfShieldingEntity>> TOTEM_OF_SHIELDING = ENTITY_TYPES.register("totem_of_shielding", () ->
@@ -38,7 +38,7 @@ public final class EntityTypeInit {
                     .sized(2.0F, 1.0F)
                     .clientTrackingRange(6)
                     .updateInterval(2)
-                    .build(new ResourceLocation(MODID, "totem_of_shielding").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "totem_of_shielding").toString())
     );
 
     public static final RegistryObject<EntityType<TotemOfRegenerationEntity>> TOTEM_OF_REGENERATION = ENTITY_TYPES.register("totem_of_regeneration", () ->
@@ -47,7 +47,7 @@ public final class EntityTypeInit {
                     .sized(2.0F, 1.0F)
                     .clientTrackingRange(6)
                     .updateInterval(2)
-                    .build(new ResourceLocation(MODID, "totem_of_shielding").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "totem_of_shielding").toString())
     );
 
     public static final RegistryObject<EntityType<TotemOfSoulProtectionEntity>> TOTEM_OF_SOUL_PROTECTION = ENTITY_TYPES.register("totem_of_soul_protection", () ->
@@ -56,7 +56,7 @@ public final class EntityTypeInit {
                     .sized(2.0F, 1.0F)
                     .clientTrackingRange(6)
                     .updateInterval(2)
-                    .build(new ResourceLocation(MODID, "totem_of_soul_protection").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "totem_of_soul_protection").toString())
     );
 
     public static final RegistryObject<EntityType<ArtifactBeamEntity>> BEAM_ENTITY = ENTITY_TYPES.register("beam_entity", () ->
@@ -66,7 +66,7 @@ public final class EntityTypeInit {
                     .sized(2.0F, 1.0F)
                     .clientTrackingRange(6)
                     .updateInterval(2)
-                    .build(new ResourceLocation(MODID, "beam_entity").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "beam_entity").toString())
     );
 
     public static final RegistryObject<EntityType<FireworksDisplayEntity>> FIREWORKS_DISPLAY = ENTITY_TYPES.register("fireworks_display", () ->
@@ -76,7 +76,7 @@ public final class EntityTypeInit {
                     .sized(2.0F, 1.0F)
                     .clientTrackingRange(6)
                     .updateInterval(2)
-                    .build(new ResourceLocation(MODID, "fireworks_display").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "fireworks_display").toString())
     );
 
     public static final RegistryObject<EntityType<SoulWizardOrbEntity>> SOUL_WIZARD_ORB = ENTITY_TYPES.register("soul_wizard_orb", () ->
@@ -84,14 +84,14 @@ public final class EntityTypeInit {
                     .fireImmune()
                     .sized(0.3F, 0.3F)
                     .updateInterval(1)
-                    .build(new ResourceLocation(MODID, "soul_wizard_orb").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "soul_wizard_orb").toString())
     );
 
     public static final RegistryObject<EntityType<SoulWizardEntity>> SOUL_WIZARD = ENTITY_TYPES.register("soul_wizard", () ->
             EntityType.Builder.of(SoulWizardEntity::new, MobCategory.MONSTER)
                     .sized(0.25F, 1.0F)
                     .clientTrackingRange(8)
-                    .build(new ResourceLocation(MODID, "soul_wizard").toString())
+                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "soul_wizard").toString())
     );
 
 }

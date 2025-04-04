@@ -64,11 +64,11 @@ public class ProspectorEnchantment extends DropsEnchantment {
     }
 
     private static ResourceLocation getProspectorLootTable(Level world) {
-        ResourceLocation resourceLocation = new ResourceLocation(MODID, "enchantments/prospector/" + world.dimension().location().getPath());
+        ResourceLocation resourceLocation = ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/prospector/" + world.dimension().location().getPath());
         if (LootTableHelper.lootTableExists((ServerLevel) world, resourceLocation)) {
             return resourceLocation;
         } else {
-            return new ResourceLocation(MODID, "enchantments/prospector/overworld");
+            return ResourceLocation.fromNamespaceAndPath(MODID, "enchantments/prospector/overworld");
         }
     }
 

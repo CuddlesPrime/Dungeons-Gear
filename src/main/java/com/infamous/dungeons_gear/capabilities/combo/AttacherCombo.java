@@ -19,7 +19,7 @@ public class AttacherCombo {
 
     private static class ComboProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
 
-        public static final ResourceLocation IDENTIFIER = new ResourceLocation(MODID, "combo");
+        public static final ResourceLocation IDENTIFIER = ResourceLocation.fromNamespaceAndPath(MODID, "combo");
         private final Combo backend = new Combo();
         private final LazyOptional<Combo> optionalData = LazyOptional.of(() -> backend);
 

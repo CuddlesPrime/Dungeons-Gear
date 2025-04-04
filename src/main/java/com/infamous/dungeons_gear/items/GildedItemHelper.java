@@ -26,7 +26,7 @@ import java.util.Optional;
 @Mod.EventBusSubscriber(modid = DungeonsGear.MODID, value = Dist.CLIENT)
 public class GildedItemHelper {
 
-    public static final ResourceLocation GILDED_ITEM_RESOURCELOCATION = new ResourceLocation(DungeonsGear.MODID, "gilded_item");
+    public static final ResourceLocation GILDED_ITEM_RESOURCELOCATION = ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "gilded_item");
 
     public static ItemStack getGildedItem(RandomSource random, ItemStack itemStack) {
         BuiltInEnchantments cap = BuiltInEnchantmentsHelper.getBuiltInEnchantmentsCapability(itemStack);

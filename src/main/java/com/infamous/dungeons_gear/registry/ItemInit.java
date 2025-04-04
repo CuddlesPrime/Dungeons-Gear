@@ -502,10 +502,10 @@ public class ItemInit {
 
     private static ArmorSetInit registerArmorSet(String armorSetName, LootTableType lootTableType, boolean animated) {
         String armorSetId = armorSetName + "_armor";
-        ResourceLocation armorSetResource = new ResourceLocation(MODID, armorSetId);
-        ResourceLocation modelLocation = new ResourceLocation(MODID, "geo/armor/" + armorSetId + ".geo.json");
-        ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/models/armor/" + armorSetId + ".png");
-        ResourceLocation animationFileLocation = animated ? new ResourceLocation(MODID, "animations/armor/" + armorSetId + ".animation.json") : new ResourceLocation(DungeonsLibraries.MODID, "animations/armor/armor_default.animation.json");
+        ResourceLocation armorSetResource = ResourceLocation.fromNamespaceAndPath(MODID, armorSetId);
+        ResourceLocation modelLocation = ResourceLocation.fromNamespaceAndPath(MODID, "geo/armor/" + armorSetId + ".geo.json");
+        ResourceLocation textureLocation = ResourceLocation.fromNamespaceAndPath(MODID, "textures/models/armor/" + armorSetId + ".png");
+        ResourceLocation animationFileLocation = animated ? ResourceLocation.fromNamespaceAndPath(MODID, "animations/armor/" + armorSetId + ".animation.json") : ResourceLocation.fromNamespaceAndPath(DungeonsLibraries.MODID, "animations/armor/armor_default.animation.json");
         ArmorSetInit armorSet = new ArmorSetInit(
                 armorSetId,
                 registerArmor(armorSetName + "_helmet", () -> new ArmorGear(EquipmentSlot.HEAD, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
@@ -522,10 +522,10 @@ public class ItemInit {
 
     private static ArmorSetInit registerFreezingResistanceArmorSet(String armorSetName, LootTableType lootTableType) {
         String armorSetId = armorSetName + "_armor";
-        ResourceLocation armorSetResource = new ResourceLocation(MODID, armorSetId);
-        ResourceLocation modelLocation = new ResourceLocation(MODID, "geo/armor/" + armorSetId + ".geo.json");
-        ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/models/armor/" + armorSetId + ".png");
-        ResourceLocation animationFileLocation = new ResourceLocation(DungeonsLibraries.MODID, "animations/armor/armor_default.animation.json");
+        ResourceLocation armorSetResource = ResourceLocation.fromNamespaceAndPath(MODID, armorSetId);
+        ResourceLocation modelLocation = ResourceLocation.fromNamespaceAndPath(MODID, "geo/armor/" + armorSetId + ".geo.json");
+        ResourceLocation textureLocation = ResourceLocation.fromNamespaceAndPath(MODID, "textures/models/armor/" + armorSetId + ".png");
+        ResourceLocation animationFileLocation = ResourceLocation.fromNamespaceAndPath(DungeonsLibraries.MODID, "animations/armor/armor_default.animation.json");
         ArmorSetInit armorSet = new ArmorSetInit(
                 armorSetId,
                 registerArmor(armorSetName + "_helmet", () -> new FreezingResistanceArmorGear(EquipmentSlot.HEAD, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
@@ -538,10 +538,10 @@ public class ItemInit {
 
     private static ArmorSetInit registePetBatArmorSet(String armorSetName, LootTableType lootTableType) {
         String armorSetId = armorSetName + "_armor";
-        ResourceLocation armorSetResource = new ResourceLocation(MODID, armorSetId);
-        ResourceLocation modelLocation = new ResourceLocation(MODID, "geo/armor/" + armorSetId + ".geo.json");
-        ResourceLocation textureLocation = new ResourceLocation(MODID, "textures/models/armor/" + armorSetId + ".png");
-        ResourceLocation animationFileLocation = new ResourceLocation(MODID, "animations/armor/" + armorSetId + ".animation.json");
+        ResourceLocation armorSetResource = ResourceLocation.fromNamespaceAndPath(MODID, armorSetId);
+        ResourceLocation modelLocation = ResourceLocation.fromNamespaceAndPath(MODID, "geo/armor/" + armorSetId + ".geo.json");
+        ResourceLocation textureLocation = ResourceLocation.fromNamespaceAndPath(MODID, "textures/models/armor/" + armorSetId + ".png");
+        ResourceLocation animationFileLocation = ResourceLocation.fromNamespaceAndPath(MODID, "animations/armor/" + armorSetId + ".animation.json");
         ArmorSetInit armorSet = new ArmorSetInit(
                 armorSetId,
                 registerArmor(armorSetName + "_helmet", () -> new PetBatArmorGear(EquipmentSlot.HEAD, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),

@@ -135,7 +135,7 @@ public class DungeonsLootAdditions extends LootModifier {
     }
 
     private boolean partialMatch(ResourceLocation lootTable, String configItem) {
-        ResourceLocation configAsResourceLocation = new ResourceLocation(configItem);
+        ResourceLocation configAsResourceLocation = ResourceLocation.parse(configItem);
         if (configAsResourceLocation.getNamespace().equals("minecraft")) {
             return lootTable.getPath().contains(configAsResourceLocation.getPath());
         } else {

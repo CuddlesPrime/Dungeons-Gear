@@ -12,7 +12,7 @@ public class DualWieldItemProperties {
     }
 
     private static void addDualProperty(Item i) {
-        ItemProperties.register(i, new ResourceLocation("dual"),
+        ItemProperties.register(i, ResourceLocation.parse("dual"),
                 (stack, world, entity, todo) -> {
                     if (entity == null) {
                         return 1.0F;

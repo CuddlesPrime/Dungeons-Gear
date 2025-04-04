@@ -9,16 +9,16 @@ public class IceCloudModel extends AnimatedGeoModel<IceCloudEntity> {
 
     @Override
     public ResourceLocation getAnimationResource(IceCloudEntity entity) {
-        return new ResourceLocation(DungeonsGear.MODID, "animations/ice_chunk.animation.json");
+        return ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "animations/ice_chunk.animation.json");
     }
 
     @Override
     public ResourceLocation getModelResource(IceCloudEntity entity) {
-        return new ResourceLocation(DungeonsGear.MODID, "geo/ice_chunk.geo.json");
+        return ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "geo/ice_chunk.geo.json");
     }
 
     @Override
     public ResourceLocation getTextureResource(IceCloudEntity entity) {
-        return new ResourceLocation(DungeonsGear.MODID, "textures/entity/ice_chunk.png");
+        return ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "textures/entity/ice_chunk.png");
     }
 }
