@@ -29,7 +29,7 @@ public class WonderfulWheatItem extends ArtifactItem implements SummoningArtifac
     public void onSummoned(Player player, Entity summonEntity) {
         if (summonEntity instanceof Llama llama) {
             llama.tameWithName(player);
-            llama.setVariant(2);
+            llama.setVariant(Llama.Variant.BROWN);
             llama.setStrength(5);
             AttributeInstance maxHealth = llama.getAttribute(Attributes.MAX_HEALTH);
             if (maxHealth != null)

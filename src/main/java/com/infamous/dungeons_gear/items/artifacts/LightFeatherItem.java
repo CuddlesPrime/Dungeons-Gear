@@ -51,8 +51,10 @@ public class LightFeatherItem extends ArtifactItem {
             for (zRatio = playerIn.getZ() - nearbyEntity.getZ(); xRatio * xRatio + zRatio * zRatio < 1.0E-4D; zRatio = (Math.random() - Math.random()) * 0.01D) {
                 xRatio = (Math.random() - Math.random()) * 0.01D;
             }
-            nearbyEntity.hurtDir = (float) (Mth.atan2(zRatio, xRatio) * 57.2957763671875D - (double) nearbyEntity.getYRot());
+            float knockbackAngle = (float) Math.atan2(zRatio, xRatio) * (180F / (float) Math.PI);
             nearbyEntity.knockback(0.4F * knockbackMultiplier, xRatio, zRatio);
+            nearbyEntity.setYRot(knockbackAngle);
+            nearbyEntity.yHeadRot = knockbackAngle;
             // END OF KNOCKBACK
 
             PROXY.spawnParticles(nearbyEntity, ParticleTypes.CLOUD);

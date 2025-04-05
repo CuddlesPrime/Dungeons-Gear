@@ -19,6 +19,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent.ImpactResult;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -133,21 +134,21 @@ public class ArtifactEvents {
             if (arrow.getTags().contains(TormentQuiverItem.TORMENT_ARROW)) {
                 if (arrow.tickCount > 1200) {
                     arrow.remove(Entity.RemovalReason.DISCARDED);
-                    event.setCanceled(true);
+                    event.setImpactResult(ImpactResult.SKIP_ENTITY);
                 }
 
                 if (event.getRayTraceResult() instanceof EntityHitResult) {
                     EntityHitResult entityRayTraceResult = (EntityHitResult) event.getRayTraceResult();
                     Entity targetEntity = entityRayTraceResult.getEntity();
                     if (!(targetEntity instanceof LivingEntity)) {
-                        event.setCanceled(true);
+                        event.setImpactResult(ImpactResult.SKIP_ENTITY);
                     }
 
                     int currentKnockbackStrength = arrow.knockback;
                     (arrow).setKnockback(currentKnockbackStrength + 1);
                 }
 
-                if (event.getRayTraceResult() instanceof BlockHitResult) event.setCanceled(true);
+                if (event.getRayTraceResult() instanceof BlockHitResult) event.setImpactResult(ImpactResult.SKIP_ENTITY);
             }
             if (arrow.getTags().contains(ThunderingQuiverItem.THUNDERING_ARROW)) {
                 if (event.getRayTraceResult() instanceof EntityHitResult) {
