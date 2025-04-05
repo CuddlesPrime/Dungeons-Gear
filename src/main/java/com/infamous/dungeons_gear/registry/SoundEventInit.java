@@ -12,14 +12,14 @@ public class SoundEventInit {
     public static final DeferredRegister<SoundEvent> SOUNDS = DeferredRegister.create(ForgeRegistries.SOUND_EVENTS,
             DungeonsGear.MODID);
 
-    public static final RegistryObject<SoundEvent> ICE_CHUNK_IDLE_LOOP = SOUNDS.register("entity.ice_chunk.idle_loop", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.ice_chunk.idle_loop")));
-    public static final RegistryObject<SoundEvent> ICE_CHUNK_SUMMONED = SOUNDS.register("entity.ice_chunk.summoned", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.ice_chunk.summoned")));
-    public static final RegistryObject<SoundEvent> ICE_CHUNK_FALL = SOUNDS.register("entity.ice_chunk.fall", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.ice_chunk.fall")));
-    public static final RegistryObject<SoundEvent> ICE_CHUNK_LAND = SOUNDS.register("entity.ice_chunk.land", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.ice_chunk.land")));
+    public static final RegistryObject<SoundEvent> ICE_CHUNK_IDLE_LOOP = SOUNDS.register("entity.ice_chunk.idle_loop", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.ice_chunk.idle_loop")));
+    public static final RegistryObject<SoundEvent> ICE_CHUNK_SUMMONED = SOUNDS.register("entity.ice_chunk.summoned", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.ice_chunk.summoned")));
+    public static final RegistryObject<SoundEvent> ICE_CHUNK_FALL = SOUNDS.register("entity.ice_chunk.fall", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.ice_chunk.fall")));
+    public static final RegistryObject<SoundEvent> ICE_CHUNK_LAND = SOUNDS.register("entity.ice_chunk.land", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.ice_chunk.land")));
 
-    public static final RegistryObject<SoundEvent> SOUL_WIZARD_APPEAR = SOUNDS.register("entity.soul_wizard.appear", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.appear")));
-    public static final RegistryObject<SoundEvent> SOUL_WIZARD_HURT = SOUNDS.register("entity.soul_wizard.hurt", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.hurt")));
-    public static final RegistryObject<SoundEvent> SOUL_WIZARD_SHOOT = SOUNDS.register("entity.soul_wizard.shoot", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.shoot")));
-    public static final RegistryObject<SoundEvent> SOUL_WIZARD_PROJECTILE_IMPACT = SOUNDS.register("entity.soul_wizard.projectile_impact", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.projectile_impact")));
-    public static final RegistryObject<SoundEvent> SOUL_WIZARD_FLY_LOOP = SOUNDS.register("entity.soul_wizard.fly_loop", () -> new SoundEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.fly_loop")));
+    public static final RegistryObject<SoundEvent> SOUL_WIZARD_APPEAR = SOUNDS.register("entity.soul_wizard.appear", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.appear")));
+    public static final RegistryObject<SoundEvent> SOUL_WIZARD_HURT = SOUNDS.register("entity.soul_wizard.hurt", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.hurt")));
+    public static final RegistryObject<SoundEvent> SOUL_WIZARD_SHOOT = SOUNDS.register("entity.soul_wizard.shoot", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.shoot")));
+    public static final RegistryObject<SoundEvent> SOUL_WIZARD_PROJECTILE_IMPACT = SOUNDS.register("entity.soul_wizard.projectile_impact", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.projectile_impact")));
+    public static final RegistryObject<SoundEvent> SOUL_WIZARD_FLY_LOOP = SOUNDS.register("entity.soul_wizard.fly_loop", () -> SoundEvent.createVariableRangeEvent(ResourceLocation.fromNamespaceAndPath(DungeonsGear.MODID, "entity.soul_wizard.fly_loop")));
 }

@@ -1,6 +1,7 @@
 package com.infamous.dungeons_gear.loot;
 
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.Serializer;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunction;
@@ -16,6 +17,6 @@ public class ModLootFunctionTypes {
     }
 
     private static LootItemFunctionType register(final String name, final Serializer<? extends LootItemFunction> serializer) {
-        return Registry.register(Registry.LOOT_FUNCTION_TYPE, ResourceLocation.fromNamespaceAndPath(MODID, name), new LootItemFunctionType(serializer));
+        return Registry.register(BuiltInRegistries.LOOT_FUNCTION_TYPE, ResourceLocation.fromNamespaceAndPath(MODID, name), new LootItemFunctionType(serializer));
     }
 }

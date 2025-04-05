@@ -5,13 +5,9 @@ import com.infamous.dungeons_gear.client.renderer.IceCloudRenderer;
 import com.infamous.dungeons_gear.client.renderer.ghosts.SoulWizardRenderer;
 import com.infamous.dungeons_gear.client.renderer.projectiles.SoulWizardOrbRenderer;
 import com.infamous.dungeons_gear.client.renderer.totem.*;
-import com.infamous.dungeons_gear.items.armor.FreezingResistanceArmorGear;
-import com.infamous.dungeons_gear.items.armor.PetBatArmorGear;
-import com.infamous.dungeons_libraries.client.renderer.gearconfig.ArmorGearRenderer;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 import static com.infamous.dungeons_gear.DungeonsGear.MODID;
 import static net.minecraftforge.api.distmarker.Dist.CLIENT;
@@ -30,11 +26,5 @@ public class ClientEventBusSubscriber {
         event.registerEntityRenderer(EntityTypeInit.BEAM_ENTITY.get(), BeamEntityRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.SOUL_WIZARD.get(), SoulWizardRenderer::new);
         event.registerEntityRenderer(EntityTypeInit.SOUL_WIZARD_ORB.get(), SoulWizardOrbRenderer::new);
-    }
-
-    @SubscribeEvent
-    public static void registerArmorRenderers(EntityRenderersEvent.AddLayers event) {
-        GeoArmorRenderer.registerArmorRenderer(PetBatArmorGear.class, ArmorGearRenderer::new);
-        GeoArmorRenderer.registerArmorRenderer(FreezingResistanceArmorGear.class, ArmorGearRenderer::new);
     }
 }

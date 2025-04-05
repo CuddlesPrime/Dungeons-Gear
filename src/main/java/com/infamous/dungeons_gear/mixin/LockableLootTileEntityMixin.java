@@ -12,7 +12,7 @@ import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
@@ -45,18 +45,19 @@ public abstract class LockableLootTileEntityMixin extends BaseContainerBlockEnti
     @Inject(at = @At("HEAD"), method = "unpackLootTable", cancellable = true)
     private void fillWithLoot(@Nullable Player player, CallbackInfo callbackInfo) {
         if (this.lootTable != null && this.level.getServer() != null) {
-            LootTable lootTable = this.level.getServer().getLootTables().get(this.lootTable);
+            LootTable lootTable = this.level.getServer().getLootData().getLootTable(this.lootTable);
             if (player instanceof ServerPlayer) {
                 CriteriaTriggers.GENERATE_LOOT.trigger((ServerPlayer) player, this.lootTable);
             }
 
-            LootContext.Builder lootcontext$builder = (new LootContext.Builder((ServerLevel) this.level)).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.worldPosition)).withOptionalRandomSeed(this.lootTableSeed);
+            LootParams.Builder lootParamsBuilder = (new LootParams.Builder((ServerLevel) this.level)).withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(this.worldPosition));
+
             if (player != null) {
-                lootcontext$builder.withLuck(player.getLuck()).withParameter(LootContextParams.THIS_ENTITY, player);
+                lootParamsBuilder = lootParamsBuilder.withLuck(player.getLuck()).withParameter(LootContextParams.THIS_ENTITY, player);
             }
 
             this.isApplyingModifier = true;
-            lootTable.fill(this, lootcontext$builder.create(LootContextParamSets.CHEST));
+            lootTable.fill(this, lootParamsBuilder.create(LootContextParamSets.CHEST), this.lootTableSeed);
             this.isApplyingModifier = false;
 
             // Moved to the bottom of the method instead of being in the middle, with an if-check to see if it was already set to null during the loot modifier's doApply call
