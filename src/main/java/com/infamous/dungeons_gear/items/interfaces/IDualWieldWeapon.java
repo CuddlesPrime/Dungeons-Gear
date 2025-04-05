@@ -1,13 +1,13 @@
 package com.infamous.dungeons_gear.items.interfaces;
 
 import com.infamous.dungeons_gear.capabilities.ModCapabilities;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 public interface IDualWieldWeapon<T extends Item> {
@@ -81,8 +81,8 @@ public interface IDualWieldWeapon<T extends Item> {
         // Credits to choonster!
         // Get the entity's main inventory
         stack.getCapability(ModCapabilities.DUAL_WIELD_CAPABILITY).ifPresent((a) -> {
-            if (a.isFake() && e.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.UP).isPresent()) {
-                final IItemHandler mainInventory = e.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, Direction.UP).resolve().get();
+            if (a.isFake() && e.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.UP).isPresent()) {
+                final IItemHandler mainInventory = e.getCapability(ForgeCapabilities.ITEM_HANDLER, Direction.UP).resolve().get();
                 // If this item is in their main inventory and it can be extracted.
                 if (mainInventory.getStackInSlot(slot) == stack && !mainInventory.extractItem(slot, stack.getCount(), true).isEmpty()) {
                     mainInventory.extractItem(slot, stack.getCount(), false);
