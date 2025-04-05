@@ -44,7 +44,7 @@ public class DynamoEnchantment extends DamageBoostEnchantment {
     public static void handleAddDynamoEnchantment(Player playerEntity) {
         ItemStack mainhand = playerEntity.getMainHandItem();
         if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.DYNAMO.get())) {
-            int dynamoLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.DYNAMO.get(), mainhand);
+            int dynamoLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.DYNAMO.get(), mainhand);
             MobEffectInstance currentEffectInstance = playerEntity.getEffect(MobEffectInit.DYNAMO.get());
             int i = dynamoLevel;
             if (currentEffectInstance != null) {

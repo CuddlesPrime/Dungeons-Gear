@@ -43,7 +43,7 @@ public class RefreshmentEnchantment extends DropsEnchantment {
             Player killerPlayer = (Player) damageSource.getEntity();
             if (!PlayerAttackHelper.isProbablyNotMeleeDamage(damageSource)) {
                 ItemStack mainhand = killerPlayer.getMainHandItem();
-                int refreshmentLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.REFRESHMENT.get(), mainhand);
+                int refreshmentLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.REFRESHMENT.get(), mainhand);
                 if (refreshmentLevel > 0) {
                     updateRefreshment(killerPlayer, refreshmentLevel);
                 }

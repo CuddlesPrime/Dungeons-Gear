@@ -86,7 +86,7 @@ public class BeehiveEnchantment extends DungeonsEnchantment {
     }
 
     private static void removeAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(BEEHIVE.get(), itemStack) > 0) {
+        if (EnchantmentHelper.getTagEnchantmentLevel(BEEHIVE.get(), itemStack) > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(SUMMON_CAP.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null) {
                 attributeInstance.removeModifier(attributeModifierUUID);
@@ -95,7 +95,7 @@ public class BeehiveEnchantment extends DungeonsEnchantment {
     }
 
     private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(BEEHIVE.get(), itemStack);
+        int itemEnchantmentLevel = EnchantmentHelper.getTagEnchantmentLevel(BEEHIVE.get(), itemStack);
         if (itemEnchantmentLevel > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(SUMMON_CAP.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) == null) {

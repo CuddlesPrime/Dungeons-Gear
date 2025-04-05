@@ -39,7 +39,7 @@ public class BonusShotEnchantment extends DungeonsEnchantment {
         if (stack.getItem() instanceof CrossbowItem) {
             if (CrossbowItem.isCharged(stack)) {
                 if (ModEnchantmentHelper.hasEnchantment(stack, EnchantmentInit.BONUS_SHOT.get())) {
-                    int bonusShotLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.BONUS_SHOT.get(), stack);
+                    int bonusShotLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.BONUS_SHOT.get(), stack);
                     float damageMultiplier;
                     damageMultiplier = 0.1F + (bonusShotLevel - 1 * 0.07F);
                     float arrowVelocity = getCrossbowArrowVelocity(player, stack);
@@ -56,7 +56,7 @@ public class BonusShotEnchantment extends DungeonsEnchantment {
         ItemStack stack = event.getBow();
         int charge = event.getCharge();
         if (ModEnchantmentHelper.hasEnchantment(stack, EnchantmentInit.BONUS_SHOT.get())) {
-            int bonusShotLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.BONUS_SHOT.get(), stack);
+            int bonusShotLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.BONUS_SHOT.get(), stack);
             float damageMultiplier;
             damageMultiplier = 0.1F + (bonusShotLevel - 1 * 0.07F);
             float arrowVelocity = RangedAttackHelper.getBowArrowVelocity(livingEntity, stack, charge);

@@ -59,7 +59,7 @@ public class ShearsGear extends MeleeGear {
             BlockPos pos = new BlockPos(entity.getX(), entity.getY(), entity.getZ());
             if (target.isShearable(stack, entity.level(), pos)) {
                 java.util.List<ItemStack> drops = target.onSheared(playerIn, stack, entity.level(), pos,
-                        net.minecraft.world.item.enchantment.EnchantmentHelper.getItemEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.BLOCK_FORTUNE, stack));
+                        net.minecraft.world.item.enchantment.EnchantmentHelper.getTagEnchantmentLevel(net.minecraft.world.item.enchantment.Enchantments.BLOCK_FORTUNE, stack));
                 java.util.Random rand = new java.util.Random();
                 drops.forEach(d -> {
                     net.minecraft.world.entity.item.ItemEntity ent = entity.spawnAtLocation(d, 1.0F);

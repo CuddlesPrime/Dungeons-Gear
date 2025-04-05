@@ -52,7 +52,7 @@ public class AcrobatEnchantment extends JumpingEnchantment {
     }
 
     private static void removeAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(ACROBAT.get(), itemStack) > 0) {
+        if (EnchantmentHelper.getTagEnchantmentLevel(ACROBAT.get(), itemStack) > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(ROLL_COOLDOWN.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null) {
                 attributeInstance.removeModifier(attributeModifierUUID);
@@ -61,7 +61,7 @@ public class AcrobatEnchantment extends JumpingEnchantment {
     }
 
     private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ACROBAT.get(), itemStack);
+        int itemEnchantmentLevel = EnchantmentHelper.getTagEnchantmentLevel(ACROBAT.get(), itemStack);
         if (itemEnchantmentLevel > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(ROLL_COOLDOWN.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) == null) {

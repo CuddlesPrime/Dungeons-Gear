@@ -41,7 +41,7 @@ public class ArtifactSynergyEnchantment extends DungeonsEnchantment {
 
         if (comboCap.hasArtifactSynergy() && !attacker.level().isClientSide) {
             comboCap.setArtifactSynergy(false);
-            int artifactSynergyLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.ARTIFACT_SYNERGY.get(), mainhand);
+            int artifactSynergyLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.ARTIFACT_SYNERGY.get(), mainhand);
             if (artifactSynergyLevel > 0) {
                 float damageMultiplier = 1.2F + artifactSynergyLevel * 0.2F;
                 float currentDamage = event.getAmount();

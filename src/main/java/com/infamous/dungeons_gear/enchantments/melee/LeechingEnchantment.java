@@ -42,7 +42,7 @@ public class LeechingEnchantment extends HealingEnchantment {
             LivingEntity victim = event.getEntity();
             ItemStack mainhand = attacker.getMainHandItem();
             if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.LEECHING.get())) {
-                int leechingLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.LEECHING.get(), mainhand);
+                int leechingLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.LEECHING.get(), mainhand);
                 float victimMaxHealth = victim.getMaxHealth();
                 attacker.heal((0.02F + 0.02F * leechingLevel) * victimMaxHealth);
             }

@@ -68,7 +68,7 @@ public class BusyBeeEnchantment extends DungeonsEnchantment {
             if (attacker != null) {
                 ItemStack mainhand = attacker.getMainHandItem();
                 if (ModEnchantmentHelper.hasEnchantment(mainhand, BUSY_BEE.get())) {
-                    int busyBeeLevel = EnchantmentHelper.getItemEnchantmentLevel(BUSY_BEE.get(), mainhand);
+                    int busyBeeLevel = EnchantmentHelper.getTagEnchantmentLevel(BUSY_BEE.get(), mainhand);
                     float busyBeeRand = attacker.getRandom().nextFloat();
                     float busyBeeChance = (float) (DungeonsGearConfig.BUSY_BEE_BASE_CHANCE.get() + busyBeeLevel * DungeonsGearConfig.BUSY_BEE_CHANCE_PER_LEVEL.get());
                     if (busyBeeRand <= busyBeeChance) {
@@ -95,7 +95,7 @@ public class BusyBeeEnchantment extends DungeonsEnchantment {
     }
 
     private static void removeAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(BUSY_BEE.get(), itemStack) > 0) {
+        if (EnchantmentHelper.getTagEnchantmentLevel(BUSY_BEE.get(), itemStack) > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(SUMMON_CAP.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null) {
                 attributeInstance.removeModifier(attributeModifierUUID);
@@ -104,7 +104,7 @@ public class BusyBeeEnchantment extends DungeonsEnchantment {
     }
 
     private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(BUSY_BEE.get(), itemStack);
+        int itemEnchantmentLevel = EnchantmentHelper.getTagEnchantmentLevel(BUSY_BEE.get(), itemStack);
         if (itemEnchantmentLevel > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(SUMMON_CAP.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) == null) {

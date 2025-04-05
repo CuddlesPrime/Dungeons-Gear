@@ -85,7 +85,7 @@ public class GlobalEvents {
     }
 
     private static void handleRangedEnchantments(AbstractArrow arrowEntity, LivingEntity shooter, ItemStack stack) {
-        int fuseShotLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.FUSE_SHOT.get(), stack);
+        int fuseShotLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.FUSE_SHOT.get(), stack);
         if (fuseShotLevel > 0) {
             RangedAbilities weaponCap = RangedAbilitiesHelper.getRangedAbilitiesCapability(stack);
             int fuseShotCounter = weaponCap.getFuseShotCounter();

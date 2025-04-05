@@ -60,7 +60,7 @@ public class ShockwaveEnchantment extends AOEDamageEnchantment {
             if (event.getResult() != Event.Result.ALLOW && mainhand.getItem() instanceof IDualWieldWeapon) return;
             if (attacker.getLastHurtMobTimestamp() == attacker.tickCount) return;
             if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.SHOCKWAVE.get())) {
-                int shockwaveLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.SHOCKWAVE.get(), mainhand);
+                int shockwaveLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.SHOCKWAVE.get(), mainhand);
                 // gets the attack damage of the original attack before any enchantment modifiers are added
                 float attackDamage = (float) attacker.getAttributeValue(Attributes.ATTACK_DAMAGE);
                 Combo ic = ComboHelper.getComboCapability(attacker);

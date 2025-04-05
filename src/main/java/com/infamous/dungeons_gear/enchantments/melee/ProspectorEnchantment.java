@@ -43,7 +43,7 @@ public class ProspectorEnchantment extends DropsEnchantment {
             ItemStack mainhand = attacker.getMainHandItem();
             LivingEntity victim = event.getEntity();
             if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.PROSPECTOR.get())) {
-                int prospectorLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.PROSPECTOR.get(), mainhand);
+                int prospectorLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.PROSPECTOR.get(), mainhand);
                 float prospectorChance;
                 prospectorChance = (float) (DungeonsGearConfig.PROSPECTOR_CHANCE_PER_LEVEL.get() * prospectorLevel);
                 float prospectorRand = attacker.getRandom().nextFloat();

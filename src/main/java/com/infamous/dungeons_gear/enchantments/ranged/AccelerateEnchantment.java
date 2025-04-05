@@ -56,7 +56,7 @@ public class AccelerateEnchantment extends DungeonsEnchantment {
             long lastFiredTime = weaponCapability.getLastFiredTime();
             float dynamicChargeTime = weaponCapability.getDynamicChargeTime();
 
-            int accelerateLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.ACCELERATE.get(), stack);
+            int accelerateLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.ACCELERATE.get(), stack);
 
             if (accelerateLevel > 0) {
                 float defaultChargeTime = 20.0F;
@@ -90,7 +90,7 @@ public class AccelerateEnchantment extends DungeonsEnchantment {
             long lastFiredTime = weaponCap.getLastFiredTime();
             int dynamicChargeTime = (int) weaponCap.getDynamicChargeTime();
 
-            int accelerateLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.ACCELERATE.get(), stack);
+            int accelerateLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.ACCELERATE.get(), stack);
 
             float defaultChargeTime = 25;
             if (stack.getItem() instanceof CrossbowGear) {
@@ -115,7 +115,7 @@ public class AccelerateEnchantment extends DungeonsEnchantment {
     @SubscribeEvent
     public static void onBowChargeTime(BowEvent.ChargeTime event) {
         ItemStack itemStack = event.getItemStack();
-        int accelerateLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.ACCELERATE.get(), itemStack);
+        int accelerateLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.ACCELERATE.get(), itemStack);
         RangedAbilities weaponCapability = RangedAbilitiesHelper.getRangedAbilitiesCapability(itemStack);
         float dynamicChargeTime = weaponCapability.getDynamicChargeTime();
         if (accelerateLevel > 0 && weaponCapability.getLastFiredTime() > 0) {
@@ -126,7 +126,7 @@ public class AccelerateEnchantment extends DungeonsEnchantment {
     @SubscribeEvent
     public static void onCrossbowChargeTime(CrossbowEvent.ChargeTime event) {
         ItemStack itemStack = event.getItemStack();
-        int accelerateLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.ACCELERATE.get(), itemStack);
+        int accelerateLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.ACCELERATE.get(), itemStack);
         RangedAbilities weaponCapability = RangedAbilitiesHelper.getRangedAbilitiesCapability(itemStack);
         float dynamicChargeTime = weaponCapability.getDynamicChargeTime();
         if (accelerateLevel > 0 && weaponCapability.getLastFiredTime() > 0) {

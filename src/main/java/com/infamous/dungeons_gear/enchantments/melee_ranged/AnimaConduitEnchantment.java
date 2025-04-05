@@ -84,7 +84,7 @@ public class AnimaConduitEnchantment extends HealingEnchantment {
     }
 
     private static void removeAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(ANIMA_CONDUIT.get(), itemStack) > 0) {
+        if (EnchantmentHelper.getTagEnchantmentLevel(ANIMA_CONDUIT.get(), itemStack) > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(SOUL_GATHERING.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null) {
                 attributeInstance.removeModifier(attributeModifierUUID);
@@ -93,7 +93,7 @@ public class AnimaConduitEnchantment extends HealingEnchantment {
     }
 
     private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ANIMA_CONDUIT.get(), itemStack);
+        int itemEnchantmentLevel = EnchantmentHelper.getTagEnchantmentLevel(ANIMA_CONDUIT.get(), itemStack);
         if (itemEnchantmentLevel > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(SOUL_GATHERING.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) == null) {

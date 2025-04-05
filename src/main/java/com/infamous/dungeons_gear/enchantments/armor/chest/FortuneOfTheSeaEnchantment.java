@@ -46,7 +46,7 @@ public class FortuneOfTheSeaEnchantment extends DungeonsEnchantment {
     }
 
     private static void removeAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(FORTUNE_OF_THE_SEA.get(), itemStack) > 0) {
+        if (EnchantmentHelper.getTagEnchantmentLevel(FORTUNE_OF_THE_SEA.get(), itemStack) > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(LUCK);
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null) {
                 attributeInstance.removeModifier(attributeModifierUUID);
@@ -55,7 +55,7 @@ public class FortuneOfTheSeaEnchantment extends DungeonsEnchantment {
     }
 
     private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(FORTUNE_OF_THE_SEA.get(), itemStack);
+        int itemEnchantmentLevel = EnchantmentHelper.getTagEnchantmentLevel(FORTUNE_OF_THE_SEA.get(), itemStack);
         if (itemEnchantmentLevel > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(LUCK);
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) == null) {

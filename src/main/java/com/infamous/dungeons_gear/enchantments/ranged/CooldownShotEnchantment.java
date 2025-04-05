@@ -37,7 +37,7 @@ public class CooldownShotEnchantment extends DungeonsEnchantment {
             Player player = (Player) livingEntity;
             float arrowVelocity = RangedAttackHelper.getBowArrowVelocity(livingEntity, stack, charge);
             if (arrowVelocity >= 1.0F) {
-                int cooldownShotLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.COOLDOWN_SHOT.get(), stack);
+                int cooldownShotLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.COOLDOWN_SHOT.get(), stack);
                 if (cooldownShotLevel > 0) {
                     double cooldownReduction = 0.5 * cooldownShotLevel;
                     ArtifactItem.reduceArtifactCooldowns(player, cooldownReduction);

@@ -62,7 +62,7 @@ public class CooldownEnchantment extends DungeonsEnchantment {
     }
 
     private static void removeAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(COOLDOWN.get(), itemStack) > 0) {
+        if (EnchantmentHelper.getTagEnchantmentLevel(COOLDOWN.get(), itemStack) > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(ARTIFACT_COOLDOWN_MULTIPLIER.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null) {
                 attributeInstance.removeModifier(attributeModifierUUID);
@@ -71,7 +71,7 @@ public class CooldownEnchantment extends DungeonsEnchantment {
     }
 
     private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(COOLDOWN.get(), itemStack);
+        int itemEnchantmentLevel = EnchantmentHelper.getTagEnchantmentLevel(COOLDOWN.get(), itemStack);
         if (itemEnchantmentLevel > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(ARTIFACT_COOLDOWN_MULTIPLIER.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) == null) {

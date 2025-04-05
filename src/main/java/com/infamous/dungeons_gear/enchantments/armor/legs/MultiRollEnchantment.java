@@ -52,7 +52,7 @@ public class MultiRollEnchantment extends JumpingEnchantment {
     }
 
     private static void removeAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(MULTI_ROLL.get(), itemStack) > 0) {
+        if (EnchantmentHelper.getTagEnchantmentLevel(MULTI_ROLL.get(), itemStack) > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(ROLL_LIMIT.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null) {
                 attributeInstance.removeModifier(attributeModifierUUID);
@@ -61,7 +61,7 @@ public class MultiRollEnchantment extends JumpingEnchantment {
     }
 
     private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(MULTI_ROLL.get(), itemStack);
+        int itemEnchantmentLevel = EnchantmentHelper.getTagEnchantmentLevel(MULTI_ROLL.get(), itemStack);
         if (itemEnchantmentLevel > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(ROLL_LIMIT.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) == null) {

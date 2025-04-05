@@ -34,7 +34,7 @@ public class GuardingStrikeEnchantment extends AOEDamageEnchantment {
         if (event.getSource().getEntity() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
             ItemStack mainhand = attacker.getMainHandItem();
-            int guardingStrikeLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.GUARDING_STRIKE.get(), mainhand);
+            int guardingStrikeLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.GUARDING_STRIKE.get(), mainhand);
             if (guardingStrikeLevel > 0) {
                 int duration = 20 + 20 * guardingStrikeLevel;
                 MobEffectInstance shield = new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, duration, 2);

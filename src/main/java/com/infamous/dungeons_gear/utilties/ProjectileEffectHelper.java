@@ -216,7 +216,7 @@ public class ProjectileEffectHelper {
         float soulsLimit = 50.0F;
         float numSouls = Math.min(soulCasterCapability.getSouls(), soulsLimit);
         if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.ENIGMA_RESONATOR.get())) {
-            int enigmaResonatorLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.ENIGMA_RESONATOR.get(), mainhand);
+            int enigmaResonatorLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.ENIGMA_RESONATOR.get(), mainhand);
             float soulsCriticalBoostChanceCap;
             soulsCriticalBoostChanceCap = 0.1F + 0.05F * enigmaResonatorLevel;
             float soulsCriticalBoostRand = attacker.getRandom().nextFloat();

@@ -49,7 +49,7 @@ public class CommittedEnchantment extends DamageBoostEnchantment {
             if (victim.getHealth() >= victim.getMaxHealth()) return;
             ItemStack mainhand = attacker.getMainHandItem();
             if ((ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.COMMITTED.get()))) {
-                int committedLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.COMMITTED.get(), mainhand);
+                int committedLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.COMMITTED.get(), mainhand);
                 float victimRemainingHealth = victim.getHealth() / victim.getMaxHealth();
                 float originalDamage = event.getAmount();
                 // If normal damage is X, the same weapon with Tier 3 Committed adds an extra (X * (1 - (Mob Remaining HP/Mob Max HP))) damage.

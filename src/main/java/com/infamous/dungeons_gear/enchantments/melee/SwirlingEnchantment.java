@@ -49,7 +49,7 @@ public class SwirlingEnchantment extends AOEDamageEnchantment {
             ItemStack mainhand = attacker.getMainHandItem();
             if (event.getResult() != Event.Result.ALLOW && mainhand.getItem() instanceof IComboWeapon) return;
             if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.SWIRLING.get())) {
-                int swirlingLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.SWIRLING.get(), mainhand);
+                int swirlingLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.SWIRLING.get(), mainhand);
                 // gets the attack damage of the original attack before any enchantment modifiers are added
                 float attackDamage = (float) attacker.getAttributeValue(Attributes.ATTACK_DAMAGE);
                 Combo ic = ComboHelper.getComboCapability(attacker);

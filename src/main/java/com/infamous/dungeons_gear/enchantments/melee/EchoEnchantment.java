@@ -43,7 +43,7 @@ public class EchoEnchantment extends AOEDamageEnchantment {
             LivingEntity victim = (LivingEntity) event.getTarget();
             ItemStack mainhand = attacker.getMainHandItem();
             if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.ECHO.get())) {
-                int echoLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.ECHO.get(), mainhand);
+                int echoLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.ECHO.get(), mainhand);
                 float cooldown = Math.max(3, 6 - echoLevel);
                 if (echoLevel > 3) {
                     echoLevel -= 3;

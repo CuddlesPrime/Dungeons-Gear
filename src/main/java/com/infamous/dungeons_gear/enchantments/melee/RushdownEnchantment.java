@@ -36,7 +36,7 @@ public class RushdownEnchantment extends DungeonsEnchantment {
             LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
             ItemStack mainhand = attacker.getMainHandItem();
             if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.RUSHDOWN.get())) {
-                int rushdownLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.RUSHDOWN.get(), mainhand);
+                int rushdownLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.RUSHDOWN.get(), mainhand);
                 MobEffectInstance speed = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, rushdownLevel * 20, 4);
                 attacker.addEffect(speed);
             }

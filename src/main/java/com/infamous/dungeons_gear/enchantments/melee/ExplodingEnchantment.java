@@ -48,7 +48,7 @@ public class ExplodingEnchantment extends AOEDamageEnchantment {
             LivingEntity victim = event.getEntity();
             ItemStack mainhand = attacker.getMainHandItem();
             if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.EXPLODING.get())) {
-                int explodingLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.EXPLODING.get(), mainhand);
+                int explodingLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.EXPLODING.get(), mainhand);
                 float explosionDamage;
                 explosionDamage = victim.getMaxHealth() * (float) (DungeonsGearConfig.EXPLODING_MULTIPLIER_PER_LEVEL.get() * explodingLevel);
                 SoundHelper.playGenericExplodeSound(victim);

@@ -72,7 +72,7 @@ public class EnigmaResonatorEnchantment extends DamageBoostEnchantment {
         if (!event.isVanillaCritical()) {
             boolean success = false;
             if (ModEnchantmentHelper.hasEnchantment(mainhand, ENIGMA_RESONATOR.get())) {
-                int enigmaResonatorLevel = EnchantmentHelper.getItemEnchantmentLevel(ENIGMA_RESONATOR.get(), mainhand);
+                int enigmaResonatorLevel = EnchantmentHelper.getTagEnchantmentLevel(ENIGMA_RESONATOR.get(), mainhand);
                 float soulsCriticalBoostChanceCap;
                 soulsCriticalBoostChanceCap = 0.1F + 0.05F * enigmaResonatorLevel;
                 float soulsCriticalBoostRand = attacker.getRandom().nextFloat();
@@ -115,7 +115,7 @@ public class EnigmaResonatorEnchantment extends DamageBoostEnchantment {
     }
 
     private static void removeAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        if (EnchantmentHelper.getItemEnchantmentLevel(ENIGMA_RESONATOR.get(), itemStack) > 0) {
+        if (EnchantmentHelper.getTagEnchantmentLevel(ENIGMA_RESONATOR.get(), itemStack) > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(SOUL_GATHERING.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) != null) {
                 attributeInstance.removeModifier(attributeModifierUUID);
@@ -124,7 +124,7 @@ public class EnigmaResonatorEnchantment extends DamageBoostEnchantment {
     }
 
     private static void addAttribute(ItemStack itemStack, LivingEntity livingEntity, UUID attributeModifierUUID) {
-        int itemEnchantmentLevel = EnchantmentHelper.getItemEnchantmentLevel(ENIGMA_RESONATOR.get(), itemStack);
+        int itemEnchantmentLevel = EnchantmentHelper.getTagEnchantmentLevel(ENIGMA_RESONATOR.get(), itemStack);
         if (itemEnchantmentLevel > 0) {
             AttributeInstance attributeInstance = livingEntity.getAttribute(SOUL_GATHERING.get());
             if (attributeInstance != null && attributeInstance.getModifier(attributeModifierUUID) == null) {

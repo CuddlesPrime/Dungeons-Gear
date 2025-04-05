@@ -61,7 +61,7 @@ public class ArrowBundleItem extends Item {
     }
 
     private int arrowAmount(ItemStack stack) {
-        return EnchantmentHelper.getItemEnchantmentLevel(ARROW_HOARDER.get(), stack);
+        return EnchantmentHelper.getTagEnchantmentLevel(ARROW_HOARDER.get(), stack);
     }
 
 

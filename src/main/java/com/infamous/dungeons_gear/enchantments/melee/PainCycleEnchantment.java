@@ -35,7 +35,7 @@ public class PainCycleEnchantment extends DungeonsEnchantment {
             ItemStack mainhand = attacker.getMainHandItem();
             if (attacker.getLastHurtMobTimestamp() == attacker.tickCount) return;
             Combo comboCap = ComboHelper.getComboCapability(attacker);
-            int painCycleLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.PAIN_CYCLE.get(), mainhand);
+            int painCycleLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.PAIN_CYCLE.get(), mainhand);
             int painDamage = 2;
             if (painCycleLevel > 0 && attacker.getHealth() > painDamage) {
                 attacker.hurt(DamageSource.MAGIC, painDamage); // 1 heart of damage

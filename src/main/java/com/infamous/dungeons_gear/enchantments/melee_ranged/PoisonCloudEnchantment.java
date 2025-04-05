@@ -52,7 +52,7 @@ public class PoisonCloudEnchantment extends DungeonsEnchantment {
         ItemStack mainhand = attacker.getMainHandItem();
         if (ModEnchantmentHelper.hasEnchantment(mainhand, POISON_CLOUD.get())) {
             float chance = attacker.getRandom().nextFloat();
-            int level = EnchantmentHelper.getItemEnchantmentLevel(POISON_CLOUD.get(), mainhand);
+            int level = EnchantmentHelper.getTagEnchantmentLevel(POISON_CLOUD.get(), mainhand);
             if (chance <= DungeonsGearConfig.POISON_CLOUD_CHANCE.get() && !PlayerAttackHelper.isProbablyNotMeleeDamage(event.getSource())) {
                 checkForPlayer(attacker);
                 AOECloudHelper.spawnPoisonCloud(attacker, victim, level - 1);

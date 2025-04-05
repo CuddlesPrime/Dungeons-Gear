@@ -49,7 +49,7 @@ public class RampagingEnchantment extends DungeonsEnchantment {
     private static void applyEnchantment(LivingEntity attacker) {
         ItemStack mainhand = attacker.getMainHandItem();
         if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.RAMPAGING.get())) {
-            int rampagingLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.RAMPAGING.get(), mainhand);
+            int rampagingLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.RAMPAGING.get(), mainhand);
             applyEffect(attacker, rampagingLevel);
         }
     }

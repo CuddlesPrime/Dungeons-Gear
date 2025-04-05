@@ -10,13 +10,12 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModEnchantmentHelper {
 
     public static boolean hasEnchantment(ItemStack stack, Enchantment enchantment) {
-        return enchantment != null && EnchantmentHelper.getItemEnchantmentLevel(enchantment, stack) > 0;
+        return enchantment != null && EnchantmentHelper.getTagEnchantmentLevel(enchantment, stack) > 0;
     }
 
     public static boolean hasEnchantment(LivingEntity entity, Enchantment enchantment) {

@@ -37,7 +37,7 @@ public class CriticalHitEnchantment extends DamageBoostEnchantment {
             ItemStack mainhand = attacker.getMainHandItem();
             boolean success = false;
             if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.CRITICAL_HIT.get())) {
-                int criticalHitLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.CRITICAL_HIT.get(), mainhand);
+                int criticalHitLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.CRITICAL_HIT.get(), mainhand);
                 float criticalHitChance;
                 criticalHitChance = 0.05F + criticalHitLevel * 0.05F;
                 float criticalHitRand = attacker.getRandom().nextFloat();

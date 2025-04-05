@@ -34,7 +34,7 @@ public class VelocityEnchantment extends DungeonsEnchantment {
     @SubscribeEvent
     public static void onBowVelocity(BowEvent.Velocity event) {
         ItemStack itemStack = event.getItemStack();
-        int velocityLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.VELOCITY.get(), itemStack);
+        int velocityLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.VELOCITY.get(), itemStack);
         if (velocityLevel > 0) {
             event.setVelocity(event.getVelocity() + 0.8F * velocityLevel);
         }
@@ -43,7 +43,7 @@ public class VelocityEnchantment extends DungeonsEnchantment {
     @SubscribeEvent
     public static void onCrossbowVelocity(CrossbowEvent.Velocity event) {
         ItemStack itemStack = event.getItemStack();
-        int velocityLevel = EnchantmentHelper.getItemEnchantmentLevel(EnchantmentInit.VELOCITY.get(), itemStack);
+        int velocityLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.VELOCITY.get(), itemStack);
         if (velocityLevel > 0) {
             event.setVelocity(event.getVelocity() + 0.8F * velocityLevel);
         }
