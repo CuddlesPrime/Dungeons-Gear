@@ -1,6 +1,5 @@
 package com.infamous.dungeons_gear.entities;
 
-import com.infamous.dungeons_gear.registry.DamageSourceInit;
 import com.infamous.dungeons_gear.registry.EntityTypeInit;
 import com.infamous.dungeons_gear.registry.ParticleInit;
 import com.infamous.dungeons_gear.registry.SoundEventInit;
@@ -10,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSources;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -284,7 +284,7 @@ public class IceCloudEntity extends Entity implements GeoEntity {
         if (this.isAlive()) {
             for (LivingEntity entity : this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(2.5D), ALIVE)) {
                 entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 60, 2));
-                entity.hurt(DamageSourceInit.iceChunk(this, this.owner), 15.0F);
+                entity.hurt(entity.level().damageSources().freeze(), 15.0F);
                 this.strongKnockback(entity);
             }
 
