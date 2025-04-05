@@ -52,7 +52,6 @@ public class DungeonsGear {
         CreativeTabInit.TABS.register(modEventBus);
         SoundEventInit.SOUNDS.register(modEventBus);
         GlobalLootModifierInit.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
-        LootConditionInit.LOOT_ITEM_CONDITION_TYPES.register(modEventBus);
         MobEffectInit.MOB_EFFECTS.register(modEventBus);
         PotionInit.POTIONS.register(modEventBus);
         EnchantmentInit.ENCHANTMENTS.register(modEventBus);
