@@ -31,6 +31,8 @@ import net.minecraftforge.fml.common.Mod;
 import static com.infamous.dungeons_gear.DungeonsGear.MODID;
 import static com.infamous.dungeons_gear.registry.EnchantmentInit.POISON_CLOUD;
 
+import com.infamous.dungeons_gear.combat.DamageSources;
+
 @Mod.EventBusSubscriber(modid = MODID)
 public class PoisonCloudEnchantment extends DungeonsEnchantment {
 
@@ -42,7 +44,7 @@ public class PoisonCloudEnchantment extends DungeonsEnchantment {
     @SubscribeEvent
     public static void onPoisonousWeaponAttack(LivingAttackEvent event) {
         if (event.getSource().getDirectEntity() != event.getSource().getEntity()) return;
-        if (event.getSource() instanceof OffhandAttackDamageSource) return;
+        if (event.getSource().is(DamageSources.OFFHAND_ATTACK_KEY)) return;s
         if (!(event.getSource().getEntity() instanceof LivingEntity)) return;
         LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
         if (attacker.getLastHurtMobTimestamp() == attacker.tickCount) return;

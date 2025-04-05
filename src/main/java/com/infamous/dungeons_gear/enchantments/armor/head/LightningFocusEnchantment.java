@@ -1,8 +1,8 @@
 package com.infamous.dungeons_gear.enchantments.armor.head;
 
 import com.infamous.dungeons_gear.DungeonsGear;
+import com.infamous.dungeons_gear.combat.DamageSources;
 import com.infamous.dungeons_gear.config.DungeonsGearConfig;
-import com.infamous.dungeons_gear.damagesources.ElectricShockDamageSource;
 import com.infamous.dungeons_gear.enchantments.types.FocusEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,8 +28,8 @@ public class LightningFocusEnchantment extends FocusEnchantment {
 
     @SubscribeEvent
     public static void onLightningAttack(LivingDamageEvent event) {
-        if (!(event.getSource() instanceof ElectricShockDamageSource)) return;
         if (event.getEntity().level().isClientSide) return;
+        if (!event.getSource().is(DamageSources.ELECTRIC_SHOCK_KEY)) return;
 
         if (event.getSource().getEntity() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) event.getSource().getEntity();

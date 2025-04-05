@@ -1,6 +1,6 @@
 package com.infamous.dungeons_gear.utilties;
 
-import com.infamous.dungeons_gear.damagesources.ElectricShockDamageSource;
+import com.infamous.dungeons_gear.combat.DamageSources;
 import com.infamous.dungeons_gear.registry.MobEffectInit;
 import com.infamous.dungeons_gear.registry.ParticleInit;
 import net.minecraft.core.BlockPos;
@@ -256,7 +256,7 @@ public class AreaOfEffectHelper {
 
     public static void electrify(LivingEntity attacker, LivingEntity victim, float damageAmount) {
         createVisualLightningBoltOnEntity(victim);
-        ElectricShockDamageSource lightning = (ElectricShockDamageSource) new ElectricShockDamageSource(attacker).setMagic().bypassArmor();
+        DamageSource lightning = DamageSources.electricShock(attacker);
         PROXY.spawnParticles(victim, ParticleInit.ELECTRIC_SHOCK.get());
         victim.hurt(lightning, damageAmount);
     }

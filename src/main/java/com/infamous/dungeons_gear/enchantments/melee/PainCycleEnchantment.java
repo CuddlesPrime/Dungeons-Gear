@@ -2,7 +2,7 @@ package com.infamous.dungeons_gear.enchantments.melee;
 
 import com.infamous.dungeons_gear.capabilities.combo.Combo;
 import com.infamous.dungeons_gear.capabilities.combo.ComboHelper;
-import com.infamous.dungeons_gear.damagesources.OffhandAttackDamageSource;
+import com.infamous.dungeons_gear.combat.DamageSources;
 import com.infamous.dungeons_gear.enchantments.ModEnchantmentTypes;
 import com.infamous.dungeons_gear.enchantments.types.DungeonsEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
@@ -27,7 +27,7 @@ public class PainCycleEnchantment extends DungeonsEnchantment {
     @SubscribeEvent
     public static void onPainfulAttack(LivingDamageEvent event) {
         if (PlayerAttackHelper.isProbablyNotMeleeDamage(event.getSource())) return;
-        if (event.getSource() instanceof OffhandAttackDamageSource) return;
+        if (event.getSource().is(DamageSources.OFFHAND_ATTACK_KEY)) return;
         if (event.getEntity().level().isClientSide) return;
 
         if (event.getSource().getEntity() instanceof LivingEntity) {

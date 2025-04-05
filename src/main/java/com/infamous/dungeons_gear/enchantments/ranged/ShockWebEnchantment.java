@@ -1,14 +1,15 @@
 package com.infamous.dungeons_gear.enchantments.ranged;
 
 import com.infamous.dungeons_gear.DungeonsGear;
+import com.infamous.dungeons_gear.combat.DamageSources;
 import com.infamous.dungeons_gear.config.DungeonsGearConfig;
-import com.infamous.dungeons_gear.damagesources.ElectricShockDamageSource;
 import com.infamous.dungeons_gear.enchantments.ModEnchantmentTypes;
 import com.infamous.dungeons_gear.enchantments.types.DungeonsEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
 import com.infamous.dungeons_gear.utilties.ProjectileEffectHelper;
 import com.infamous.dungeons_libraries.utils.ArrowHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -106,7 +107,7 @@ public class ShockWebEnchantment extends DungeonsEnchantment {
                     DungeonsGear.LOGGER.info("Found {} targets!", entitiesToShock.size());
 
                     for (LivingEntity target : entitiesToShock) {
-                        ElectricShockDamageSource shockDamageSource = new ElectricShockDamageSource(shooter);
+                        DamageSource shockDamageSource = DamageSources.electricShock(shooter);
                         target.hurt(shockDamageSource, 5.0F);
                     }
                     shockWebsCreated++;
