@@ -19,6 +19,7 @@ import net.minecraftforge.client.event.RenderTooltipEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +44,7 @@ public class GildedItemHelper {
         List<EnchantmentInstance> list = Lists.newArrayList();
         boolean flag = itemStack.getItem() == Items.BOOK;
 
-        for (Enchantment enchantment : Registry.ENCHANTMENT) {
+        for (Enchantment enchantment : ForgeRegistries.ENCHANTMENTS) {
             if ((!enchantment.isTreasureOnly() || includeTreasures) && enchantment.isDiscoverable() && (enchantment.canApplyAtEnchantingTable(itemStack) || (flag && enchantment.isAllowedOnBooks()))) {
                 for (int i = Math.min(enchantment.getMaxLevel(), maxLevel); i > Math.min(enchantment.getMinLevel(), minLevel) - 1; --i) {
                     list.add(new EnchantmentInstance(enchantment, i));
