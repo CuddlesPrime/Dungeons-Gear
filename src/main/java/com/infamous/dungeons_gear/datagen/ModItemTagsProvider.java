@@ -3,25 +3,30 @@ package com.infamous.dungeons_gear.datagen;
 import com.infamous.dungeons_gear.DungeonsGear;
 import com.infamous.dungeons_gear.items.ItemTagWrappers;
 import com.infamous.dungeons_gear.registry.ItemInit;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+
+import net.minecraft.core.HolderLookup.Provider;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import static com.infamous.dungeons_gear.registry.ItemInit.SHEAR_DAGGER;
 import static net.minecraft.world.item.Items.*;
 
-public class ModItemTagsProvider extends net.minecraft.data.tags.ItemTagsProvider {
+import java.util.concurrent.CompletableFuture;
 
-    public ModItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagProvider, DungeonsGear.MODID, existingFileHelper);
+public class ModItemTagsProvider extends ItemTagsProvider {
+    public ModItemTagsProvider(PackOutput p_275343_, CompletableFuture<Provider> p_275729_, CompletableFuture<TagLookup<Block>> p_275322_, @Nullable ExistingFileHelper existingFileHelper) {
+        super(p_275343_, p_275729_, p_275322_, DungeonsGear.MODID, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(@Nonnull Provider p_256380_) {
         curiosArtifactTags();
         foodTags();
         this.tag(Tags.Items.SHEARS).add(SHEAR_DAGGER.get());

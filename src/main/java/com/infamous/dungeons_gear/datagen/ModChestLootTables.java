@@ -8,11 +8,13 @@ import com.infamous.dungeons_libraries.items.artifacts.ArtifactItem;
 import com.infamous.dungeons_libraries.items.interfaces.IArmor;
 import com.infamous.dungeons_libraries.items.interfaces.IMeleeWeapon;
 import com.infamous.dungeons_libraries.items.interfaces.IRangedWeapon;
-import net.minecraft.data.loot.ChestLoot;
+
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.LootTable.Builder;
 import net.minecraft.world.level.storage.loot.entries.*;
 import net.minecraft.world.level.storage.loot.functions.EnchantWithLevelsFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
@@ -25,6 +27,8 @@ import java.util.List;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
 
+import javax.annotation.Nonnull;
+
 import static com.infamous.dungeons_gear.DungeonsGear.MODID;
 import static com.infamous.dungeons_gear.items.ItemTagWrappers.FOOD_PROCESSED;
 import static com.infamous.dungeons_gear.loot.LootTableType.ALL;
@@ -32,15 +36,14 @@ import static com.infamous.dungeons_gear.registry.ItemInit.*;
 import static net.minecraft.tags.ItemTags.ARROWS;
 import static net.minecraft.world.item.Items.*;
 
-public class ModChestLootTables extends ChestLoot {
-
+public class ModChestLootTables implements LootTableSubProvider {
     private final List<Item> EXPERIMENTAL_ITEMS = Arrays.asList(
             DUAL_CROSSBOW.get(),
             BABY_CROSSBOW.get()
     );
 
     @Override
-    public void accept(BiConsumer<ResourceLocation, LootTable.Builder> consumer) {
+    public void generate(@Nonnull BiConsumer<ResourceLocation, Builder> consumer) {
         //ChestAdditions
         chestAdditionsLootTables(consumer);
         //Enchantments
@@ -210,6 +213,4 @@ public class ModChestLootTables extends ChestLoot {
                         withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1))
                                 .add(LootItem.lootTableItem(() -> EMERALD))));
     }
-
-
 }

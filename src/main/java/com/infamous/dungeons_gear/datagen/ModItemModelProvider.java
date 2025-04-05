@@ -1,7 +1,7 @@
 package com.infamous.dungeons_gear.datagen;
 
 import com.infamous.dungeons_gear.DungeonsGear;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -11,9 +11,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import static com.infamous.dungeons_gear.registry.ItemInit.ARMORS;
 
 public class ModItemModelProvider extends ItemModelProvider {
-
-    public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, DungeonsGear.MODID, existingFileHelper);
+    public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, DungeonsGear.MODID, existingFileHelper); // replace with your actual mod ID
     }
 
     @Override
