@@ -5,16 +5,11 @@ import com.infamous.dungeons_gear.client.ClientProxy;
 import com.infamous.dungeons_gear.compat.DungeonsGearCompatibility;
 import com.infamous.dungeons_gear.config.DungeonsGearConfig;
 import com.infamous.dungeons_gear.entities.SoulWizardEntity;
-import com.infamous.dungeons_gear.groups.ArmorGroup;
-import com.infamous.dungeons_gear.groups.ArtifactGroup;
-import com.infamous.dungeons_gear.groups.MeleeWeaponGroup;
-import com.infamous.dungeons_gear.groups.RangedWeaponGroup;
 import com.infamous.dungeons_gear.items.DualWieldItemProperties;
 import com.infamous.dungeons_gear.items.GearRangedItemModelProperties;
 import com.infamous.dungeons_gear.loot.ModLootFunctionTypes;
 import com.infamous.dungeons_gear.network.NetworkHandler;
 import com.infamous.dungeons_gear.registry.*;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -33,10 +28,6 @@ public class DungeonsGear {
     // Directly reference a log4j logger.
     public static final String MODID = "dungeons_gear";
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final CreativeModeTab MELEE_WEAPON_GROUP = new MeleeWeaponGroup();
-    public static final CreativeModeTab RANGED_WEAPON_GROUP = new RangedWeaponGroup();
-    public static final CreativeModeTab ARTIFACT_GROUP = new ArtifactGroup();
-    public static final CreativeModeTab ARMOR_GROUP = new ArmorGroup();
 
     public static CommonProxy PROXY;
 
@@ -58,6 +49,7 @@ public class DungeonsGear {
         ParticleInit.PARTICLES.register(modEventBus);
         AttributeInit.ATTRIBUTES.register(modEventBus);
         ItemInit.ITEMS.register(modEventBus);
+        CreativeTabInit.TABS.register(modEventBus);
         SoundEventInit.SOUNDS.register(modEventBus);
         GlobalLootModifierInit.LOOT_MODIFIER_SERIALIZERS.register(modEventBus);
         LootConditionInit.LOOT_ITEM_CONDITION_TYPES.register(modEventBus);
