@@ -5,7 +5,7 @@ import com.infamous.dungeons_gear.enchantments.types.DungeonsEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
 import com.infamous.dungeons_gear.utilties.ProjectileEffectHelper;
 import com.infamous.dungeons_libraries.utils.ArrowHelper;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -27,8 +27,8 @@ public class ChainReactionEnchantment extends DungeonsEnchantment {
 
     @SubscribeEvent
     public static void onChainReactionDamage(LivingDamageEvent event) {
-        if (event.getSource() instanceof IndirectEntityDamageSource) {
-            IndirectEntityDamageSource indirectEntityDamageSource = (IndirectEntityDamageSource) event.getSource();
+        if (!event.getSource().getEntity().equals(event.getSource().getDirectEntity())) {
+            DamageSource indirectEntityDamageSource = event.getSource();
             if (indirectEntityDamageSource.getDirectEntity() instanceof AbstractArrow) {
                 AbstractArrow arrowEntity = (AbstractArrow) indirectEntityDamageSource.getDirectEntity();
 

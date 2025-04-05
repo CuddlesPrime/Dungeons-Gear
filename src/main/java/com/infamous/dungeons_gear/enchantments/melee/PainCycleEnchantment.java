@@ -7,7 +7,6 @@ import com.infamous.dungeons_gear.enchantments.ModEnchantmentTypes;
 import com.infamous.dungeons_gear.enchantments.types.DungeonsEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
 import com.infamous.dungeons_gear.utilties.PlayerAttackHelper;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -38,7 +37,7 @@ public class PainCycleEnchantment extends DungeonsEnchantment {
             int painCycleLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.PAIN_CYCLE.get(), mainhand);
             int painDamage = 2;
             if (painCycleLevel > 0 && attacker.getHealth() > painDamage) {
-                attacker.hurt(DamageSource.MAGIC, painDamage); // 1 heart of damage
+                attacker.hurt(attacker.level().damageSources().magic(), painDamage); // 1 heart of damage
                 comboCap.setPainCycleStacks(comboCap.getPainCycleStacks() + 1);
                 if (comboCap.getPainCycleStacks() >= 5) {
                     int painCycleMultiplier = 2 + painCycleLevel;

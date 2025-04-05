@@ -8,7 +8,7 @@ import com.infamous.dungeons_gear.utilties.ModEnchantmentHelper;
 import com.infamous.dungeons_gear.utilties.SoundHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -61,8 +61,8 @@ public class FuseShotEnchantment extends DungeonsEnchantment {
 
     @SubscribeEvent
     public static void onFuseShotDamage(LivingDamageEvent event) {
-        if (event.getSource() instanceof IndirectEntityDamageSource) {
-            IndirectEntityDamageSource indirectEntityDamageSource = (IndirectEntityDamageSource) event.getSource();
+        if (!event.getSource().getEntity().equals(event.getSource().getDirectEntity())) {
+            DamageSource indirectEntityDamageSource = event.getSource();
             if (indirectEntityDamageSource.getDirectEntity() instanceof AbstractArrow) {
                 AbstractArrow arrowEntity = (AbstractArrow) indirectEntityDamageSource.getDirectEntity();
 

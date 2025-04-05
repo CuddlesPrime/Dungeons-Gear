@@ -10,7 +10,6 @@ import com.infamous.dungeons_gear.utilties.SoundHelper;
 import com.infamous.dungeons_libraries.utils.ArrowHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -66,7 +65,7 @@ public class ExplodingShotEnchantment extends DungeonsEnchantment {
 
     @SubscribeEvent
     public static void onDamage(LivingDamageEvent event) {
-        if (event.getSource() instanceof IndirectEntityDamageSource) {
+        if (!event.getSource().getEntity().equals(event.getSource().getDirectEntity())) {
             if (event.getSource().getDirectEntity() instanceof AbstractArrow) {
                 AbstractArrow arrowEntity = (AbstractArrow) event.getSource().getDirectEntity();
                 if (arrowEntity.getOwner() instanceof LivingEntity) {

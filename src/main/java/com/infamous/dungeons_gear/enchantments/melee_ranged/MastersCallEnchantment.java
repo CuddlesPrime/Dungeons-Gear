@@ -1,7 +1,6 @@
 package com.infamous.dungeons_gear.enchantments.melee_ranged;
 
 import com.infamous.dungeons_gear.combat.DamageSources;
-import com.infamous.dungeons_gear.damagesources.OffhandAttackDamageSource;
 import com.infamous.dungeons_gear.enchantments.ModEnchantmentTypes;
 import com.infamous.dungeons_gear.enchantments.types.DungeonsEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;

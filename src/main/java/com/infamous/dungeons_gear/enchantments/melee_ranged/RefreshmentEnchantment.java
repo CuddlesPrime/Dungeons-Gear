@@ -9,6 +9,8 @@ import com.infamous.dungeons_gear.enchantments.types.DropsEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
 import com.infamous.dungeons_gear.utilties.PlayerAttackHelper;
 import com.infamous.dungeons_libraries.utils.ArrowHelper;
+
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -47,7 +49,7 @@ public class RefreshmentEnchantment extends DropsEnchantment {
                 if (refreshmentLevel > 0) {
                     updateRefreshment(killerPlayer, refreshmentLevel);
                 }
-            } else if (damageSource.isProjectile()) {
+            } else if (damageSource.is(DamageTypeTags.IS_PROJECTILE)) {
                 Entity immediateSource = damageSource.getDirectEntity();
                 if (immediateSource instanceof AbstractArrow) {
                     AbstractArrow arrowEntity = (AbstractArrow) immediateSource;

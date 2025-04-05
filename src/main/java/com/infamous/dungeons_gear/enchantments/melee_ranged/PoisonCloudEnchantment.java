@@ -1,7 +1,6 @@
 package com.infamous.dungeons_gear.enchantments.melee_ranged;
 
 import com.infamous.dungeons_gear.config.DungeonsGearConfig;
-import com.infamous.dungeons_gear.damagesources.OffhandAttackDamageSource;
 import com.infamous.dungeons_gear.enchantments.ModEnchantmentTypes;
 import com.infamous.dungeons_gear.enchantments.types.DungeonsEnchantment;
 import com.infamous.dungeons_gear.utilties.AOECloudHelper;
@@ -44,7 +43,7 @@ public class PoisonCloudEnchantment extends DungeonsEnchantment {
     @SubscribeEvent
     public static void onPoisonousWeaponAttack(LivingAttackEvent event) {
         if (event.getSource().getDirectEntity() != event.getSource().getEntity()) return;
-        if (event.getSource().is(DamageSources.OFFHAND_ATTACK_KEY)) return;s
+        if (event.getSource().is(DamageSources.OFFHAND_ATTACK_KEY)) return;
         if (!(event.getSource().getEntity() instanceof LivingEntity)) return;
         LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
         if (attacker.getLastHurtMobTimestamp() == attacker.tickCount) return;
