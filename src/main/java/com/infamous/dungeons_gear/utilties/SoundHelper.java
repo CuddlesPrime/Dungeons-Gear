@@ -70,8 +70,14 @@ public class SoundHelper {
     }
 
     public static void playHornSound(Entity soundEmissionTarget) {
-        soundEmissionTarget.level().playSound(getPlayerFrom(soundEmissionTarget), soundEmissionTarget.blockPosition(), SoundEvents.RAID_HORN, soundEmissionTarget.getSoundSource(), volumeLimit, standardPitch);
-
+        soundEmissionTarget.level().playSound(
+            getPlayerFrom(soundEmissionTarget),
+            soundEmissionTarget.blockPosition(),
+            SoundEvents.RAID_HORN.value(),
+            soundEmissionTarget.getSoundSource(),
+            volumeLimit,
+            standardPitch
+        );
     }
 
     public static void playKnockbackSound(Entity soundEmissionTarget) {

@@ -6,8 +6,10 @@ import net.minecraft.network.protocol.game.ClientboundAnimatePacket;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectUtil;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -97,11 +99,11 @@ public class PlayerAttackHelper {
     }
 
     public static boolean isProbablyNotMeleeDamage(DamageSource damageSource) {
-        return damageSource.isFire()
-                || damageSource.isExplosion()
-                || damageSource.isMagic()
-                || damageSource.isProjectile()
-                || !isDirectDamage(damageSource);
+        return damageSource.is(DamageTypeTags.IS_FIRE)
+            || damageSource.is(DamageTypeTags.IS_EXPLOSION)
+            || damageSource.is(DamageTypes.MAGIC)
+            || damageSource.is(DamageTypeTags.IS_PROJECTILE)
+            || !isDirectDamage(damageSource);
     }
 
     private static boolean isDirectDamage(DamageSource damageSource) {

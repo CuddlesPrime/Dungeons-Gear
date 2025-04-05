@@ -1,12 +1,10 @@
 package com.infamous.dungeons_gear.utilties;
 
-import com.infamous.dungeons_gear.combat.DamageSources;
 import com.infamous.dungeons_gear.registry.MobEffectInit;
 import com.infamous.dungeons_gear.registry.ParticleInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -153,7 +151,7 @@ public class AreaOfEffectHelper {
     }
 
     public static void causeShockwave(LivingEntity attacker, LivingEntity target, float damageAmount, float distance) {
-        DamageSource shockwave = DamageSource.explosion(attacker);
+        DamageSource shockwave = attacker.level().damageSources().explosion(attacker, target);
         Vec3 vec1 = target.position();
         Vec3 vec2 = attacker.position();
         applyToNearbyEntities(target, distance,
@@ -162,14 +160,14 @@ public class AreaOfEffectHelper {
     }
 
     public static void causeExplosionAttack(LivingEntity attacker, LivingEntity target, float damageAmount, float distance) {
-        DamageSource explosion = DamageSource.explosion(attacker);
+        DamageSource explosion = attacker.level().damageSources().explosion(attacker, target);
         applyToNearbyEntities(target, distance,
                 getCanApplyToEnemyPredicate(attacker), (LivingEntity nearbyEntity) -> nearbyEntity.hurt(explosion, damageAmount)
         );
     }
 
     public static void causeMagicExplosionAttack(LivingEntity attacker, LivingEntity target, float damageAmount, float distance) {
-        DamageSource magicExplosion = DamageSource.explosion(attacker).bypassArmor().setMagic();
+        DamageSource magicExplosion = attacker.level().damageSources().explosion(attacker, target);
         applyToNearbyEntities(target, distance,
                 getCanApplyToEnemyPredicate(attacker), (LivingEntity nearbyEntity) -> {
                     nearbyEntity.hurt(magicExplosion, damageAmount);
@@ -180,7 +178,7 @@ public class AreaOfEffectHelper {
     public static void burnNearbyEnemies(LivingEntity attacker, float damage, float distance) {
         applyToNearbyEntities(attacker, distance,
                 getCanApplyToEnemyPredicate(attacker), (LivingEntity nearbyEntity) -> {
-                    nearbyEntity.hurt(DamageSource.ON_FIRE, damage);
+                    nearbyEntity.hurt(nearbyEntity.level().damageSources().onFire(), damage);
                     PROXY.spawnParticles(nearbyEntity, ParticleTypes.FLAME);
                 }
         );
@@ -212,7 +210,7 @@ public class AreaOfEffectHelper {
 
     public static void causeExplosionAttackAtPos(LivingEntity attacker, boolean inGround, BlockPos blockPos, float damageAmount, float distance) {
         Level world = attacker.getCommandSenderWorld();
-        DamageSource explosion = DamageSource.explosion(attacker);
+        DamageSource explosion = attacker.level().damageSources().explosion(attacker, attacker);
         BlockPos origin = blockPos;
         if (inGround) {
             origin = origin.above();
@@ -224,7 +222,7 @@ public class AreaOfEffectHelper {
     }
 
     public static void causeSwirlingAttack(Player attacker, LivingEntity target, float damageAmount, float distance) {
-        DamageSource swirling = DamageSource.playerAttack(attacker);
+        DamageSource swirling = attacker.level().damageSources().playerAttack(attacker);
         applyToNearbyEntities(attacker, distance,
                 getCanApplyToSecondEnemyPredicate(attacker, target), (LivingEntity nearbyEntity) -> {
                     nearbyEntity.hurt(swirling, damageAmount);
@@ -236,9 +234,9 @@ public class AreaOfEffectHelper {
         applyToNearbyEntities(target, distance, echoLevel,
                 getCanApplyToSecondEnemyPredicate(attacker, target),
                 (LivingEntity nearbyEntity) -> {
-                    DamageSource echo = DamageSource.mobAttack(attacker);
+                    DamageSource echo = attacker.level().damageSources().mobAttack(attacker);
                     if (attacker instanceof Player) {
-                        echo = DamageSource.playerAttack((Player) attacker);
+                        echo = attacker.level().damageSources().playerAttack((Player) attacker);
                     }
                     nearbyEntity.hurt(echo, damageAmount);
                 });
@@ -256,7 +254,7 @@ public class AreaOfEffectHelper {
 
     public static void electrify(LivingEntity attacker, LivingEntity victim, float damageAmount) {
         createVisualLightningBoltOnEntity(victim);
-        DamageSource lightning = DamageSources.electricShock(attacker);
+        DamageSource lightning = com.infamous.dungeons_gear.combat.DamageSources.electricShock(attacker);
         PROXY.spawnParticles(victim, ParticleInit.ELECTRIC_SHOCK.get());
         victim.hurt(lightning, damageAmount);
     }
@@ -336,8 +334,10 @@ public class AreaOfEffectHelper {
                     for (zRatio = playerIn.getZ() - nearbyEntity.getZ(); xRatio * xRatio + zRatio * zRatio < 1.0E-4D; zRatio = (Math.random() - Math.random()) * 0.01D) {
                         xRatio = (Math.random() - Math.random()) * 0.01D;
                     }
-                    nearbyEntity.hurtDir = (float) (Mth.atan2(zRatio, xRatio) * 57.2957763671875D - (double) nearbyEntity.getYRot());
+                    float knockbackAngle = (float) Math.atan2(zRatio, xRatio) * (180F / (float) Math.PI);
                     nearbyEntity.knockback(0.4F * knockbackMultiplier, xRatio, zRatio);
+                    nearbyEntity.setYRot(knockbackAngle);
+                    nearbyEntity.yHeadRot = knockbackAngle;
                     // END OF KNOCKBACK
 
                     PROXY.spawnParticles(nearbyEntity, ParticleTypes.CLOUD);

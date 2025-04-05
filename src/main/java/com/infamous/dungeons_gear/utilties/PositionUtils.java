@@ -17,7 +17,7 @@ public class PositionUtils {
 
     public static BlockPos getOffsetBlockPos(Entity entity, double offsetX, double offsetY, double offsetZ, float rotation) {
         Vec3 vector3d = (new Vec3(offsetZ, offsetY, offsetX).yRot(-rotation * ((float) Math.PI / 180F) - ((float) Math.PI / 2F)));
-        return entity.blockPosition().offset(vector3d.x, vector3d.y, vector3d.z);
+        return entity.blockPosition().offset(Mth.floor(vector3d.x), Mth.floor(vector3d.y), Mth.floor(vector3d.z));
     }
 
     public static Vec3 getOffsetMotion(Entity entity, double offsetX, double offsetY, double offsetZ, float rotation) {

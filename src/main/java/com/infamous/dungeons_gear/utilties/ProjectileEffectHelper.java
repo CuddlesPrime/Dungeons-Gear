@@ -4,8 +4,6 @@ import com.infamous.dungeons_gear.registry.EnchantmentInit;
 import com.infamous.dungeons_libraries.capabilities.soulcaster.SoulCaster;
 import com.infamous.dungeons_libraries.capabilities.soulcaster.SoulCasterHelper;
 import com.infamous.dungeons_libraries.items.gearconfig.CrossbowGear;
-import com.mojang.math.Quaternion;
-import com.mojang.math.Vector3f;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -25,6 +23,9 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.*;
 import java.util.function.Predicate;
+
+import org.joml.Quaternionf;
+import org.joml.Vector3f;
 
 import static com.infamous.dungeons_libraries.utils.AreaOfEffectHelper.getCanApplyToEnemyPredicate;
 import static com.infamous.dungeons_libraries.utils.AreaOfEffectHelper.getCanApplyToSecondEnemyPredicate;
@@ -200,10 +201,11 @@ public class ProjectileEffectHelper {
             projectile = createChainReactionProjectile(world, attacker, projectileStack, originalArrow);
             projectile.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
             Vec3 upVector = victim.getUpVector(1.0F);
-            Quaternion quaternion = new Quaternion(new Vector3f(upVector), centerOffset, true);
+            Vector3f axis = new Vector3f((float) upVector.x, (float) upVector.y, (float) upVector.z);
+            Quaternionf quaternion = new Quaternionf().rotationAxis(centerOffset, axis);
             Vec3 lookVector = victim.getViewVector(1.0F);
-            Vector3f vector3f = new Vector3f(lookVector);
-            vector3f.transform(quaternion);
+            Vector3f vector3f = lookVector.toVector3f();
+            quaternion.transform(vector3f);
             projectile.shoot(vector3f.x(), vector3f.y(), vector3f.z(), v1, v2);
             world.addFreshEntity(projectile);
             world.playSound(null, victim.getX(), victim.getY(), victim.getZ(), SoundEvents.CROSSBOW_SHOOT, attacker.getSoundSource(), 1.0F, soundPitch);
