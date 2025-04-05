@@ -1,6 +1,5 @@
 package com.infamous.dungeons_gear.registry;
 
-import com.infamous.dungeons_gear.DungeonsGear;
 import com.infamous.dungeons_gear.config.DungeonsGearConfig;
 import com.infamous.dungeons_gear.items.ArrowBundleItem;
 import com.infamous.dungeons_gear.items.armor.FreezingResistanceArmorGear;
@@ -17,8 +16,7 @@ import com.infamous.dungeons_gear.utilties.GeneralHelper;
 import com.infamous.dungeons_libraries.DungeonsLibraries;
 import com.infamous.dungeons_libraries.items.gearconfig.*;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -31,7 +29,6 @@ import java.util.Map;
 import java.util.function.Supplier;
 
 import static com.infamous.dungeons_gear.DungeonsGear.MODID;
-import static com.infamous.dungeons_gear.DungeonsGear.RANGED_WEAPON_GROUP;
 import static com.infamous.dungeons_gear.loot.LootTableType.*;
 
 public class ItemInit {
@@ -45,13 +42,13 @@ public class ItemInit {
 
 
     public static final Item.Properties MELEE_WEAPON_PROPERTIES = DungeonsGearConfig.ENABLE_MELEE_WEAPON_TAB.get() ?
-            new Item.Properties().tab(DungeonsGear.MELEE_WEAPON_GROUP) : new Item.Properties().tab(CreativeModeTab.TAB_COMBAT);
+        new Item.Properties() : new Item.Properties();
     public static final Item.Properties ARMOR_PROPERTIES = DungeonsGearConfig.ENABLE_ARMOR_TAB.get() ?
-            new Item.Properties().tab(DungeonsGear.ARMOR_GROUP) : new Item.Properties().tab(CreativeModeTab.TAB_COMBAT);
+        new Item.Properties() : new Item.Properties();
     public static final Item.Properties RANGED_WEAPON_PROPERTIES = DungeonsGearConfig.ENABLE_RANGED_WEAPON_TAB.get() ?
-            new Item.Properties().tab(RANGED_WEAPON_GROUP) : new Item.Properties().tab(CreativeModeTab.TAB_COMBAT);
+        new Item.Properties() : new Item.Properties();
     public static final Item.Properties ARTIFACT_PROPERTIES = DungeonsGearConfig.ENABLE_ARTIFACT_TAB.get() ?
-            new Item.Properties().tab(DungeonsGear.ARTIFACT_GROUP) : new Item.Properties().tab(CreativeModeTab.TAB_COMBAT);
+        new Item.Properties() : new Item.Properties();
 
     //DPS 9.6 (19.2), crits once per 2.5 (1.25) seconds
     public static final RegistryObject<Item> DAGGER = registerMeleeWeapon("dagger",
@@ -497,7 +494,7 @@ public class ItemInit {
     public static final ArmorSetInit BEEHIVE = registerArmorSet("beehive", JUNGLE);
 
     public static final RegistryObject<Item> ARROW_BUNDLE = ITEMS.register("arrow_bundle",
-            () -> new ArrowBundleItem(new Item.Properties().tab(RANGED_WEAPON_GROUP)));
+            () -> new ArrowBundleItem(new Item.Properties()));
 
 
     private static ArmorSetInit registerArmorSet(String armorSetName, LootTableType lootTableType, boolean animated) {
@@ -508,10 +505,10 @@ public class ItemInit {
         ResourceLocation animationFileLocation = animated ? ResourceLocation.fromNamespaceAndPath(MODID, "animations/armor/" + armorSetId + ".animation.json") : ResourceLocation.fromNamespaceAndPath(DungeonsLibraries.MODID, "animations/armor/armor_default.animation.json");
         ArmorSetInit armorSet = new ArmorSetInit(
                 armorSetId,
-                registerArmor(armorSetName + "_helmet", () -> new ArmorGear(EquipmentSlot.HEAD, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_chestplate", () -> new ArmorGear(EquipmentSlot.CHEST, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_leggings", () -> new ArmorGear(EquipmentSlot.LEGS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_boots", () -> new ArmorGear(EquipmentSlot.FEET, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType)
+                registerArmor(armorSetName + "_helmet", () -> new ArmorGear(ArmorItem.Type.HELMET, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_chestplate", () -> new ArmorGear(ArmorItem.Type.CHESTPLATE, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_leggings", () -> new ArmorGear(ArmorItem.Type.LEGGINGS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_boots", () -> new ArmorGear(ArmorItem.Type.BOOTS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType)
         );
         return armorSet;
     }
@@ -528,10 +525,10 @@ public class ItemInit {
         ResourceLocation animationFileLocation = ResourceLocation.fromNamespaceAndPath(DungeonsLibraries.MODID, "animations/armor/armor_default.animation.json");
         ArmorSetInit armorSet = new ArmorSetInit(
                 armorSetId,
-                registerArmor(armorSetName + "_helmet", () -> new FreezingResistanceArmorGear(EquipmentSlot.HEAD, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_chestplate", () -> new FreezingResistanceArmorGear(EquipmentSlot.CHEST, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_leggings", () -> new FreezingResistanceArmorGear(EquipmentSlot.LEGS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_boots", () -> new FreezingResistanceArmorGear(EquipmentSlot.FEET, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType)
+                registerArmor(armorSetName + "_helmet", () -> new FreezingResistanceArmorGear(ArmorItem.Type.HELMET, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_chestplate", () -> new FreezingResistanceArmorGear(ArmorItem.Type.CHESTPLATE, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_leggings", () -> new FreezingResistanceArmorGear(ArmorItem.Type.LEGGINGS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_boots", () -> new FreezingResistanceArmorGear(ArmorItem.Type.BOOTS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType)
         );
         return armorSet;
     }
@@ -544,10 +541,10 @@ public class ItemInit {
         ResourceLocation animationFileLocation = ResourceLocation.fromNamespaceAndPath(MODID, "animations/armor/" + armorSetId + ".animation.json");
         ArmorSetInit armorSet = new ArmorSetInit(
                 armorSetId,
-                registerArmor(armorSetName + "_helmet", () -> new PetBatArmorGear(EquipmentSlot.HEAD, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_chestplate", () -> new PetBatArmorGear(EquipmentSlot.CHEST, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_leggings", () -> new PetBatArmorGear(EquipmentSlot.LEGS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
-                registerArmor(armorSetName + "_boots", () -> new PetBatArmorGear(EquipmentSlot.FEET, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType)
+                registerArmor(armorSetName + "_helmet", () -> new PetBatArmorGear(ArmorItem.Type.HELMET, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_chestplate", () -> new PetBatArmorGear(ArmorItem.Type.CHESTPLATE, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_leggings", () -> new PetBatArmorGear(ArmorItem.Type.LEGGINGS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType),
+                registerArmor(armorSetName + "_boots", () -> new PetBatArmorGear(ArmorItem.Type.BOOTS, ARMOR_PROPERTIES, armorSetResource, modelLocation, textureLocation, animationFileLocation), lootTableType)
         );
         return armorSet;
     }
