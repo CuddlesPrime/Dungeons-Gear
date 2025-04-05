@@ -5,7 +5,7 @@ import com.infamous.dungeons_gear.config.DungeonsGearConfig;
 import com.infamous.dungeons_gear.enchantments.types.FocusEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.IndirectEntityDamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -44,6 +44,6 @@ public class SoulFocusEnchantment extends FocusEnchantment {
     }
 
     private static boolean isIndirectMagic(DamageSource damageSource) {
-        return damageSource instanceof IndirectEntityDamageSource && damageSource.isMagic();
+        return damageSource.is(DamageTypes.INDIRECT_MAGIC);
     }
 }

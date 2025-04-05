@@ -4,7 +4,10 @@ import com.infamous.dungeons_gear.DungeonsGear;
 import com.infamous.dungeons_gear.config.DungeonsGearConfig;
 import com.infamous.dungeons_gear.enchantments.types.FocusEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
+
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
@@ -29,7 +32,7 @@ public class PoisonFocusEnchantment extends FocusEnchantment {
 
     @SubscribeEvent
     public static void onPoisonAttack(LivingDamageEvent event) {
-        if (event.getSource() != DamageSource.MAGIC) return; // Poison effect applies this specific damage source
+        if (!event.getSource().is(DamageTypes.MAGIC)) return; // Poison effect applies this specific damage source
         if (event.getEntity().level().isClientSide) return;
 
         LivingEntity victim = event.getEntity();

@@ -14,6 +14,7 @@ import net.minecraft.world.item.enchantment.ProtectionEnchantment;
 import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
+import net.minecraftforge.event.entity.ProjectileImpactEvent.ImpactResult;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -52,7 +53,7 @@ public class DeflectEnchantment extends DungeonsEnchantment {
                 deflectChance = deflectLevel * DungeonsGearConfig.DEFLECT_CHANCE_PER_LEVEL.get();
                 float deflectRand = victim.getRandom().nextFloat();
                 if (deflectRand <= deflectChance) {
-                    event.setCanceled(true);
+                    event.setImpactResult(ImpactResult.SKIP_ENTITY);
                     arrow.setBaseDamage(originalDamage * 0.5D);
                     arrow.setYRot(arrow.getYRot() + 180.0F);
                     arrow.yRotO += 180.0F;

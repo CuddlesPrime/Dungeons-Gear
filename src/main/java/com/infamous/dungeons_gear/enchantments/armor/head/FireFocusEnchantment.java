@@ -4,7 +4,10 @@ import com.infamous.dungeons_gear.DungeonsGear;
 import com.infamous.dungeons_gear.config.DungeonsGearConfig;
 import com.infamous.dungeons_gear.enchantments.types.FocusEnchantment;
 import com.infamous.dungeons_gear.registry.EnchantmentInit;
+
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
@@ -29,11 +32,11 @@ public class FireFocusEnchantment extends FocusEnchantment {
     @SubscribeEvent
     public static void onFireAttack(LivingDamageEvent event) {
         DamageSource source = event.getSource();
-        if (!source.isFire()) return;
-        if (source == DamageSource.ON_FIRE) return; // ON_FIRE is applied when you set something on fire
+        if (!source.is(DamageTypeTags.IS_FIRE)) return;
+        if (source.is(DamageTypes.ON_FIRE)) return; // ON_FIRE is applied when you set something on fire
         if (event.getEntity().level().isClientSide) return;
 
-        if (event.getSource().getEntity() instanceof LivingEntity) {
+        if (source.getEntity() instanceof LivingEntity) {
             LivingEntity attacker = (LivingEntity) event.getSource().getEntity();
             int fireFocusLevel = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.FIRE_FOCUS.get(), attacker);
             if (fireFocusLevel > 0) {
