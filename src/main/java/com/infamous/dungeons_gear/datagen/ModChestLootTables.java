@@ -1,7 +1,6 @@
 package com.infamous.dungeons_gear.datagen;
 
 import com.infamous.dungeons_gear.loot.AddPotionLootFunction;
-import com.infamous.dungeons_gear.loot.ExperimentalCondition;
 import com.infamous.dungeons_gear.loot.LootTableRarity;
 import com.infamous.dungeons_gear.loot.LootTableType;
 import com.infamous.dungeons_libraries.items.artifacts.ArtifactItem;
@@ -94,9 +93,6 @@ public class ModChestLootTables implements LootTableSubProvider {
 
     private LootPoolSingletonContainer.Builder<?> getItemLootEntry(Item item) {
         LootPoolSingletonContainer.Builder<?> builder = LootItem.lootTableItem(item);
-        if (EXPERIMENTAL_ITEMS.contains(item)) {
-            builder.when(ExperimentalCondition::new);
-        }
         return builder;
     }
 

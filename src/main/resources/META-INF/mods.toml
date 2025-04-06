@@ -40,15 +40,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.dungeons_gear]]
-    modId="geckolib3"
+    modId="geckolib"
     mandatory=true
-    versionRange="[3.1.38,)"
+    versionRange="[4.7,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.dungeons_gear]]
     modId="curios"
     mandatory=true
-    versionRange="[1.19.2-5.1.1.0,)"
+    versionRange="[5.12.1+1.20.1,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.dungeons_gear]] #optional
@@ -57,7 +57,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[1.19.2-3.0.10-beta,)" #mandatory
+    versionRange="[1.19.2-3.1.0-beta,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -68,7 +68,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[43,)" #mandatory
+    versionRange="[47,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
@@ -77,6 +77,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
 [[dependencies.dungeons_gear]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19.2,)"
+    versionRange="[1.20.1,)"
     ordering="NONE"
     side="BOTH"
