@@ -11,6 +11,7 @@
     "HurtByTargetGoalMixin",
     "LockableLootTileEntityMixin",
     "LootContextAccessor",
+    "PlayerEntityMixin",
     "VillagerTradingManagerAccessor"
   ],
   "client": [

@@ -1,9 +1,19 @@
+buildscript {
+    repositories {
+        maven { url = 'https://repo.spongepowered.org/maven' }
+    }
+    dependencies {
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
+    }
+}
+
 plugins {
     id 'net.minecraftforge.gradle' version '6.0.+'
-    id 'org.spongepowered.mixin' version '0.7.+'
     id 'maven-publish'
     id 'eclipse'
 }
+
+apply plugin: 'org.spongepowered.mixin' // Mixin plugin applied the old way
 
 apply from: 'https://raw.githubusercontent.com/SizableShrimp/ForgeUpdatesRemapper/main/remapper.gradle'
 
@@ -65,6 +75,10 @@ minecraft {
 // Include generated resources
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+mixin {
+    add sourceSets.main, "dungeons_gear.refmap.json"
+}
+
 repositories {
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven { url "https://www.cursemaven.com" }
@@ -100,7 +114,6 @@ jar {
     }
 }
 
-// Ensure reobfuscation before packaging
 jar.finalizedBy('reobfJar')
 
 publishing {

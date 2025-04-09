@@ -67,20 +67,10 @@
         },
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "dungeons_gear:experimental_condition"
-            }
-          ],
           "name": "dungeons_gear:dual_crossbow"
         },
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "dungeons_gear:experimental_condition"
-            }
-          ],
           "name": "dungeons_gear:baby_crossbow"
         }
       ]
