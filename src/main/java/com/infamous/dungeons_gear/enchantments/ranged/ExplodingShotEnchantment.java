@@ -10,6 +10,8 @@ import com.infamous.dungeons_gear.utilties.SoundHelper;
 import com.infamous.dungeons_libraries.utils.ArrowHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.projectile.AbstractArrow;
@@ -65,20 +67,26 @@ public class ExplodingShotEnchantment extends DungeonsEnchantment {
 
     @SubscribeEvent
     public static void onDamage(LivingDamageEvent event) {
-        if (!event.getSource().getEntity().equals(event.getSource().getDirectEntity())) {
-            if (event.getSource().getDirectEntity() instanceof AbstractArrow) {
-                AbstractArrow arrowEntity = (AbstractArrow) event.getSource().getDirectEntity();
-                if (arrowEntity.getOwner() instanceof LivingEntity) {
-                    LivingEntity shooter = (LivingEntity) arrowEntity.getOwner();
-                    int gravityLevel = ArrowHelper.enchantmentTagToLevel(arrowEntity, EnchantmentInit.EXPLODING_SHOT.get());
-                    if (gravityLevel > 0) {
-                        LivingEntity victim = event.getEntity();
-                        SoundHelper.playGenericExplodeSound(victim);
-                        AOECloudHelper.spawnExplosionCloud(shooter, victim, 3.0F);
-                        AreaOfEffectHelper.causeExplosionAttack(shooter, victim, event.getAmount(), 3.0F);
-                    }
-                }
-            }
+        DamageSource source = event.getSource();
+        Entity trueSource = source.getEntity();
+        Entity directSource = source.getDirectEntity();
+
+        // Prevent crash if trueSource is null
+        if (trueSource == null || directSource == null) return;
+
+        // We only care about indirect sources like arrows
+        if (trueSource.equals(directSource)) return;
+        if (!(directSource instanceof AbstractArrow arrow)) return;
+
+        // arrow.getOwner() can also be null
+        if (!(arrow.getOwner() instanceof LivingEntity shooter)) return;
+
+        int gravityLevel = ArrowHelper.enchantmentTagToLevel(arrow, EnchantmentInit.EXPLODING_SHOT.get());
+        if (gravityLevel > 0) {
+            LivingEntity victim = event.getEntity();
+            SoundHelper.playGenericExplodeSound(victim);
+            AOECloudHelper.spawnExplosionCloud(shooter, victim, 3.0F);
+            AreaOfEffectHelper.causeExplosionAttack(shooter, victim, event.getAmount(), 3.0F);
         }
     }
 }
