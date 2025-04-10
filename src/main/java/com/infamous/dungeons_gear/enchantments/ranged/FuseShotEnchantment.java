@@ -61,21 +61,20 @@ public class FuseShotEnchantment extends DungeonsEnchantment {
 
     @SubscribeEvent
     public static void onFuseShotDamage(LivingDamageEvent event) {
-        if (!event.getSource().getEntity().equals(event.getSource().getDirectEntity())) {
-            DamageSource indirectEntityDamageSource = event.getSource();
-            if (indirectEntityDamageSource.getDirectEntity() instanceof AbstractArrow) {
-                AbstractArrow arrowEntity = (AbstractArrow) indirectEntityDamageSource.getDirectEntity();
+        DamageSource source = event.getSource();
 
-                LivingEntity victim = event.getEntity();
-                if (indirectEntityDamageSource.getEntity() instanceof LivingEntity) {
-                    LivingEntity archer = (LivingEntity) indirectEntityDamageSource.getEntity();
-                    if (arrowEntity.getTags().contains(FUSE_SHOT_TAG)) {
-                        SoundHelper.playGenericExplodeSound(arrowEntity);
-                        AOECloudHelper.spawnExplosionCloud(archer, victim, 3.0f);
-                        AreaOfEffectHelper.causeExplosionAttack(archer, victim, event.getAmount(), 3.0f);
-                    }
-                }
-            }
-        }
+        if (source == null || source.getEntity() == null || source.getDirectEntity() == null) return;
+        if (source.getEntity().equals(source.getDirectEntity())) return;
+
+        if (!(source.getDirectEntity() instanceof AbstractArrow arrowEntity)) return;
+        if (!(source.getEntity() instanceof LivingEntity archer)) return;
+
+        LivingEntity victim = event.getEntity();
+        if (arrowEntity.getTags() == null || !arrowEntity.getTags().contains(FUSE_SHOT_TAG)) return;
+
+        // All good, run effects
+        SoundHelper.playGenericExplodeSound(arrowEntity);
+        AOECloudHelper.spawnExplosionCloud(archer, victim, 3.0f);
+        AreaOfEffectHelper.causeExplosionAttack(archer, victim, event.getAmount(), 3.0f);
     }
 }
