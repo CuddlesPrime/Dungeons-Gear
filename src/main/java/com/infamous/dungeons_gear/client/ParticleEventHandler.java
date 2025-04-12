@@ -2,7 +2,6 @@ package com.infamous.dungeons_gear.client;
 
 import com.infamous.dungeons_gear.client.particles.ElectricShockParticle;
 import com.infamous.dungeons_gear.client.particles.SnowflakeParticle;
-import com.infamous.dungeons_gear.client.particles.SoulDustParticle;
 import com.infamous.dungeons_gear.registry.ParticleInit;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -19,6 +18,5 @@ public class ParticleEventHandler {
     public static void onParticleFactory(RegisterParticleProvidersEvent event) {
         event.registerSpriteSet(ParticleInit.ELECTRIC_SHOCK.get(), ElectricShockParticle.Factory::new);
         event.registerSpriteSet(ParticleInit.SNOWFLAKE.get(), SnowflakeParticle.Factory::new);
-        event.registerSpriteSet(ParticleInit.SOUL_DUST.get(), SoulDustParticle.Factory::new);
     }
 }

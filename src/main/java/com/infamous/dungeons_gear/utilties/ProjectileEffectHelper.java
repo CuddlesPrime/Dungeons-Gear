@@ -1,9 +1,5 @@
 package com.infamous.dungeons_gear.utilties;
 
-import com.infamous.dungeons_gear.registry.EnchantmentInit;
-import com.infamous.dungeons_libraries.capabilities.soulcaster.SoulCaster;
-import com.infamous.dungeons_libraries.capabilities.soulcaster.SoulCasterHelper;
-import com.infamous.dungeons_libraries.items.gearconfig.CrossbowGear;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -16,7 +12,6 @@ import net.minecraft.world.entity.projectile.Snowball;
 import net.minecraft.world.item.ArrowItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -210,21 +205,6 @@ public class ProjectileEffectHelper {
             world.addFreshEntity(projectile);
             world.playSound(null, victim.getX(), victim.getY(), victim.getZ(), SoundEvents.CROSSBOW_SHOOT, attacker.getSoundSource(), 1.0F, soundPitch);
         }
-    }
-
-    public static boolean soulsCriticalBoost(Player attacker, ItemStack mainhand) {
-        SoulCaster soulCasterCapability = SoulCasterHelper.getSoulCasterCapability(attacker);
-
-        float soulsLimit = 50.0F;
-        float numSouls = Math.min(soulCasterCapability.getSouls(), soulsLimit);
-        if (ModEnchantmentHelper.hasEnchantment(mainhand, EnchantmentInit.ENIGMA_RESONATOR.get())) {
-            int enigmaResonatorLevel = EnchantmentHelper.getTagEnchantmentLevel(EnchantmentInit.ENIGMA_RESONATOR.get(), mainhand);
-            float soulsCriticalBoostChanceCap;
-            soulsCriticalBoostChanceCap = 0.1F + 0.05F * enigmaResonatorLevel;
-            float soulsCriticalBoostRand = attacker.getRandom().nextFloat();
-            return soulsCriticalBoostRand <= Math.min(numSouls / soulsLimit, soulsCriticalBoostChanceCap);
-        }
-        return false;
     }
 
     //Chief: it's a copy-paste of ProjectileEntity::shoot that creates a new Random. Why?

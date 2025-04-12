@@ -17,7 +17,6 @@ public class MobEffectInit {
     public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, MODID);
 
     public static RegistryObject<MobEffect> SHIELDING = MOB_EFFECTS.register("shielding", () -> new ShieldingEffect(MobEffectCategory.BENEFICIAL, 10044730));
-    public static RegistryObject<MobEffect> SOUL_PROTECTION = MOB_EFFECTS.register("soul_protection", () -> new CustomEffect(MobEffectCategory.BENEFICIAL, 2445989));
     public static RegistryObject<MobEffect> STUNNED = MOB_EFFECTS.register("stunned", () -> new CustomEffect(MobEffectCategory.HARMFUL, 4738376));
     public static RegistryObject<MobEffect> PARTY_STARTER = MOB_EFFECTS.register("party_starter", () -> new PartyStarterEffect(MobEffectCategory.BENEFICIAL, 0xE25822));
     public static RegistryObject<MobEffect> DYNAMO = MOB_EFFECTS.register("dynamo", () -> new CustomEffect(MobEffectCategory.BENEFICIAL, 0xFFBB2E));

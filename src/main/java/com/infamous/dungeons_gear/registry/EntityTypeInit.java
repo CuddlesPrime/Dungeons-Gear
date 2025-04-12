@@ -50,25 +50,6 @@ public final class EntityTypeInit {
                     .build(ResourceLocation.fromNamespaceAndPath(MODID, "totem_of_shielding").toString())
     );
 
-    public static final RegistryObject<EntityType<TotemOfSoulProtectionEntity>> TOTEM_OF_SOUL_PROTECTION = ENTITY_TYPES.register("totem_of_soul_protection", () ->
-            EntityType.Builder.of(TotemOfSoulProtectionEntity::new, MobCategory.MISC)
-                    .fireImmune()
-                    .sized(2.0F, 1.0F)
-                    .clientTrackingRange(6)
-                    .updateInterval(2)
-                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "totem_of_soul_protection").toString())
-    );
-
-    public static final RegistryObject<EntityType<ArtifactBeamEntity>> BEAM_ENTITY = ENTITY_TYPES.register("beam_entity", () ->
-            EntityType.Builder.<ArtifactBeamEntity>of(ArtifactBeamEntity::new, MobCategory.MISC)
-                    .fireImmune()
-                    .setShouldReceiveVelocityUpdates(false)
-                    .sized(2.0F, 1.0F)
-                    .clientTrackingRange(6)
-                    .updateInterval(2)
-                    .build(ResourceLocation.fromNamespaceAndPath(MODID, "beam_entity").toString())
-    );
-
     public static final RegistryObject<EntityType<FireworksDisplayEntity>> FIREWORKS_DISPLAY = ENTITY_TYPES.register("fireworks_display", () ->
             EntityType.Builder.of(FireworksDisplayEntity::new, MobCategory.MISC)
                     .fireImmune()

@@ -1,9 +1,7 @@
 package com.infamous.dungeons_gear.entities;
 
 import com.infamous.dungeons_gear.registry.EntityTypeInit;
-import com.infamous.dungeons_gear.registry.ParticleInit;
 import com.infamous.dungeons_gear.registry.SoundEventInit;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvent;
@@ -46,11 +44,6 @@ public class SoulWizardOrbEntity extends StraightMovingProjectileEntity {
                                double p_i1795_8_, double p_i1795_10_, double p_i1795_12_) {
         super(EntityTypeInit.SOUL_WIZARD_ORB.get(), p_i1795_2_, p_i1795_4_, p_i1795_6_, p_i1795_8_, p_i1795_10_,
                 p_i1795_12_, p_i1795_1_);
-    }
-
-    @Override
-    protected ParticleOptions getTrailParticle() {
-        return ParticleInit.SOUL_DUST.get();
     }
 
     @Override

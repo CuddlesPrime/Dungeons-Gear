@@ -26,7 +26,6 @@ public class Combo implements INBTSerializable<CompoundTag> {
 
     private BlockPos lastExplorerCheckpoint;
     private BlockPos lastLuckyExplorerCheckpoint;
-    private boolean artifactSynergy;
     private int painCycleStacks;
     private final int rollChargeTicks;
     private int jumpCounter;
@@ -49,7 +48,6 @@ public class Combo implements INBTSerializable<CompoundTag> {
         this.lastExplorerCheckpoint = BlockPos.ZERO;
         this.lastLuckyExplorerCheckpoint = BlockPos.ZERO;
 
-        this.artifactSynergy = false;
         this.painCycleStacks = 0;
         this.rollChargeTicks = 0;
         this.jumpCounter = 0;
@@ -161,14 +159,6 @@ public class Combo implements INBTSerializable<CompoundTag> {
         this.lastLuckyExplorerCheckpoint = blockPos;
     }
 
-    public boolean hasArtifactSynergy() {
-        return this.artifactSynergy;
-    }
-
-    public void setArtifactSynergy(boolean artifactSynergy) {
-        this.artifactSynergy = artifactSynergy;
-    }
-
     public int getPainCycleStacks() {
         return this.painCycleStacks;
     }
@@ -223,8 +213,6 @@ public class Combo implements INBTSerializable<CompoundTag> {
         BlockPos lastLuckyExplorerCheckpoint = this.getLastLuckyExplorerCheckpoint();
         tag.put("lastLuckyExplorerCheckpoint", this.newDoubleNBTList(lastLuckyExplorerCheckpoint.getX(), lastLuckyExplorerCheckpoint.getY(), lastLuckyExplorerCheckpoint.getZ()));
 
-        tag.putBoolean("artifactSynergy", this.hasArtifactSynergy());
-
         tag.putInt("painCycleStacks", this.getPainCycleStacks());
 
         tag.putInt("jumpCounter", this.getJumpCounter());
@@ -256,8 +244,6 @@ public class Combo implements INBTSerializable<CompoundTag> {
         ListTag listnbt1 = tag.getList("lastLuckyExplorerCheckpoint", 6);
         BlockPos lastLuckyExplorerCheckpoint = BlockPos.containing(listnbt1.getDouble(0), listnbt1.getDouble(1), listnbt1.getDouble(2));
         this.setLastLuckyExplorerCheckpoint(lastLuckyExplorerCheckpoint);
-
-        this.setArtifactSynergy(tag.getBoolean("artifactSynergy"));
 
         this.setPainCycleStacks(tag.getInt("painCycleStacks"));
 

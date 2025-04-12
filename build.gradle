@@ -93,10 +93,6 @@ dependencies {
     // Library Dependencies
     implementation fg.deobf("dungeons_libraries:dungeons_libraries:${libraries_version}")
     implementation("software.bernie.geckolib:geckolib-forge-1.20.1:${geckolib_version}")
-
-    // Curios API
-    runtimeOnly("top.theillusivec4.curios:curios-forge:${curios_version}")
-    compileOnly("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 }
 
 jar {

@@ -15,8 +15,4 @@ public class ConfigurableLootHelper {
     public static boolean isArmorLootEnabled() {
         return DungeonsGearConfig.ENABLE_ARMOR_LOOT.get();
     }
-
-    public static boolean isArtifactLootEnabled() {
-        return DungeonsGearConfig.ENABLE_ARTIFACT_LOOT.get();
-    }
 }

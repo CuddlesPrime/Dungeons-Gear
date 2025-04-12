@@ -64,9 +64,6 @@ public class DungeonsLootAdditions extends LootModifier {
         if (ConfigurableLootHelper.isRangedWeaponLootEnabled()) {
             itemStacks = itemStacks.stream().filter(itemStack -> !RANGED_WEAPONS.containsValue(itemStack.getItem())).collect(Collectors.toList());
         }
-        if (ConfigurableLootHelper.isArtifactLootEnabled()) {
-            itemStacks = itemStacks.stream().filter(itemStack -> !ARTIFACTS.containsValue(itemStack.getItem())).collect(Collectors.toList());
-        }
         modifiedLoot.addAll(itemStacks);
         noRecursion = false;
         return modifiedLoot;

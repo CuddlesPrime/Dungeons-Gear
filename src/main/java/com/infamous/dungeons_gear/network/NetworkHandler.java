@@ -1,7 +1,6 @@
 package com.infamous.dungeons_gear.network;
 
 import com.infamous.dungeons_gear.DungeonsGear;
-import com.infamous.dungeons_gear.network.entity.PlayerBeamMessage;
 import com.infamous.dungeons_libraries.network.BreakItemMessage;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
@@ -22,7 +21,6 @@ public class NetworkHandler {
     public static void init() {
         INSTANCE.registerMessage(getPacketID(), PacketOffhandAttack.class, PacketOffhandAttack::encode, PacketOffhandAttack::decode, PacketOffhandAttack.OffhandHandler::handle);
         INSTANCE.registerMessage(getPacketID(), BreakItemMessage.class, BreakItemMessage::encode, BreakItemMessage::decode, BreakItemMessage.BreakItemHandler::handle);
-        INSTANCE.registerMessage(getPacketID(), PlayerBeamMessage.class, PlayerBeamMessage::encode, PlayerBeamMessage::decode, PlayerBeamMessage.PlayerBeamMessageHandler::handle);
     }
 
     public static int getPacketID() {

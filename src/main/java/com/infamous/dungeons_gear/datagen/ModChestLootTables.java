@@ -3,7 +3,6 @@ package com.infamous.dungeons_gear.datagen;
 import com.infamous.dungeons_gear.loot.AddPotionLootFunction;
 import com.infamous.dungeons_gear.loot.LootTableRarity;
 import com.infamous.dungeons_gear.loot.LootTableType;
-import com.infamous.dungeons_libraries.items.artifacts.ArtifactItem;
 import com.infamous.dungeons_libraries.items.interfaces.IArmor;
 import com.infamous.dungeons_libraries.items.interfaces.IMeleeWeapon;
 import com.infamous.dungeons_libraries.items.interfaces.IRangedWeapon;
@@ -69,7 +68,6 @@ public class ModChestLootTables implements LootTableSubProvider {
         LootTableType lootTableType = ALL;
         createTableForSubtype(consumer, lootItems.stream().filter(this::isNormalItem).collect(Collectors.toList()), lootTableType.normalTable());
         createTableForSubtype(consumer, lootItems.stream().filter(this::isUniqueItem).collect(Collectors.toList()), lootTableType.uniqueTable());
-        createTableForSubtype(consumer, lootItems.stream().filter(this::isArtifactItem).collect(Collectors.toList()), lootTableType.artifactTable());
         createItemLootTables(consumer, lootTableType);
     }
 
@@ -77,7 +75,6 @@ public class ModChestLootTables implements LootTableSubProvider {
         List<Item> lootItems = LOOT_TABLES.getOrDefault(lootTableType, new ArrayList<>()).stream().map(RegistryObject::get).toList();
         createTableForSubtype(consumer, lootItems.stream().filter(this::isNormalItem).collect(Collectors.toList()), lootTableType.normalTable());
         createTableForSubtype(consumer, lootItems.stream().filter(this::isUniqueItem).collect(Collectors.toList()), lootTableType.uniqueTable());
-        createTableForSubtype(consumer, lootItems.stream().filter(this::isArtifactItem).collect(Collectors.toList()), lootTableType.artifactTable());
         createItemLootTables(consumer, lootTableType);
     }
 
@@ -96,14 +93,7 @@ public class ModChestLootTables implements LootTableSubProvider {
         return builder;
     }
 
-    private boolean isArtifactItem(Item item) {
-        return item instanceof ArtifactItem;
-    }
-
     private boolean isNormalItem(Item item) {
-        if (item instanceof ArtifactItem) {
-            return false;
-        }
         return !isUniqueItem(item);
     }
 
@@ -129,7 +119,6 @@ public class ModChestLootTables implements LootTableSubProvider {
         consumer.accept(LootTableRarity.FANCY.getTable(lootTableType),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(UniformGenerator.between(1.0F, 3.0F)).setBonusRolls(UniformGenerator.between(0, 2))
-                                .add(LootTableReference.lootTableReference(lootTableType.artifactTable()).setWeight(15))
                                 .add(LootTableReference.lootTableReference(lootTableType.normalTable()).setWeight(12).setQuality(-2))
                                 .add(LootTableReference.lootTableReference(lootTableType.normalTable()).setWeight(28).setQuality(2).apply(EnchantWithLevelsFunction.enchantWithLevels(ConstantValue.exactly(15)).allowTreasure()))
                                 .add(LootTableReference.lootTableReference(lootTableType.uniqueTable()).setWeight(5).setQuality(2).apply(EnchantWithLevelsFunction.enchantWithLevels(ConstantValue.exactly(15)).allowTreasure()))
@@ -138,7 +127,6 @@ public class ModChestLootTables implements LootTableSubProvider {
         consumer.accept(LootTableRarity.OBSIDIAN.getTable(lootTableType),
                 LootTable.lootTable().
                         withPool(LootPool.lootPool().setRolls(UniformGenerator.between(1.0F, 4.0F)).setBonusRolls(UniformGenerator.between(0, 2))
-                                .add(LootTableReference.lootTableReference(lootTableType.artifactTable()).setWeight(15))
                                 .add(LootTableReference.lootTableReference(lootTableType.normalTable()).setWeight(17).setQuality(-2).apply(EnchantWithLevelsFunction.enchantWithLevels(ConstantValue.exactly(15)).allowTreasure()))
                                 .add(LootTableReference.lootTableReference(lootTableType.normalTable()).setWeight(28).setQuality(3).apply(EnchantWithLevelsFunction.enchantWithLevels(ConstantValue.exactly(30)).allowTreasure()))
                                 .add(LootTableReference.lootTableReference(lootTableType.uniqueTable()).setWeight(5).setQuality(3).apply(EnchantWithLevelsFunction.enchantWithLevels(ConstantValue.exactly(30)).allowTreasure()))

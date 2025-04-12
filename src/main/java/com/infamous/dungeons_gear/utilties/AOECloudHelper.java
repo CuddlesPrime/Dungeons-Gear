@@ -62,18 +62,6 @@ public class AOECloudHelper {
         attacker.level().addFreshEntity(areaeffectcloudentity);
     }
 
-    public static void spawnSoulProtectionCloudAtPos(LivingEntity attacker, BlockPos blockPos, int duration) {
-        AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(attacker.level(), blockPos.getX(), blockPos.getY(), blockPos.getZ());
-        areaeffectcloudentity.setOwner(attacker);
-        areaeffectcloudentity.setRadius(5.0F);
-        areaeffectcloudentity.setRadiusOnUse(-0.5F);
-        areaeffectcloudentity.setWaitTime(10);
-        areaeffectcloudentity.setDuration(duration);
-        MobEffectInstance shielding = new MobEffectInstance(MobEffectInit.SOUL_PROTECTION.get(), duration);
-        areaeffectcloudentity.addEffect(shielding);
-        attacker.level().addFreshEntity(areaeffectcloudentity);
-    }
-
     public static void spawnPoisonCloud(LivingEntity attacker, LivingEntity victim, int amplifier) {
         AreaEffectCloud areaeffectcloudentity = new AreaEffectCloud(victim.level(), victim.getX(), victim.getY(), victim.getZ());
         areaeffectcloudentity.setOwner(attacker);

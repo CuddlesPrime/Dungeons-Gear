@@ -28,7 +28,6 @@ public class DungeonsGearConfig {
 
     public static ForgeConfigSpec.ConfigValue<Integer> COMMON_ITEM_VALUE;
     public static ForgeConfigSpec.ConfigValue<Integer> UNIQUE_ITEM_VALUE;
-    public static ForgeConfigSpec.ConfigValue<Integer> ARTIFACT_VALUE;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> COMMON_LOOT_TABLES;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> COMMON_LOOT_TABLES_BLACKLIST;
     public static ForgeConfigSpec.ConfigValue<List<? extends String>> FANCY_LOOT_TABLES;
@@ -58,12 +57,10 @@ public class DungeonsGearConfig {
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MELEE_WEAPON_LOOT;
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RANGED_WEAPON_LOOT;
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARMOR_LOOT;
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARTIFACT_LOOT;
 
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_MELEE_WEAPON_TAB;
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_RANGED_WEAPON_TAB;
     public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARMOR_TAB;
-    public static ForgeConfigSpec.ConfigValue<Boolean> ENABLE_ARTIFACT_TAB;
 
     //Effect Values
     public static ForgeConfigSpec.ConfigValue<Integer> PARTY_STARTER_DAMAGE;
@@ -84,8 +81,6 @@ public class DungeonsGearConfig {
     public static ForgeConfigSpec.ConfigValue<Integer> DYNAMO_MAX_STACKS;
     public static ForgeConfigSpec.ConfigValue<Double> DYNAMO_DAMAGE_MULTIPLIER_PER_STACK;
     public static ForgeConfigSpec.ConfigValue<Integer> FREEZING_DURATION;
-    public static ForgeConfigSpec.ConfigValue<Double> SOUL_SIPHON_CHANCE;
-    public static ForgeConfigSpec.ConfigValue<Integer> SOUL_SIPHON_SOULS_PER_LEVEL;
     public static ForgeConfigSpec.ConfigValue<Double> CHAINS_CHANCE;
     public static ForgeConfigSpec.ConfigValue<Double> RADIANCE_CHANCE;
     public static ForgeConfigSpec.ConfigValue<Double> THUNDERING_CHANCE;
@@ -200,10 +195,6 @@ public class DungeonsGearConfig {
                 .comment("Enable armors appearing in chest loot and trades. \n" +
                         "If you want to disable obtaining this mod's armors, disable this feature. [true / false]")
                 .define("enableArmorLoot", true);
-        ENABLE_ARTIFACT_LOOT = builder
-                .comment("Enable artifacts appearing in chest loot and trades. \n" +
-                        "If you want to disable obtaining this mod's artifacts, disable this feature. [true / false]")
-                .define("enableArtifactLoot", true);
 
         ENABLE_MELEE_WEAPON_TAB = builder
                 .comment("Enable melee weapons appearing in their own tab in the creative menu. \n" +
@@ -217,19 +208,12 @@ public class DungeonsGearConfig {
                 .comment("Enable armors appearing in their own tab in the creative menu. \n" +
                         "Disabling this feature puts them in the COMBAT tab. [true / false]")
                 .define("enableArmorTab", true);
-        ENABLE_ARTIFACT_TAB = builder
-                .comment("Enable artifacts appearing in their own tab in the creative menu. \n" +
-                        "Disabling this feature puts them in the COMBAT tab. [true / false]")
-                .define("enableArtifactTab", true);
         COMMON_ITEM_VALUE = builder
                 .comment("The emerald value for a common weapon or armor [0-64, default: 12]")
                 .defineInRange("commonItemValue", 12, 0, 64);
         UNIQUE_ITEM_VALUE = builder
                 .comment("The emerald value for a unique weapon or armor [0-64, default: 24]")
                 .defineInRange("uniqueItemValue", 24, 0, 64);
-        ARTIFACT_VALUE = builder
-                .comment("The emerald value for an artifact [0-64, default: 24]")
-                .defineInRange("artifactValue", 24, 0, 64);
         builder.pop();
 
         builder.comment("Compatibility Configuration").push("compatibility_configuration");
@@ -391,13 +375,6 @@ public class DungeonsGearConfig {
         FREEZING_DURATION = builder
                 .comment("The duration in ticks (20ticks = 1 second) for freezing. [0-10000, default: 60]")
                 .defineInRange("freezingDuration", 60, 0, 10000);
-        SOUL_SIPHON_CHANCE = builder
-                .comment("The decimal chance for Soul Siphon to trigger [0.0-1.0, default: 0.05]")
-                .defineInRange("soulSiphonChance", 0.05, 0, 1.0);
-        SOUL_SIPHON_SOULS_PER_LEVEL = builder
-                .comment("The amount of souls per trigger of Soul Siphon. " +
-                        "Each souls will give a value based on Soul Gathering. [0-100, default: 2]")
-                .defineInRange("soulSiphonSoulsPerLevel", 2, 0, 100);
         CHAINS_CHANCE = builder
                 .comment("The decimal chance for Chains to trigger [0.0-1.0, default: 0.3]")
                 .defineInRange("chainsChance", 0.3, 0, 1.0);
@@ -483,17 +460,6 @@ public class DungeonsGearConfig {
         STUNNING_CHANCE_PER_LEVEL = builder
                 .comment("The chance per level for Stunning to trigger [-5.0-5.0, default: 0.25]")
                 .defineInRange("stunningChancePerLevel", 0.1, -5.0, 5.0);
-        builder.pop();
-
-        builder.comment("Artifact Specific Configuration").push("artifact_specific_configuration");
-        LOVE_MEDALLION_BLACKLIST = builder
-                .comment("Entities that can not be converted by Love Medallion.")
-                .defineList("loveMedallionBlacklist", Lists.newArrayList(
-                                "minecraft:ender_dragon",
-                                "minecraft:elder_guardian",
-                                "minecraft:wither"
-                        ),
-                        (itemRaw) -> itemRaw instanceof String);
         builder.pop();
     }
 }

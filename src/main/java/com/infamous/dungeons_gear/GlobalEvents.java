@@ -16,10 +16,8 @@ import com.infamous.dungeons_gear.registry.EnchantmentInit;
 import com.infamous.dungeons_gear.registry.MobEffectInit;
 import com.infamous.dungeons_gear.registry.PotionInit;
 import com.infamous.dungeons_gear.utilties.ArmorEffectHelper;
-import com.infamous.dungeons_gear.utilties.ProjectileEffectHelper;
 import com.infamous.dungeons_libraries.items.interfaces.IComboWeapon;
 import com.infamous.dungeons_libraries.utils.PetHelper;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -45,7 +43,6 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.Optional;
 
-import static com.infamous.dungeons_gear.DungeonsGear.PROXY;
 import static com.infamous.dungeons_gear.config.DungeonsGearConfig.ENABLE_FRIENDLY_PET_FIRE;
 import static com.infamous.dungeons_libraries.capabilities.minionmaster.MinionMasterHelper.getMinionCapability;
 
@@ -96,16 +93,6 @@ public class GlobalEvents {
                 weaponCap.setFuseShotCounter(0);
             } else {
                 weaponCap.setFuseShotCounter(fuseShotCounter + 1);
-            }
-        }
-
-        if (shooter instanceof Player) {
-            Player playerEntity = (Player) shooter;
-            boolean soulsCriticalBoost = ProjectileEffectHelper.soulsCriticalBoost(playerEntity, stack);
-            if (soulsCriticalBoost) {
-                PROXY.spawnParticles(playerEntity, ParticleTypes.SOUL);
-                arrowEntity.setCritArrow(true);
-                arrowEntity.setBaseDamage(arrowEntity.getBaseDamage() * 2);
             }
         }
     }

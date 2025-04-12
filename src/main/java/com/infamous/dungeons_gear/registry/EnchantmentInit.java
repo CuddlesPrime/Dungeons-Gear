@@ -17,15 +17,12 @@ import static com.infamous.dungeons_gear.DungeonsGear.MODID;
 public class EnchantmentInit {
     public static final DeferredRegister<Enchantment> ENCHANTMENTS = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, MODID);
 
-    public static RegistryObject<AnimaConduitEnchantment> ANIMA_CONDUIT = ENCHANTMENTS.register("anima_conduit", () -> new AnimaConduitEnchantment());
-    public static RegistryObject<EnigmaResonatorEnchantment> ENIGMA_RESONATOR = ENCHANTMENTS.register("enigma_resonator", () -> new EnigmaResonatorEnchantment());
     public static RegistryObject<FreezingEnchantment> FREEZING = ENCHANTMENTS.register("freezing", () -> new FreezingEnchantment());
     public static RegistryObject<GravityEnchantment> GRAVITY = ENCHANTMENTS.register("gravity", () -> new GravityEnchantment());
     public static RegistryObject<PoisonCloudEnchantment> POISON_CLOUD = ENCHANTMENTS.register("poison_cloud", () -> new PoisonCloudEnchantment());
     public static RegistryObject<DynamoEnchantment> DYNAMO = ENCHANTMENTS.register("dynamo", () -> new DynamoEnchantment());
     public static RegistryObject<RefreshmentEnchantment> REFRESHMENT = ENCHANTMENTS.register("refreshment", () -> new RefreshmentEnchantment());
     public static RegistryObject<MastersCallEnchantment> MASTERS_CALL = ENCHANTMENTS.register("masters_call", () -> new MastersCallEnchantment());
-    public static RegistryObject<ArtifactSynergyEnchantment> ARTIFACT_SYNERGY = ENCHANTMENTS.register("artifact_synergy", () -> new ArtifactSynergyEnchantment());
     public static RegistryObject<BusyBeeEnchantment> BUSY_BEE = ENCHANTMENTS.register("busy_bee", () -> new BusyBeeEnchantment());
     public static RegistryObject<ChainsEnchantment> CHAINS = ENCHANTMENTS.register("chains", () -> new ChainsEnchantment());
     public static RegistryObject<CommittedEnchantment> COMMITTED = ENCHANTMENTS.register("committed", () -> new CommittedEnchantment());
@@ -41,7 +38,6 @@ public class EnchantmentInit {
     public static RegistryObject<RampagingEnchantment> RAMPAGING = ENCHANTMENTS.register("rampaging", () -> new RampagingEnchantment());
     public static RegistryObject<RushdownEnchantment> RUSHDOWN = ENCHANTMENTS.register("rushdown", () -> new RushdownEnchantment());
     public static RegistryObject<ShockwaveEnchantment> SHOCKWAVE = ENCHANTMENTS.register("shockwave", () -> new ShockwaveEnchantment());
-    public static RegistryObject<SoulSiphonEnchantment> SOUL_SIPHON = ENCHANTMENTS.register("soul_siphon", () -> new SoulSiphonEnchantment());
     public static RegistryObject<StunningEnchantment> STUNNING = ENCHANTMENTS.register("stunning", () -> new StunningEnchantment());
     public static RegistryObject<SwirlingEnchantment> SWIRLING = ENCHANTMENTS.register("swirling", () -> new SwirlingEnchantment());
     public static RegistryObject<ThunderingEnchantment> THUNDERING = ENCHANTMENTS.register("thundering", () -> new ThunderingEnchantment());
@@ -50,7 +46,6 @@ public class EnchantmentInit {
     public static RegistryObject<BonusShotEnchantment> BONUS_SHOT = ENCHANTMENTS.register("bonus_shot", () -> new BonusShotEnchantment());
     public static RegistryObject<BurstBowstringEnchantment> BURST_BOWSTRING = ENCHANTMENTS.register("burst_bowstring", () -> new BurstBowstringEnchantment());
     public static RegistryObject<ChainReactionEnchantment> CHAIN_REACTION = ENCHANTMENTS.register("chain_reaction", () -> new ChainReactionEnchantment());
-    public static RegistryObject<CooldownShotEnchantment> COOLDOWN_SHOT = ENCHANTMENTS.register("cooldown_shot", () -> new CooldownShotEnchantment());
     public static RegistryObject<FuseShotEnchantment> FUSE_SHOT = ENCHANTMENTS.register("fuse_shot", () -> new FuseShotEnchantment());
     public static RegistryObject<GrowingEnchantment> GROWING = ENCHANTMENTS.register("growing", () -> new GrowingEnchantment());
     public static RegistryObject<OverchargeEnchantment> OVERCHARGE = ENCHANTMENTS.register("overcharge", () -> new OverchargeEnchantment());
@@ -65,12 +60,10 @@ public class EnchantmentInit {
     public static RegistryObject<GaleShotEnchantment> GALE_SHOT = ENCHANTMENTS.register("gale_shot", () -> new GaleShotEnchantment());
     public static RegistryObject<GravityShotEnchantment> GRAVITY_SHOT = ENCHANTMENTS.register("gravity_shot", () -> new GravityShotEnchantment());
     public static RegistryObject<ExplodingShotEnchantment> EXPLODING_SHOT = ENCHANTMENTS.register("exploding_shot", () -> new ExplodingShotEnchantment());
-    public static RegistryObject<HarpoonShotEnchantment> HARPOON_SHOT = ENCHANTMENTS.register("harpoon_shot", () -> new HarpoonShotEnchantment());
     public static RegistryObject<VelocityEnchantment> VELOCITY = ENCHANTMENTS.register("velocity", () -> new VelocityEnchantment());
     public static RegistryObject<WildRageEnchantment> WILD_RAGE = ENCHANTMENTS.register("wild_rage", () -> new WildRageEnchantment());
     public static RegistryObject<AcrobatEnchantment> ACROBAT = ENCHANTMENTS.register("acrobat", () -> new AcrobatEnchantment());
     public static RegistryObject<AltruisticEnchantment> ALTRUISTIC = ENCHANTMENTS.register("altruistic", () -> new AltruisticEnchantment());
-    public static RegistryObject<BagOfSoulsEnchantment> BAG_OF_SOULS = ENCHANTMENTS.register("bag_of_souls", () -> new BagOfSoulsEnchantment());
     public static RegistryObject<BurningEnchantment> BURNING = ENCHANTMENTS.register("burning", () -> new BurningEnchantment());
     public static RegistryObject<BeastBossEnchantment> BEAST_BOSS = ENCHANTMENTS.register("beast_boss", () -> new BeastBossEnchantment());
     public static RegistryObject<BeastBurstEnchantment> BEAST_BURST = ENCHANTMENTS.register("beast_burst", () -> new BeastBurstEnchantment());
@@ -80,7 +73,6 @@ public class EnchantmentInit {
     public static RegistryObject<MeleeAuraEnchantment> MELEE_AURA = ENCHANTMENTS.register("melee_aura", () -> new MeleeAuraEnchantment());
     public static RegistryObject<PotionAuraEnchantment> POTION_AURA = ENCHANTMENTS.register("potion_aura", () -> new PotionAuraEnchantment());
     public static RegistryObject<LifeStealAuraEnchantment> LIFE_STEAL_AURA = ENCHANTMENTS.register("life_steal_aura", () -> new LifeStealAuraEnchantment());
-    public static RegistryObject<CooldownEnchantment> COOLDOWN = ENCHANTMENTS.register("cooldown", () -> new CooldownEnchantment());
     public static RegistryObject<CowardiceEnchantment> COWARDICE = ENCHANTMENTS.register("cowardice", () -> new CowardiceEnchantment());
     public static RegistryObject<DeathBarterEnchantment> DEATH_BARTER = ENCHANTMENTS.register("death_barter", () -> new DeathBarterEnchantment());
     public static RegistryObject<DeflectEnchantment> DEFLECT = ENCHANTMENTS.register("deflect", () -> new DeflectEnchantment());
@@ -93,7 +85,6 @@ public class EnchantmentInit {
     public static RegistryObject<FortuneOfTheSeaEnchantment> FORTUNE_OF_THE_SEA = ENCHANTMENTS.register("fortune_of_the_sea", () -> new FortuneOfTheSeaEnchantment());
     public static RegistryObject<FrenziedEnchantment> FRENZIED = ENCHANTMENTS.register("frenzied", () -> new FrenziedEnchantment());
     public static RegistryObject<GravityPulseEnchantment> GRAVITY_PULSE = ENCHANTMENTS.register("gravity_pulse", () -> new GravityPulseEnchantment());
-    public static RegistryObject<HealthSynergyEnchantment> HEALTH_SYNERGY = ENCHANTMENTS.register("health_synergy", () -> new HealthSynergyEnchantment());
     public static RegistryObject<LifeBoostEnchantment> LIFE_BOOST = ENCHANTMENTS.register("life_boost", () -> new LifeBoostEnchantment());
     public static RegistryObject<LightningFocusEnchantment> LIGHTNING_FOCUS = ENCHANTMENTS.register("lightning_focus", () -> new LightningFocusEnchantment());
     public static RegistryObject<LuckyExplorerEnchantment> LUCKY_EXPLORER = ENCHANTMENTS.register("lucky_explorer", () -> new LuckyExplorerEnchantment());
@@ -103,9 +94,7 @@ public class EnchantmentInit {
     public static RegistryObject<RecklessEnchantment> RECKLESS = ENCHANTMENTS.register("reckless", () -> new RecklessEnchantment());
     public static RegistryObject<RecyclerEnchantment> RECYCLER = ENCHANTMENTS.register("recycler", () -> new RecyclerEnchantment());
     public static RegistryObject<RushEnchantment> RUSH = ENCHANTMENTS.register("rush", () -> new RushEnchantment());
-    public static RegistryObject<SoulFocusEnchantment> SOUL_FOCUS = ENCHANTMENTS.register("soul_focus", () -> new SoulFocusEnchantment());
     public static RegistryObject<SnowballEnchantment> SNOWBALL = ENCHANTMENTS.register("snowball", () -> new SnowballEnchantment());
-    public static RegistryObject<SpeedSynergyEnchantment> SPEED_SYNERGY = ENCHANTMENTS.register("speed_synergy", () -> new SpeedSynergyEnchantment());
     public static RegistryObject<SurpriseGiftEnchantment> SURPRISE_GIFT = ENCHANTMENTS.register("surprise_gift", () -> new SurpriseGiftEnchantment());
     public static RegistryObject<SwiftfootedEnchantment> SWIFTFOOTED = ENCHANTMENTS.register("swiftfooted", () -> new SwiftfootedEnchantment());
     public static RegistryObject<TumblebeeEnchantment> TUMBLEBEE = ENCHANTMENTS.register("tumblebee", () -> new TumblebeeEnchantment());

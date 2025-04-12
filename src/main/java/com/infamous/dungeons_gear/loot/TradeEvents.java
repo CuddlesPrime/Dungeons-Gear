@@ -16,10 +16,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.BasicItemListing;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.event.village.WandererTradesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -28,7 +26,6 @@ import java.util.*;
 import java.util.function.Predicate;
 
 import static com.infamous.dungeons_gear.items.armor.ArmorHelper.getArmorList;
-import static com.infamous.dungeons_gear.items.artifacts.ArtifactHelper.getArtifactList;
 import static com.infamous.dungeons_gear.items.melee.MeleeWeaponHelper.getMeleeWeaponList;
 import static com.infamous.dungeons_gear.items.ranged.RangedWeaponHelper.getRangedWeaponList;
 import static com.infamous.dungeons_gear.registry.ItemInit.SHEAR_DAGGER;
@@ -42,23 +39,6 @@ public class TradeEvents {
 
     private static final List<ArmorMaterialBaseType> METAL_MATERIALS = Arrays.asList(METAL, GEM);
     private static final List<ArmorMaterialBaseType> LEATHER_MATERIALS = Arrays.asList(CLOTH, BONE, LEATHER);
-
-    @SubscribeEvent
-    public static void onWandererTrades(WandererTradesEvent event) {
-        if (!DungeonsGearConfig.ENABLE_VILLAGER_TRADES.get()) return;
-        if (!ConfigurableLootHelper.isArtifactLootEnabled()) return;
-
-        List<VillagerTrades.ItemListing> genericTrades = event.getGenericTrades();
-        List<VillagerTrades.ItemListing> rareTrades = event.getRareTrades();
-
-//        moveTradesToDifferentGroup(rareTrades, genericTrades);
-
-        for (Item item : getArtifactList()) {
-            ItemStack artifactStack = new ItemStack(item);
-            BasicItemListing trade = new BasicItemListing(DungeonsGearConfig.ARTIFACT_VALUE.get(), artifactStack, 3, 30);
-            rareTrades.add(trade);
-        }
-    }
 
     @SubscribeEvent
     public static void onVillagerTrades(VillagerTradesEvent event) {
@@ -241,15 +221,6 @@ public class TradeEvents {
                 }
             }
         }
-        if (entity instanceof WanderingTrader) {
-            WanderingTrader wanderingTraderEntity = (WanderingTrader) entity;
-            if (playerEntity.isShiftKeyDown()) {
-                ItemStack interactStack = playerEntity.getItemInHand(event.getHand());
-                if (getArtifactList().contains(interactStack.getItem())) {
-                    handleSalvageTrade(playerEntity, wanderingTraderEntity, interactStack, "ARTIFACT");
-                }
-            }
-        }
     }
 
     private static void handleSalvageTrade(Player playerEntity, AbstractVillager abstractVillagerEntity, ItemStack interactStack, String itemType) {
@@ -265,9 +236,6 @@ public class TradeEvents {
                 break;
             case "UNIQUE":
                 itemValue = DungeonsGearConfig.UNIQUE_ITEM_VALUE.get();
-                break;
-            case "ARTIFACT":
-                itemValue = DungeonsGearConfig.ARTIFACT_VALUE.get();
                 break;
             default:
                 itemValue = DungeonsGearConfig.COMMON_ITEM_VALUE.get();

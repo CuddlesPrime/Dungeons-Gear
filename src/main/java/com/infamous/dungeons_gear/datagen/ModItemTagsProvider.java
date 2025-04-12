@@ -27,16 +27,11 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(@Nonnull Provider p_256380_) {
-        curiosArtifactTags();
         foodTags();
         this.tag(Tags.Items.SHEARS).add(SHEAR_DAGGER.get());
         ItemInit.MELEE_WEAPONS.values().forEach(item -> this.tag(ItemTagWrappers.WEAPONS).add(item.get()));
         ItemInit.RANGED_WEAPONS.values().forEach(item -> this.tag(ItemTagWrappers.WEAPONS).add(item.get()));
         ItemInit.ARMORS.values().forEach(item -> this.tag(ItemTagWrappers.ARMOR).add(item.get()));
-    }
-
-    private void curiosArtifactTags() {
-        ItemInit.ARTIFACTS.forEach((resourceLocation, itemRegistryObject) -> this.tag(ItemTagWrappers.CURIOS_ARTIFACTS).add(itemRegistryObject.get()));
     }
 
     private void foodTags() {

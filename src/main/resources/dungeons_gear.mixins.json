@@ -5,7 +5,6 @@
   "minVersion": "0.8",
   "refmap": "dungeons_gear.refmap.json",
   "mixins": [
-    "AbstractArrowEntityMixin",
     "AreaEffectCloudEntityMixin",
     "ReloadableServerResourcesMixin",
     "HurtByTargetGoalMixin",

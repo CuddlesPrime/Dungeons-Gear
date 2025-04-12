@@ -53,8 +53,4 @@ public enum LootTableType {
     public ResourceLocation uniqueTable() {
         return modLoc("gear_addition/subtype/" + this.name + "_unique");
     }
-
-    public ResourceLocation artifactTable() {
-        return modLoc("gear_addition/subtype/" + this.name + "_artifact");
-    }
 }

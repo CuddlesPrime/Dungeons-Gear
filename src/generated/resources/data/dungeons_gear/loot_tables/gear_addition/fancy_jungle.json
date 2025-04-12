@@ -15,11 +15,6 @@
       "entries": [
         {
           "type": "minecraft:loot_table",
-          "weight": 15,
-          "name": "dungeons_gear:gear_addition/subtype/jungle_artifact"
-        },
-        {
-          "type": "minecraft:loot_table",
           "weight": 12,
           "quality": -2,
           "name": "dungeons_gear:gear_addition/subtype/jungle_normal"

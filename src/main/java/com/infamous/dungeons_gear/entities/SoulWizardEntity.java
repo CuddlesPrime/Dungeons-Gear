@@ -2,13 +2,11 @@ package com.infamous.dungeons_gear.entities;
 
 import com.infamous.dungeons_gear.ai.goals.ApproachTargetGoal;
 import com.infamous.dungeons_gear.ai.goals.LookAtTargetGoal;
-import com.infamous.dungeons_gear.registry.ParticleInit;
 import com.infamous.dungeons_gear.registry.SoundEventInit;
 import com.infamous.dungeons_gear.utilties.PositionUtils;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -99,7 +97,6 @@ public class SoulWizardEntity extends AbstractGolem implements GeoEntity {
         } else moving = this.getDeltaMovement().z >= 0.05;
 
         if (moving) {
-            this.level().addParticle(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 0, 0, 0);
             if (this.soundLoopTick % 20 == 0) {
                 this.playSound(SoundEventInit.SOUL_WIZARD_FLY_LOOP.get(), 0.5F, 1.0F);
             }
@@ -109,7 +106,6 @@ public class SoulWizardEntity extends AbstractGolem implements GeoEntity {
 
             if (this.hasDelayedForm()) {
                 this.playSound(SoundEventInit.SOUL_WIZARD_APPEAR.get(), 1.0F, 1.0F);
-                ((ServerLevel) level()).sendParticles(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 20, 0.5D, 1.0D, 0.5D, 0.0D);
                 this.appearAnimationTick = this.appearAnimationLength;
                 this.level().broadcastEntityEvent(this, (byte) 4);
                 this.setDelayedForm(false);
@@ -120,7 +116,6 @@ public class SoulWizardEntity extends AbstractGolem implements GeoEntity {
             if (this.getAliveFor() >= 800) {
                 this.remove(RemovalReason.DISCARDED);
                 this.playSound(SoundEventInit.SOUL_WIZARD_PROJECTILE_IMPACT.get(), 1.0F, 0.5F);
-                ((ServerLevel) this.level()).sendParticles(ParticleInit.SOUL_DUST.get(), this.getX(), this.getY(), this.getZ(), 20, 0.5D, 1.0D, 0.5D, 0.0D);
             }
         }
     }
