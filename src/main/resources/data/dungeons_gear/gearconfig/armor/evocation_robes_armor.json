@@ -1,11 +1,5 @@
 {
-  "attributes": [
-    {
-      "attribute": "dungeons_libraries:artifact_cooldown_multiplier",
-      "amount": -0.1,
-      "operation": 1
-    }
-  ],
+  "attributes": [],
   "built_in_enchantments": [{"enchantment": "dungeons_gear:speed_aura", "level": 1}],
   "material": "dungeons_gear:cloth",
   "unique": false,

@@ -17,7 +17,7 @@
     }
   ],
   "material": "minecraft:iron",
-  "built_in_enchantments": [{"enchantment": "dungeons_gear:soul_siphon", "level": 1}],
+  "built_in_enchantments": [],
   "unique": true,
   "rarity": "UNCOMMON",
   "combo": 1

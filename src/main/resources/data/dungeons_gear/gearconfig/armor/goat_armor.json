@@ -1,11 +1,6 @@
 {
   "attributes": [
     {
-      "attribute": "dungeons_libraries:artifact_cooldown_multiplier",
-      "amount": -0.1,
-      "operation": 1
-    },
-    {
       "attribute": "minecraft:generic.knockback_resistance",
       "amount": 0.35,
       "operation": 1

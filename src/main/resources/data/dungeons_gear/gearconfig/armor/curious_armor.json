@@ -1,11 +1,5 @@
 {
-  "attributes": [
-    {
-      "attribute": "dungeons_libraries:artifact_cooldown_multiplier",
-      "amount": -0.10,
-      "operation": 1
-    }
-  ],
+  "attributes": [],
   "built_in_enchantments": [{"enchantment": "dungeons_gear:arrow_hoarder", "level": 1},{"enchantment": "dungeons_gear:void_dodge", "level": 1}],
   "material": "dungeons_gear:light_plate",
   "unique": true,
