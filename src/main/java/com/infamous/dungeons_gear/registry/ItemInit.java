@@ -40,7 +40,6 @@ public class ItemInit {
     public static final Map<ResourceLocation, RegistryObject<Item>> ARTIFACTS = new HashMap<>();
     public static final Map<LootTableType, List<RegistryObject<Item>>> LOOT_TABLES = new HashMap<>();
 
-
     public static final Item.Properties MELEE_WEAPON_PROPERTIES = DungeonsGearConfig.ENABLE_MELEE_WEAPON_TAB.get() ?
         new Item.Properties() : new Item.Properties();
     public static final Item.Properties ARMOR_PROPERTIES = DungeonsGearConfig.ENABLE_ARMOR_TAB.get() ?
@@ -554,6 +553,7 @@ public class ItemInit {
         RegistryObject<Item> register = ITEMS.register(armorId, itemSupplier);
         ARMORS.put(GeneralHelper.modLoc(armorId), register);
         addToLootTables(lootTableType, register);
+        CreativeTabInit.ARMOR_TAB_ITEMS.add(register);
         return register;
     }
 
@@ -561,6 +561,7 @@ public class ItemInit {
         RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
         MELEE_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);
         addToLootTables(lootTableType, register);
+        CreativeTabInit.MELEE_WEAPONS_TAB_ITEMS.add(register);
         return register;
     }
 
@@ -568,6 +569,7 @@ public class ItemInit {
         RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
         RANGED_WEAPONS.put(GeneralHelper.modLoc(meleeWeaponId), register);
         addToLootTables(lootTableType, register);
+        CreativeTabInit.RANGED_WEAPONS_TAB_ITEMS.add(register);
         return register;
     }
 
@@ -575,6 +577,7 @@ public class ItemInit {
         RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
         ARTIFACTS.put(GeneralHelper.modLoc(meleeWeaponId), register);
         addToLootTables(lootTableType, register);
+        CreativeTabInit.ARTIFACT_TAB_ITEMS.add(register);
         return register;
     }
 
@@ -582,5 +585,4 @@ public class ItemInit {
         List<RegistryObject<Item>> registryObjects = LOOT_TABLES.computeIfAbsent(lootTableType, lootTableTypeKey -> new ArrayList<>());
         registryObjects.add(register);
     }
-
 }
