@@ -373,78 +373,78 @@ public class ItemInit {
     public static final RegistryObject<Item> NAUTICAL_CROSSBOW = registerRangedWeapon("nautical_crossbow",
             () -> new CrossbowGear(RANGED_WEAPON_PROPERTIES), OCEAN);
 
-    public static final RegistryObject<Item> BOOTS_OF_SWIFTNESS = registerArtifact("boots_of_swiftness",
-            () -> new BootsOfSwiftnessItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> DEATH_CAP_MUSHROOM = registerArtifact("death_cap_mushroom",
-            () -> new DeathCapMushroomItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> GOLEM_KIT = registerArtifact("golem_kit",
-            () -> new GolemKitItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> TASTY_BONE = registerArtifact("tasty_bone",
-            () -> new TastyBoneItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> WONDERFUL_WHEAT = registerArtifact("wonderful_wheat",
-            () -> new WonderfulWheatItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> GONG_OF_WEAKENING = registerArtifact("gong_of_weakening",
-            () -> new GongOfWeakeningItem(ARTIFACT_PROPERTIES), DESERT);
-    public static final RegistryObject<Item> LIGHTNING_ROD = registerArtifact("lightning_rod",
-            () -> new LightningRodItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> IRON_HIDE_AMULET = registerArtifact("iron_hide_amulet",
-            () -> new IronHideAmuletItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> LOVE_MEDALLION = registerArtifact("love_medallion",
-            () -> new LoveMedallionItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> GHOST_CLOAK = registerArtifact("ghost_cloak",
-            () -> new GhostCloakItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> HARVESTER = registerArtifact("harvester",
-            () -> new HarvesterItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> SHOCK_POWDER = registerArtifact("shock_powder",
-            () -> new ShockPowderItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> CORRUPTED_SEEDS = registerArtifact("corrupted_seeds",
-            () -> new CorruptedSeedsItem(ARTIFACT_PROPERTIES), JUNGLE);
-    public static final RegistryObject<Item> ICE_WAND = registerArtifact("ice_wand",
-            () -> new IceWandItem(ARTIFACT_PROPERTIES), COLD);
-    public static final RegistryObject<Item> WIND_HORN = registerArtifact("wind_horn",
-            () -> new WindHornItem(ARTIFACT_PROPERTIES), COLD);
-    public static final RegistryObject<Item> SOUL_HEALER = registerArtifact("soul_healer",
-            () -> new SoulHealerItem(ARTIFACT_PROPERTIES), DESERT);
-    public static final RegistryObject<Item> LIGHT_FEATHER = registerArtifact("light_feather",
-            () -> new LightFeatherItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> FLAMING_QUIVER = registerArtifact("flaming_quiver",
-            () -> new FlamingQuiverItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> TORMENT_QUIVER = registerArtifact("torment_quiver",
-            () -> new TormentQuiverItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> TOTEM_OF_REGENERATION = registerArtifact("totem_of_regeneration",
-            () -> new TotemOfRegenerationItem(ARTIFACT_PROPERTIES), DESERT);
-    public static final RegistryObject<Item> TOTEM_OF_SHIELDING = registerArtifact("totem_of_shielding",
-            () -> new TotemOfShieldingItem(ARTIFACT_PROPERTIES), DESERT);
-    public static final RegistryObject<Item> TOTEM_OF_SOUL_PROTECTION = registerArtifact("totem_of_soul_protection",
-            () -> new TotemOfSoulProtectionItem(ARTIFACT_PROPERTIES), DESERT);
-    public static final RegistryObject<Item> CORRUPTED_BEACON = registerArtifact("corrupted_beacon",
-            () -> new CorruptedBeaconItem(ARTIFACT_PROPERTIES), DESERT);
-    public static final RegistryObject<Item> BUZZY_NEST = registerArtifact("buzzy_nest",
-            () -> new BuzzyNestItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> ENCHANTED_GRASS = registerArtifact("enchanted_grass",
-            () -> new EnchantedGrassItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> CORRUPTED_PUMPKIN = registerArtifact("corrupted_pumpkin",
-            () -> new CorruptedPumpkinItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> THUNDERING_QUIVER = registerArtifact("thundering_quiver",
-            () -> new ThunderingQuiverItem(ARTIFACT_PROPERTIES), BASIC);
-    public static final RegistryObject<Item> HARPOON_QUIVER = registerArtifact("harpoon_quiver",
-            () -> new HarpoonQuiverItem(ARTIFACT_PROPERTIES), OCEAN);
-    public static final RegistryObject<Item> SATCHEL_OF_ELIXIRS = registerArtifact("satchel_of_elixirs",
-            () -> new SatchelOfElixirsItem(ARTIFACT_PROPERTIES), OCEAN);
-    public static final RegistryObject<Item> SATCHEL_OF_SNACKS = registerArtifact("satchel_of_snacks",
-            () -> new SatchelOfSnacksItem(ARTIFACT_PROPERTIES), OCEAN);
-    public static final RegistryObject<Item> SATCHEL_OF_ELEMENTS = registerArtifact("satchel_of_elements",
-            () -> new SatchelOfElementsItem(ARTIFACT_PROPERTIES), COLD);
-    public static final RegistryObject<Item> POWERSHAKER = registerArtifact("powershaker",
-            () -> new PowershakerItem(ARTIFACT_PROPERTIES), NETHER);
-    public static final RegistryObject<Item> UPDRAFT_TOME = registerArtifact("updraft_tome",
-            () -> new UpdraftTomeItem(ARTIFACT_PROPERTIES), COLD);
-    public static final RegistryObject<Item> EYE_OF_THE_GUARDIAN = registerArtifact("eye_of_the_guardian",
-            () -> new EyeOfTheGuardianItem(ARTIFACT_PROPERTIES), OCEAN);
-    public static final RegistryObject<Item> FIREWORKS_DISPLAY = registerArtifact("fireworks_display",
-            () -> new FireworksDisplayItem(ARTIFACT_PROPERTIES), GIFT);
-    public static final RegistryObject<Item> SOUL_LANTERN = registerArtifact("soul_lantern",
-            () -> new SoulLanternItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> BOOTS_OF_SWIFTNESS = registerArtifact("boots_of_swiftness",
+    //         () -> new BootsOfSwiftnessItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> DEATH_CAP_MUSHROOM = registerArtifact("death_cap_mushroom",
+    //         () -> new DeathCapMushroomItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> GOLEM_KIT = registerArtifact("golem_kit",
+    //         () -> new GolemKitItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> TASTY_BONE = registerArtifact("tasty_bone",
+    //         () -> new TastyBoneItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> WONDERFUL_WHEAT = registerArtifact("wonderful_wheat",
+    //         () -> new WonderfulWheatItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> GONG_OF_WEAKENING = registerArtifact("gong_of_weakening",
+    //         () -> new GongOfWeakeningItem(ARTIFACT_PROPERTIES), DESERT);
+    // public static final RegistryObject<Item> LIGHTNING_ROD = registerArtifact("lightning_rod",
+    //         () -> new LightningRodItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> IRON_HIDE_AMULET = registerArtifact("iron_hide_amulet",
+    //         () -> new IronHideAmuletItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> LOVE_MEDALLION = registerArtifact("love_medallion",
+    //         () -> new LoveMedallionItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> GHOST_CLOAK = registerArtifact("ghost_cloak",
+    //         () -> new GhostCloakItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> HARVESTER = registerArtifact("harvester",
+    //         () -> new HarvesterItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> SHOCK_POWDER = registerArtifact("shock_powder",
+    //         () -> new ShockPowderItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> CORRUPTED_SEEDS = registerArtifact("corrupted_seeds",
+    //         () -> new CorruptedSeedsItem(ARTIFACT_PROPERTIES), JUNGLE);
+    // public static final RegistryObject<Item> ICE_WAND = registerArtifact("ice_wand",
+    //         () -> new IceWandItem(ARTIFACT_PROPERTIES), COLD);
+    // public static final RegistryObject<Item> WIND_HORN = registerArtifact("wind_horn",
+    //         () -> new WindHornItem(ARTIFACT_PROPERTIES), COLD);
+    // public static final RegistryObject<Item> SOUL_HEALER = registerArtifact("soul_healer",
+    //         () -> new SoulHealerItem(ARTIFACT_PROPERTIES), DESERT);
+    // public static final RegistryObject<Item> LIGHT_FEATHER = registerArtifact("light_feather",
+    //         () -> new LightFeatherItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> FLAMING_QUIVER = registerArtifact("flaming_quiver",
+    //         () -> new FlamingQuiverItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> TORMENT_QUIVER = registerArtifact("torment_quiver",
+    //         () -> new TormentQuiverItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> TOTEM_OF_REGENERATION = registerArtifact("totem_of_regeneration",
+    //         () -> new TotemOfRegenerationItem(ARTIFACT_PROPERTIES), DESERT);
+    // public static final RegistryObject<Item> TOTEM_OF_SHIELDING = registerArtifact("totem_of_shielding",
+    //         () -> new TotemOfShieldingItem(ARTIFACT_PROPERTIES), DESERT);
+    // public static final RegistryObject<Item> TOTEM_OF_SOUL_PROTECTION = registerArtifact("totem_of_soul_protection",
+    //         () -> new TotemOfSoulProtectionItem(ARTIFACT_PROPERTIES), DESERT);
+    // public static final RegistryObject<Item> CORRUPTED_BEACON = registerArtifact("corrupted_beacon",
+    //         () -> new CorruptedBeaconItem(ARTIFACT_PROPERTIES), DESERT);
+    // public static final RegistryObject<Item> BUZZY_NEST = registerArtifact("buzzy_nest",
+    //         () -> new BuzzyNestItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> ENCHANTED_GRASS = registerArtifact("enchanted_grass",
+    //         () -> new EnchantedGrassItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> CORRUPTED_PUMPKIN = registerArtifact("corrupted_pumpkin",
+    //         () -> new CorruptedPumpkinItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> THUNDERING_QUIVER = registerArtifact("thundering_quiver",
+    //         () -> new ThunderingQuiverItem(ARTIFACT_PROPERTIES), BASIC);
+    // public static final RegistryObject<Item> HARPOON_QUIVER = registerArtifact("harpoon_quiver",
+    //         () -> new HarpoonQuiverItem(ARTIFACT_PROPERTIES), OCEAN);
+    // public static final RegistryObject<Item> SATCHEL_OF_ELIXIRS = registerArtifact("satchel_of_elixirs",
+    //         () -> new SatchelOfElixirsItem(ARTIFACT_PROPERTIES), OCEAN);
+    // public static final RegistryObject<Item> SATCHEL_OF_SNACKS = registerArtifact("satchel_of_snacks",
+    //         () -> new SatchelOfSnacksItem(ARTIFACT_PROPERTIES), OCEAN);
+    // public static final RegistryObject<Item> SATCHEL_OF_ELEMENTS = registerArtifact("satchel_of_elements",
+    //         () -> new SatchelOfElementsItem(ARTIFACT_PROPERTIES), COLD);
+    // public static final RegistryObject<Item> POWERSHAKER = registerArtifact("powershaker",
+    //         () -> new PowershakerItem(ARTIFACT_PROPERTIES), NETHER);
+    // public static final RegistryObject<Item> UPDRAFT_TOME = registerArtifact("updraft_tome",
+    //         () -> new UpdraftTomeItem(ARTIFACT_PROPERTIES), COLD);
+    // public static final RegistryObject<Item> EYE_OF_THE_GUARDIAN = registerArtifact("eye_of_the_guardian",
+    //         () -> new EyeOfTheGuardianItem(ARTIFACT_PROPERTIES), OCEAN);
+    // public static final RegistryObject<Item> FIREWORKS_DISPLAY = registerArtifact("fireworks_display",
+    //         () -> new FireworksDisplayItem(ARTIFACT_PROPERTIES), GIFT);
+    // public static final RegistryObject<Item> SOUL_LANTERN = registerArtifact("soul_lantern",
+    //         () -> new SoulLanternItem(ARTIFACT_PROPERTIES), BASIC);
 
     public static final ArmorSetInit HUNTERS_ARMOR = registerArmorSet("hunters", BASIC);
     public static final ArmorSetInit ARCHERS_ARMOR = registerArmorSet("archers", BASIC);
@@ -573,13 +573,13 @@ public class ItemInit {
         return register;
     }
 
-    private static RegistryObject<Item> registerArtifact(String meleeWeaponId, Supplier<Item> itemSupplier, LootTableType lootTableType) {
-        RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
-        ARTIFACTS.put(GeneralHelper.modLoc(meleeWeaponId), register);
-        addToLootTables(lootTableType, register);
-        CreativeTabInit.ARTIFACT_TAB_ITEMS.add(register);
-        return register;
-    }
+    // private static RegistryObject<Item> registerArtifact(String meleeWeaponId, Supplier<Item> itemSupplier, LootTableType lootTableType) {
+    //     RegistryObject<Item> register = ITEMS.register(meleeWeaponId, itemSupplier);
+    //     ARTIFACTS.put(GeneralHelper.modLoc(meleeWeaponId), register);
+    //     addToLootTables(lootTableType, register);
+    //     CreativeTabInit.ARTIFACT_TAB_ITEMS.add(register);
+    //     return register;
+    // }
 
     private static void addToLootTables(LootTableType lootTableType, RegistryObject<Item> register) {
         List<RegistryObject<Item>> registryObjects = LOOT_TABLES.computeIfAbsent(lootTableType, lootTableTypeKey -> new ArrayList<>());

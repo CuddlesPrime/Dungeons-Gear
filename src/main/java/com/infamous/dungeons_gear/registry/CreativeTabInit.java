@@ -19,7 +19,7 @@ import net.minecraft.world.level.ItemLike;
 public class CreativeTabInit {
     public static final DeferredRegister<CreativeModeTab> TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DungeonsGear.MODID);
     public static final List<Supplier<? extends ItemLike>> ARMOR_TAB_ITEMS = new ArrayList<>();
-    public static final List<Supplier<? extends ItemLike>> ARTIFACT_TAB_ITEMS = new ArrayList<>();
+    // public static final List<Supplier<? extends ItemLike>> ARTIFACT_TAB_ITEMS = new ArrayList<>();
     public static final List<Supplier<? extends ItemLike>> MELEE_WEAPONS_TAB_ITEMS = new ArrayList<>();
     public static final List<Supplier<? extends ItemLike>> RANGED_WEAPONS_TAB_ITEMS = new ArrayList<>();
 
@@ -32,14 +32,14 @@ public class CreativeTabInit {
             .build()
     );
 
-    public static final RegistryObject<CreativeModeTab> ARTIFACT_TAB = TABS.register("artifacts",
-        () -> CreativeModeTab.builder()
-            .title(Component.translatable("itemGroup.artifact"))
-            .icon(() -> new ItemStack(ItemInit.TOTEM_OF_REGENERATION.get()))
-            .displayItems((parameters, output) ->
-                ARTIFACT_TAB_ITEMS.forEach(itemLike -> output.accept(itemLike.get())))
-            .build()
-    );
+    // public static final RegistryObject<CreativeModeTab> ARTIFACT_TAB = TABS.register("artifacts",
+    //     () -> CreativeModeTab.builder()
+    //         .title(Component.translatable("itemGroup.artifact"))
+    //         .icon(() -> new ItemStack(ItemInit.TOTEM_OF_REGENERATION.get()))
+    //         .displayItems((parameters, output) ->
+    //             ARTIFACT_TAB_ITEMS.forEach(itemLike -> output.accept(itemLike.get())))
+    //         .build()
+    // );
 
     public static final RegistryObject<CreativeModeTab> MELEE_WEAPONS_TAB = TABS.register("melee_weapons",
         () -> CreativeModeTab.builder()
